@@ -1,0 +1,13 @@
+RewriteEngine On
+
+#accept loading of actual files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#send everything else to the index page
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+php_value upload_max_filesize 2000M
+php_value post_max_size 2000M
+php_value max_input_time 30
+php_value max_execution_time 180
