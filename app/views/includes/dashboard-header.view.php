@@ -122,6 +122,8 @@
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
+
+        <?php if( $ses->user('role') == 'Admin'): ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/user">
               <span class="menu-title">Users</span>
@@ -193,6 +195,8 @@
               </div>
             </span>
           </li>
+
+        <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#organization" aria-expanded="false"
               aria-controls="organization">

@@ -51,7 +51,6 @@ class Dashboard
 
 		$user = new User();
 
-
 		$this->view('dashboard/dashhome', $data);
 	}
 
@@ -185,7 +184,15 @@ class Dashboard
 
 		$data['errors'] = $data['user']->errors;
 
-		$this->view('dashboard/user', $data);
+		if( $ses->user('role') == 'Admin')
+		{
+			$this->view('dashboard/user', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+
+		
 	}
 
 	// Organization
