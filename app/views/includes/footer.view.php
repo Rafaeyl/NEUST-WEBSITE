@@ -37,6 +37,7 @@
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
                 <li><a href="<?=ROOT?>/home/teachers"><span class="fa-solid fa-arrow-right  mr-2"></span>Teachers</a></li>
                 <li><a href="<?=ROOT?>/home/contact"><span class="fa-solid fa-arrow-right  mr-2"></span>Contact</a></li>
+                <li><a href="<?=ROOT?>/login"><span class="fa-solid fa-arrow-right  mr-2"></span>Login</a></li>
               </ul>
             </div>
           </div>
