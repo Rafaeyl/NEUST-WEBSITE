@@ -2,24 +2,6 @@
 
 
 <?php if ($action == 'new'): ?>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
-  <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/cropper.css">
-  <style>
-    img {
-        display: block;
-        max-width: 100%;
-    }
-    .preview {
-        overflow: hidden;
-        width: 160px; 
-        height: 160px;
-        margin: 10px;
-        border: 1px solid red;
-    }
-    .modal-lg{
-        max-width: 1000px !important;
-    }
-</style>
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -27,7 +9,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Update User</li>
+            <li class="breadcrumb-item active" aria-current="page">Add User</li>
           </ol>
         </nav>
       </div>
@@ -39,14 +21,6 @@
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
 
-                  <!-- <div class="col-md-12 text-center mb-5">
-                    <label>Click to change image</label><br>
-                    <label>
-                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
-                      <img src="<?= get_image() ?>" style="width: 200px;height:200px;object-fit: cover;cursor: pointer;">
-                      <div><small class="text-danger"> <?= $user->getError('image') ?></small></div>
-                    </label>
-                  </div> -->
                   <div class="col-md-12 text-center mb-5">
                       <label class="form-label">Choose Image </label><br>
                     
@@ -125,10 +99,9 @@
                   <div class="col-md-4">
                     <label for="role" class="form-label">Role</label>
                     <select id="role" class="form-select" aria-label="Default select example" name="role">
-                      <option value="Admin">Admin</option>
                       <?php if(!empty($institutions)):?>
-                          <?php foreach($institutions as $institution):?>
-                              <option <?=old_select('category_id',$institution->id)?> value="<?=$institution->acronym?>"><?=$institution->name . ' ' . 'Rep'?></option>
+                          <?php foreach($institutions as $institutionz):?>
+                              <option <?=old_select('category_id',$institutionz->id)?> value="<?=$institutionz->acronym?>|<?=$institutionz->institution?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
                           <?php endforeach;?>
                       <?php endif;?>
                     </select>
@@ -158,7 +131,7 @@
                 </div>
 
               </form>
-              <div class="modal fade" id="modal_crop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+              <!-- <div class="modal fade" id="modal_crop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -185,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>             -->
         </div>
               <script src="<?= ROOT ?>assets/dashboard/js/cropper.js"></script>
               <script src="<?= ROOT ?>assets/dashboard/js/jscropper-ajax.js"></script>
@@ -297,10 +270,9 @@
                   <div class="col-md-4">
                     <label for="role" class="form-label">Role</label>
                     <select id="role" class="form-select" aria-label="Default select example" name="role">
-                      <option value="Admin">Admin</option>
                       <?php if(!empty($institutions)):?>
-                          <?php foreach($institutions as $institution):?>
-                              <option <?=old_select('category_id',$institution->id,$row->id)?> value="<?=$institution->acronym?>"><?=$institution->name . ' ' . 'Rep'?></option>
+                          <?php foreach($institutions as $institutionz):?>
+                              <option <?=old_select('role',$institutionz->id,$row->role)?>  value="<?=$institutionz->acronym?>|<?=$institutionz->institution?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
                           <?php endforeach;?>
                       <?php endif;?>
                     </select>
@@ -354,12 +326,7 @@
               <div class="page-header">
 
                 <h1>
-                  Delete Users &nbsp;
-                  <a href="<?= ROOT ?>dashboard/user/new" class="mb-4">
-                    <button type="button" class="btn btn-gradient-primary btn-icon-text">
-                      Add User <i class="mdi mdi-account-plus btn-icon-append"></i>
-                    </button>
-                  </a>
+                  Delete Users
                 </h1>
 
                 <nav aria-label="breadcrumb">
@@ -465,7 +432,11 @@
                                         <td><?= esc($row->email) ?></td>
                                         <td><?= esc($row->phone) ?></td>
                                         <td><?= esc($row->address) ?></td>
-                                        <td><?= esc($row->role) ?></td>
+                                        <?php 
+                                        $explode_role = explode("|",$row->role);
+                                        $role = $explode_role[0];
+                                        ?>
+                                        <td><?= esc($role) ?></td>
                                         <td>
                                           <button type="button" class="btn btn-inverse-info btn-icon">
                                             <a  href="<?=ROOT?>dashboard/user/edit/<?=$row->id?>">

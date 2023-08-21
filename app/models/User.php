@@ -29,6 +29,7 @@ class User
 		'phone',
 		'address',
 		'role',
+		'institute',
 		'password',
 		'date_created',
 		'date_updated',

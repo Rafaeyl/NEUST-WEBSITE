@@ -111,7 +111,12 @@
               </div>
               <div class="nav-profile-text d-flex flex-column">
                 <span class="font-weight-bold mb-2"><?= $ses->user('first_name') ?></span>
-                <span class="text-secondary text-small"><?= $ses->user('role') ?></span>
+                <?php 
+                  $explode_role = explode("|", $ses->user('role'));
+                  $role = $explode_role[0];
+                  $institutionz = $explode_role[1];
+                ?>
+                <span class="text-secondary text-small"><?=  $role ?></span>
               </div>
               <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
@@ -123,7 +128,7 @@
             </a>
           </li>
 
-        <?php if( $ses->user('role') == 'Admin'): ?>
+        <?php if( $ses->user('institute') == 'Admin'): ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/user">
               <span class="menu-title">Users</span>
@@ -168,13 +173,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#organization" aria-expanded="false"
-              aria-controls="organization">
+            <a class="nav-link" data-bs-toggle="collapse" href="#news" aria-expanded="false"
+              aria-controls="news">
               <span class="menu-title">News</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-sitemap menu-icon"></i>
             </a>
-            <div class="collapse" id="organization">
+            <div class="collapse" id="news">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/news_categories">Category</a>
                 </li>
@@ -195,8 +200,6 @@
               </div>
             </span>
           </li>
-
-        <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#organization" aria-expanded="false"
               aria-controls="organization">
@@ -211,10 +214,8 @@
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_info">Organization's
                     Info</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_about">Organization's About Us</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">Organization's
-                    Official</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Organization's
-                    Album</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">Organization's Official</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Organization's Album</a></li>
               </ul>
             </div>
           </li>
@@ -236,71 +237,73 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-              aria-controls="ui-basic">
-              <span class="menu-title">Basic UI Elements</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-              <span class="menu-title">Icons</span>
-              <i class="mdi mdi-contacts menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">Forms</span>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <span class="menu-title">Charts</span>
-              <i class="mdi mdi-chart-bar menu-icon"></i>
-            </a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
-              aria-controls="general-pages">
-              <span class="menu-title">Sample Pages</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-medical-bag menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item sidebar-actions">
+        <?php endif; ?>
+
+        <?php if( $ses->user('institute') == 'organizat'): ?>
+          <li class="nav-item mt-0 sidebar-actions">
             <span class="nav-link">
               <div class="border-bottom">
-                <h6 class="font-weight-normal mb-3">Projects</h6>
-              </div>
-              <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-              <div class="mt-4">
-                <div class="border-bottom">
-                  <p class="text-secondary">Categories</p>
-                </div>
-                <ul class="gradient-bullet-list mt-4">
-                  <li>Free</li>
-                  <li>Pro</li>
-                </ul>
               </div>
             </span>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_info">
+              <span class="menu-title">Organization's Info</span>
+              <i class="mdi mdi-information menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_about">
+              <span class="menu-title">Organization's About Us</span>
+              <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">
+              <span class="menu-title">Organization's Official</span>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organizations_album">
+              <span class="menu-title">Organization's Album</span>
+              <i class="mdi mdi-history menu-icon"></i>
+            </a>
+          </li>
+        <?php endif; ?>
+
+        <?php if( $ses->user('institute') == 'college'): ?>
+          <li class="nav-item mt-0 sidebar-actions">
+            <span class="nav-link">
+              <div class="border-bottom">
+              </div>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/college_info">
+              <span class="menu-title">College's Info</span>
+              <i class="mdi mdi-information menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/college_about">
+              <span class="menu-title">College's About Us</span>
+              <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/college_officials">
+              <span class="menu-title">College's Official</span>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/colleges_album">
+              <span class="menu-title">College's Album</span>
+              <i class="mdi mdi-history menu-icon"></i>
+            </a>
+          </li>
+        <?php endif; ?>
+
         </ul>
       </nav>

@@ -69,12 +69,11 @@ class Dashboard
 
 		$institutions = new Institution();
 		
-		$institutions->order_type = 'asc';
+		$institutions->order_type = 'desc';
 		$institutions->limit = 10;
 		$data['institutions'] = $institutions->whereInstitution('disabled', 'Active');
 		
 
-		$req = new Request;
 		$data['user'] = new User();
 
 		if ($action == 'new') {
@@ -87,30 +86,24 @@ class Dashboard
 					mkdir($folder, 0777, true);
 				}
 
-				if ($data['user']->validatee( $_POST)) {
+				if ($data['user']->validatee($_FILES, $_POST)) {
 
-					// $destination = $folder . time() . $_FILES['image']['name'];
-					// move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-					// $_POST['image'] = $_FILES['image']['name'];
-					// $data = $_POST['image'] ;
-					$image =  $_FILES['image']['name'];
-					$image_array_1 = explode(";", $image);
-					$image_array_2 = explode(",", $image_array_1[1]);
-					$base64_decode = base64_decode($image_array_2[1]);
-					$path_img = 'uploads/'.time().$_FILES["image"]["name"];
-					$imagename = ''.time().'.png';
-					file_put_contents($path_img, $base64_decode); 
-						
-					// $image_class = new Image();
-					// $image_class->resize($destination);
+					$destination = $folder . time() . $_FILES['image']['name'];
+					move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+					
+					$image_class = new Image();
+					$image_class->resize($destination);
 					
 
-					$_POST['image'] = $path_img;
+					$_POST['image'] = $destination;
 
 					$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 					$_POST['date_created'] = date("Y-m-d H:i:s");
 					$_POST['date_updated'] = date("Y-m-d H:i:s");
-
+					
+					$explode_role = explode("|",$_POST['role']);
+					$institute = $explode_role[1];
+					$_POST['institute'] = $institute;
 
 					$data['user']->insert($_POST);
 					redirect('dashboard/user');
@@ -151,7 +144,10 @@ class Dashboard
 					}else{
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 					}
-	
+					
+					$explode_role = explode("|",$_POST['role']);
+					$institute = $explode_role[1];
+					$_POST['institute'] = $institute;
 
 					$data['user']->update($id, $_POST);
 
@@ -184,7 +180,10 @@ class Dashboard
 
 		$data['errors'] = $data['user']->errors;
 
-		if( $ses->user('role') == 'Admin')
+		// $explode_role = explode("|",$data['rows']['role']);
+		// $institute = $explode_role[1];
+
+		if( $ses->user('institute') == 'Admin')
 		{
 			$this->view('dashboard/user', $data);
 		}else
@@ -273,7 +272,15 @@ class Dashboard
 
 		$data['rows'] = $this->query($query);
 
-		$this->view('dashboard/organization', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			
+			$this->view('dashboard/organization', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+
 	}
 
 	// College
@@ -361,7 +368,16 @@ class Dashboard
 
 		$data['rows'] = $this->query($query);
 
-		$this->view('dashboard/college', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			
+			$this->view('dashboard/college', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+
+	
 	}
 
 	// Organization Info
@@ -495,7 +511,14 @@ class Dashboard
 
 		$data['errors'] = $data['OrganizationInfo']->errors;
 
-		$this->view('dashboard/organization_info', $data);
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		{
+			$this->view('dashboard/organization_info', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	// College Info
@@ -624,7 +647,15 @@ class Dashboard
 
 		$data['errors'] = $data['collegeInfo']->errors;
 
-		$this->view('dashboard/college_info', $data);
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'college')
+		{
+			$this->view('dashboard/college_info', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
+		
 	}
 
 	// Organizatin Official
@@ -732,7 +763,13 @@ class Dashboard
 
 		$data['errors'] = $data['OrganizationOfficials']->errors;
 
-		$this->view('dashboard/organization_officials', $data);
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		{
+			$this->view('dashboard/organization_officials', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
 	}
 
 	public function college_official($action = null, $id = null)
@@ -839,7 +876,16 @@ class Dashboard
 
 		$data['errors'] = $data['collegeOfficials']->errors;
 
-		$this->view('dashboard/college_official', $data);
+		
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'college')
+		{
+			$this->view('dashboard/college_official', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+
+		
 	}
 
 	public function organization_about($action = null, $id = null)
@@ -948,7 +994,15 @@ class Dashboard
 	
 		$data['errors'] = $data['OrganizationAbout']->errors;
 
-		$this->view('dashboard/organization_about', $data);
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		{
+			$this->view('dashboard/organization_about', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+
+		
 	}
 
 	public function college_about($action = null, $id = null)
@@ -1056,7 +1110,15 @@ class Dashboard
 	
 		$data['errors'] = $data['collegeAbout']->errors;
 
-		$this->view('dashboard/college_about', $data);
+			
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'college')
+		{
+			$this->view('dashboard/college_about', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	public function announcement($action = null, $id = null)
@@ -1128,7 +1190,14 @@ class Dashboard
 		$data['errors'] = $announcement->errors;
 		$data['announcement'] = $announcement;
 
-		$this->view('dashboard/announcement', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/announcement', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	public function teachers($action = null, $id = null)
@@ -1235,7 +1304,14 @@ class Dashboard
 
 		$data['errors'] = $data['teachers']->errors;
 
-		$this->view('dashboard/teachers', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/teachers', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	// Organization
@@ -1294,7 +1370,13 @@ class Dashboard
 		$data['errors'] = $contact_info->errors;
 		$data['contact_info'] = $contact_info;
 
-		$this->view('dashboard/contact_info', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/contact_info', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
 	}
 
 	public function about_school($action = null, $id = null)
@@ -1347,7 +1429,13 @@ class Dashboard
 
 		$data['errors'] = $data['about_school']->errors;
 
-		$this->view('dashboard/about_school', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/about_school', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
 	}
 
 	public function settings($action = null, $id = null)
@@ -1436,7 +1524,14 @@ class Dashboard
 
 		$data['errors'] = $data['settings']->errors;
 
-		$this->view('dashboard/settings', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/settings', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	public function history($action = null, $id = null)
@@ -1533,7 +1628,14 @@ class Dashboard
 
 		$data['errors'] = $data['history']->errors;
 
-		$this->view('dashboard/history', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/history', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	public function news_categories($action = null, $id = null)
@@ -1618,8 +1720,14 @@ class Dashboard
 		$data['$news_categories'] = $news_categories;
 
 		
-
-		$this->view('dashboard/news_categories', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/news_categories', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 
 	public function news($action = null, $id = null)
@@ -1755,7 +1863,14 @@ class Dashboard
 
 		$data['errors'] = $data['news']->errors;
 
-		$this->view('dashboard/news', $data);
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/news', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
 	}
+	
 }
 
