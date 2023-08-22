@@ -15,13 +15,13 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-              <h2 class="ftco-heading-2">Recent Blog</h2>
+              <h2 class="ftco-heading-2">Recent News</h2>
               <div class="block-21 mb-5 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(<?=get_image($news_footer['image'])?>);"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                  <h5 class="heading"><a href="#"><?= substr($news_footer['title'], 0,30) . '...'?></a></h5>
                   <div class="meta">
-                    <div><a href="#"><span class="fa-regular fa-calendar-days"></span> June 27, 2019</a></div>
+                    <div><a href="#"><span class="fa-regular fa-calendar-days"></span> <?= get_date($news_footer['date'])?></a></div>
                     <div><a href="#"><span class="fa-solid fa-user"></span> Admin</a></div>
                   </div>
                 </div>
@@ -43,19 +43,8 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2">Subscribe Us!</h2>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                  <input type="submit" value="Subscribe" class="form-control submit px-3">
-                </div>
-              </form>
-            </div>
-            <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fab fa-facebook-f "></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
               </ul>
             </div>

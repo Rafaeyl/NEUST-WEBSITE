@@ -50,7 +50,7 @@ Trait Model
 	public function whereInstitution($column, $value)
 	{
 		$column = addslashes($column);
-		$query = "select * from $this->table where $column = :value ";
+		$query = "select * from $this->table where $column = :value  order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
 		return $this->query($query, [
 			'value' => $value

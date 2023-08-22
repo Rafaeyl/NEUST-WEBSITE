@@ -266,18 +266,18 @@
                   <div style="overflow-x:auto;">
 
 
-                    <table class="table table-striped" id="userTable">
-                      <thead>
-                        <tr>
-                          <th class="text-center"> # </th>
-                          <th class="text-center"> Image </th>
-                          <th class="text-center"> Name</th>
-                          <th class="text-center"> description</th>
-                          <th class="text-center"> Members</th>
-                          <th class="text-center"> Activities</th>
-                          <th class="text-center"> Events</th>
-                          <th class="text-center"> Organization </th>
-                          <th class="text-center"> Action </th>
+                    <table class="table table-striped table-bordered" id="userTable">
+                      <thead class="bg-gradient-dark">
+                        <tr class="text-white">
+                          <th> # </th>
+                          <th> Image </th>
+                          <th> Name</th>
+                          <th> description</th>
+                          <th> Members</th>
+                          <th> Activities</th>
+                          <th> Events</th>
+                          <th> Organization </th>
+                          <th> Action </th>
                           <!-- <th> Action</th> -->
                         </tr>
                       </thead>
@@ -285,10 +285,10 @@
                         
                         <?php if(!empty($rows)): $num = 1 ;?>
                           <?php foreach($rows as $row):?>
-                            <tr class="text-center">
+                            <tr>
                                <td><?= $num++ ?>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?= esc($row->title) ?></td>

@@ -223,9 +223,9 @@
               </p>
 
               <div style="overflow-x:auto;">
-              <table class="table table-striped" id="userTable">
-                <thead>
-                  <tr>
+              <table class="table table-striped table-bordered" id="userTable">
+                <thead class="bg-gradient-dark">
+                  <tr class="text-white">
                     <th> # </th>
                     <th> Organization's Name</th>
                     <th> Acronym </th>

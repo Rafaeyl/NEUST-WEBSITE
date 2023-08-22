@@ -19,7 +19,7 @@
                   <div class="col-md-8">
                     <label for="description" class="form-label">Announcement's Description</label>
                     <input value="<?= old_value('description') ?>" type="text" class="form-control" id="description" name="description"
-                      placeholder="Enter announcement" Required>
+                      placeholder="Announcemnent(date)" Required>
                   </div>
                   <div class="col-md-4">
                     <label for="list_order" class="form-label">List Order</label>
@@ -75,13 +75,13 @@
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h1>announcement</h1>
+        <h1>Announcement</h1>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h2 class="mb-4">Update announcement</h2>
+              <h2 class="mb-4">Update Announcement</h2>
               <?php if(!empty($row)):?>
               <form method="post" enctype="multipart/form-data">
               <div class="row g-3 my-3 mx-auto">
@@ -89,7 +89,7 @@
                 <div class="col-md-8">
                 <label for="description" class="form-label">Announcement's Description</label>
                 <input value="<?= old_value('description', $row->description) ?>" type="text" class="form-control" id="description" name="description"
-                    placeholder="Enter announcement" Required>
+                    placeholder="Announcemnent(date)" Required>
                 </div>
                 <div class="col-md-4">
                 <label for="list_order" class="form-label">List Order</label>
@@ -149,16 +149,8 @@
               <div class="page-header">
 
                 <h1>
-                  Delete announcement &nbsp;
+                  Delete Announcement &nbsp;
                 </h1>
-
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">announcement</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">View announcement</li>
-
-                  </ol>
-                </nav>
               </div>
               <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
@@ -184,42 +176,33 @@
                   </div>
                 </div>
               </div>
-
-
 <?php else: ?>
 
   <!-- partial -->
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h1>announcement</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">announcement</a></li>
-            <li class="breadcrumb-item active" aria-current="page">View announcement</li>
-
-          </ol>
-        </nav>
+        <h1>Announcement &nbsp;  
+            <a href="<?= ROOT ?>dashboard/announcement/new">
+                <button type="button" class="btn btn-gradient-primary btn-icon-text">
+                  Add  <i class="mdi mdi-account-plus btn-icon-append"></i>
+                </button>
+              </a>
+          </h1>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <a href="<?= ROOT ?>dashboard/announcement/new">
-                <button type="button" class="btn btn-gradient-primary btn-icon-text">
-                  Add  <i class="mdi mdi-account-plus btn-icon-append"></i>
-                </button>
-              </a>
-              </p>
 
               <div style="overflow-x:auto;">
-              <table class="table table-striped" id="userTable">
-                <thead>
-                  <tr>
+              <table class="table table-striped  table-bordered" id="userTable">
+                <thead  class="bg-gradient-dark">
+                  <tr class="text-white text-center">
                     <th> # </th>
-                    <th> announcement's Name</th>
-                    <th> Acronym </th>
-                    <th> Active/Inactive </th>
+                    <th> Announcement's Name</th>
+                    <th> Active/Inactive  </th>
+                    <th> Announcement Order </th>
                     <th> Action</th>
                   </tr>
                 </thead>
@@ -232,7 +215,7 @@
                           <?= $num++ ?>
                         </td>
                         <td>
-                          <?= esc($row->description)?>
+                          <?= substr($row->description, 0,30) . '...'?>
                         </td>
                         <td>
                           <?= esc($row->disabled) ?>

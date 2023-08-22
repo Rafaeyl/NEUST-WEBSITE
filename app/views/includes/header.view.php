@@ -23,7 +23,7 @@
     
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style2.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css">
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">

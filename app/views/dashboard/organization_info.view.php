@@ -2,7 +2,8 @@
 
 
 <?php if ($action == 'new'): ?>
-
+  <?php $ses = new \Core\Session;  ?>
+  
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -21,16 +22,29 @@
                   <div class="row">
                    <div class="col-lg-4 mx-auto mb-3 text-center">
                       <label for="role" class="form-label">Organization</label>
-                      <select id="institution" class="form-select" aria-label="Default select example" name="institution">
-                        <?php if(!empty($organizations)):?>
-                            <?php foreach($organizations as $organization):?>
-                                <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
-                            <?php endforeach;?>
-                        <?php else: ?>
-                          <option value="">No Organization Available</option>
-                        <?php endif;?>
-                      </select>
-                      <div><small class="text-danger"> <?= $OrganizationInfo->getError('institution') ?></small></div>
+                        <?php if($ses->user('institute') == 'Admin'):?>
+                          <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <?php if(!empty($organizations)):?>
+                                    <?php foreach($organizations as $organization):?>
+                                        <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
+                                    <?php endforeach;?>
+                                <?php else: ?>
+                                  <option value="">No Organization Available</option>
+                                <?php endif;?>
+                          </select>
+                        <?php elseif($ses->user('institute') == 'organization'):?>
+                          <?php
+                            $id = $ses->user('id');
+                            $query  = "select institutions.id,institutions.name  FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                            $orgname = $this->query($query);
+                            ?>
+                            <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                           
+                              <option <?=old_select('institution',$orgname[0]->id)?> value="<?=$orgname[0]->id?>"><?=$orgname[0]->name?></option>
+                                
+                          </select>
+
+                      <?php endif;?>  
                     </div>
                   </div>
                  
@@ -73,7 +87,7 @@
                   <div class="col-md-6">
                     <label for="fb_link" class="form-label">Facebook Link</label>
                     <input value="<?= old_value('fb_link') ?>" type="text" class="form-control" id="fb_link"
-                      name="fb_link" placeholder="https://www.facebook.com/profile.php?id=100044873051995&mibextid=ZbWKwL">
+                      name="fb_link" placeholder="Enter N/A if not applicable ">
                   </div>
 
                   <div class="col-6">
@@ -166,7 +180,7 @@
                     <div class="col-md-6">
                       <label for="fb_link" class="form-label">Facebook Link</label>
                       <input value="<?= old_value('fb_link',$row->fb_link) ?>" type="text" class="form-control" id="fb_link"
-                        name="fb_link" placeholder="https://www.facebook.com/profile.php?id=100044873051995&mibextid=ZbWKwL">
+                        name="fb_link" placeholder="Enter N/A if not applicable ">
                     </div>
 
                     <div class="col-6">
@@ -243,7 +257,7 @@
         </div>
       </div>
     <?php else: ?>
-
+      <?php $ses = new \Core\Session;  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -251,10 +265,14 @@
 
             <h1>
               Organization's  Info &nbsp;
-              <a href="<?= ROOT ?>dashboard/organization_info/new" class="mb-4">
-                <button type="button" class="btn btn-gradient-primary btn-icon-text">
-                  Add Info <i class="mdi mdi-account-plus btn-icon-append"></i>
-                </button>
+              
+                <?php if($ses->user('institute') == 'Admin' || empty($single_rows)):?>
+                  <a href="<?= ROOT ?>dashboard/organization_info/new" class="mb-4">
+                  <button type="button" class="btn btn-gradient-primary btn-icon-text">
+                    Add Info <i class="mdi mdi-account-plus btn-icon-append"></i>
+                  </button>
+                  </a>
+                <?php endif;?>
               </a>
             </h1>
           </div>
@@ -262,65 +280,113 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <div style="overflow-x:auto;">
-
-
-                    <table class="table table-striped" id="userTable">
-                      <thead>
-                        <tr>
-                          <th class="text-center"> # </th>
-                          <th class="text-center"> Logo </th>
-                          <th class="text-center"> Cover Photo</th>
-                          <th class="text-center"> Email</th>
-                          <th class="text-center"> Phone </th>
-                          <th class="text-center"> Organization </th>
-                          <th class="text-center"> Action </th>
-                          <!-- <th> Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        
-                        <?php if(!empty($rows)): $num = 1 ;?>
-                          <?php foreach($rows as $row):?>
-                            <tr class="text-center">
-                               <td><?= $num++ ?>
-                                </td>
-                                <td class="text-center">
-                                  <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
-                                </td>
-                                <td class="text-center">
-                                  <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
-                                </td>
-                                <td><?= esc($row->email) ?></td>
-                                <td><?= esc($row->phone) ?></td>
-                                <?php
-                                 $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
-                                  $orgname = $this->query($query);
-                                ?>
-                                <td><?=$orgname[0]->name?></td>
-                                <td>
-                                  <button type="button" class="btn btn-inverse-info btn-icon">
-                                    <a  href="<?=ROOT?>dashboard/organization_info/edit/<?=$row->id?>">
-                                      <i class="mdi mdi-account-edit"></i>
-                                    </a>
-                                  </button>
-                                  <a href="<?= ROOT ?>dashboard/organization_info/delete/<?= $row->id ?>">
-                                    <button type="button" class="btn btn-inverse-danger btn-icon">
-                                      <i class="mdi mdi-delete"></i>
+                  <!-- Admin View -->
+                  <?php if($ses->user('institute') == 'Admin'):?>
+                    <div style="overflow-x:auto;">
+                      <table class="table table-bordered table-striped" id="userTable">
+                        <thead class="bg-gradient-dark">
+                          <tr class="text-white text-center">
+                            <th> # </th>
+                            <th> Logo </th>
+                            <th> Cover Photo</th>
+                            <th> Email</th>
+                            <th> Phone </th>
+                            <th> Organization </th>
+                            <th> Action </th>
+                            <!-- <th> Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php if(!empty($rows)): $num = 1 ;  ?>
+                            <?php foreach($rows as $row):?>
+                              <tr class="text-center">
+                                <td><?= $num++ ?>
+                                  </td>
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td><?= esc($row->email) ?></td>
+                                  <td><?= esc($row->phone) ?></td>
+                                  <?php
+                                  $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
+                                    $orgname = $this->query($query);
+                                  ?>
+                                  <td><?=$orgname[0]->name?></td>
+                                  <td>
+                                    <button type="button" class="btn btn-inverse-info btn-icon">
+                                      <a  href="<?=ROOT?>dashboard/organization_info/edit/<?=$row->id?>">
+                                        <i class="mdi mdi-account-edit"></i>
+                                      </a>
                                     </button>
-                                  </a>
-                                </td>
-                              </tr>
-                          <?php endforeach;?>
-                        <?php else:?>
-                        <tr>
-                            <h1>No results found</h1>
-                        </tr>
-                        <?php endif;?>
-                        
-                      </tbody>
-                    </table>
-                  </div>
+                                    <a href="<?= ROOT ?>dashboard/organization_info/delete/<?= $row->id ?>">
+                                      <button type="button" class="btn btn-inverse-danger btn-icon">
+                                        <i class="mdi mdi-delete"></i>
+                                      </button>
+                                    </a>
+                                  </td>
+                                </tr>
+                            <?php endforeach;?>
+                          <?php else:?>
+                          <tr>
+                              <h1 class="alert alert-danger text-center">No results found</h1>
+                          </tr>
+                          <?php endif;?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  <!-- Organization Representative View -->
+                  <?php elseif($ses->user('institute') == 'organization'):?>
+                      <table class="table table-bordered table-striped" >
+                        <thead class="bg-gradient-dark">
+                          <tr class="text-white text-center" >
+                            <th> Logo </th>
+                            <th> Cover Photo</th>
+                            <th> Email</th>
+                            <th> Phone </th>
+                            <th> Organization </th>
+                            <th> Action </th>
+                            <!-- <th> Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php if(!empty($single_rows)):   ?>
+                            <?php foreach($single_rows as $row):?>
+                              <tr class="text-center">
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td><?= esc($row->email) ?></td>
+                                  <td><?= esc($row->phone) ?></td>
+                                  <?php
+                                  $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
+                                    $orgname = $this->query($query);
+                                  ?>
+                                  <td><?=$orgname[0]->name?></td>
+                                  <td>  
+                                    <button type="button" class="btn btn-inverse-info btn-icon">
+                                      <a  href="<?=ROOT?>dashboard/organization_info/edit/<?=$row->id?>">
+                                        <i class="mdi mdi-account-edit"></i>
+                                      </a>
+                                    </button>
+                                  </td>
+                                </tr>
+                            <?php endforeach;?>
+                          <?php else:?>
+                          <tr>
+                              <h1 class="alert alert-danger text-center">No results found</h1>
+                          </tr>
+                          <?php endif;?>
+                          
+                        </tbody>
+                      </table>
+                  <?php endif;?>
                 </div>
               </div>
             </div>

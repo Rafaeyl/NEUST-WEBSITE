@@ -220,27 +220,26 @@
                   <div style="overflow-x:auto;">
 
 
-                    <table class="table table-striped" id="userTable">
-                      <thead>
-                        <tr>
-                          <th class="text-center"> # </th>
-                          <th class="text-center"> Image </th>
-                          <th class="text-center"> Title</th>
-                          <th class="text-center"> Description</th>
-                          <th class="text-center"> Date</th>
-                          <th class="text-center"> List Order</th>
-                          <th class="text-center"> Action </th>
-                          <!-- <th> Action</th> -->
+                    <table class="table table-striped table-bordered"  id="userTable">
+                      <thead class="bg-gradient-dark">
+                        <tr class="text-white">
+                          <th> # </th>
+                          <th> Image </th>
+                          <th> Title</th>
+                          <th> Description</th>
+                          <th> Date</th>
+                          <th> List Order</th>
+                          <th> Action </th>
                         </tr>
                       </thead>
                       <tbody>
                         
                         <?php if(!empty($rows)): $num = 1 ;?>
                           <?php foreach($rows as $row):?>
-                            <tr class="text-center">
+                            <tr>
                                <td><?= $num++ ?>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?= esc($row->title) ?></td>

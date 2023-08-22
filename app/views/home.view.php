@@ -1,6 +1,4 @@
 <?= $this-> view('includes/header', $data);   ?>
-
-
 	<!-- Announcements -->
 	<div class="container-xxl announcement">
 		<div class="announcement-container">
@@ -12,17 +10,17 @@
 
 			<div class="news">
 				<ul>
-					<li>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam!
-					</li>
-					
-					<li>
-						Lorem ipsum dolor sit
-					</li>
+				<?php if(!empty($announcements)):?>
+                    <?php foreach($announcements as $announcement):?>
+						<li>
+							<?= $announcement->description;?>
+						</li>
+					<?php endforeach; ?>
+                <?php else : ?>
+                    <center><h1>NO ANNOUNCEMENTS FOUND</h1></center>
+                <?php endif;?>
 
-					<li>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam!
-					</li>
+					
 				</ul>
 			</div>
     	</div>
@@ -30,15 +28,6 @@
 	 
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image:url(<?= get_image($SETTINGS['Cover-photo 1'] ?? "Rafa")?>);">
-      	<div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-          <div class="col-md-6 ftco-animate">
-          </div>
-        </div>
-        </div>
-      </div>
 	  <div class="slider-item" style="background-image:url(<?= get_image($SETTINGS['Cover-photo 2'] ?? "Rafa")?>);">
       	<div class="overlay"></div>
         <div class="container">
@@ -49,127 +38,6 @@
         </div>
       </div>
     </section>
-
-    <!-- <section class="ftco-services ftco-no-pb">
-			<div class="container-wrap">
-				<div class="row no-gutters">
-          <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-primary">
-            <div class="media block-6 d-block text-center">
-              <div class="icon d-flex justify-content-center align-items-center">
-            		<span class="flaticon-teacher"></span>
-              </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">Certified Teachers</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
-            <div class="media block-6 d-block text-center">
-              <div class="icon d-flex justify-content-center align-items-center">
-            		<span class="flaticon-reading"></span>
-              </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">Special Education</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>    
-          </div>
-          <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-primary">
-            <div class="media block-6 d-block text-center">
-              <div class="icon d-flex justify-content-center align-items-center">
-            		<span class="flaticon-books"></span>
-              </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">Book &amp; Library</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
-            <div class="media block-6 d-block text-center">
-              <div class="icon d-flex justify-content-center align-items-center">
-            		<span class="flaticon-diploma"></span>
-              </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">Sport Clubs</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-              </div>
-            </div>      
-          </div>
-        </div>
-			</div>
-	</section> -->
-		
-		<!-- <section class="ftco-section ftco-no-pt ftc-no-pb">
-			<div class="container">
-				<div class="row d-flex">
-					<div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
-						<div class="img" style="background-image: url(<?=ROOT?>assets/main/images/about.jpg);"></div>
-					</div>
-					<div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
-          	<h2 class="mb-4">What We Offer</h2>
-						<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word.</p>
-						<div class="row mt-5">
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-security"></span></div>
-									<div class="text pl-3">
-										<h3>Safety First</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-reading"></span></div>
-									<div class="text pl-3">
-										<h3>Regular Classes</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-diploma"></span></div>
-									<div class="text pl-3">
-										<h3>Certified Teachers</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-education"></span></div>
-									<div class="text pl-3">
-										<h3>Sufficient Classrooms</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-jigsaw"></span></div>
-									<div class="text pl-3">
-										<h3>Creative Lessons</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-kids"></span></div>
-									<div class="text pl-3">
-										<h3>Sports Facilities</h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section> -->
 		<div class="container-fluid py-5" data-aos="fade-up">
 			<div class="container py-5">
 				<div class="section-title text-center position-relative pb-3 mb-5 mx-auto "  style="max-width: 600px;">
@@ -179,42 +47,42 @@
 				<div class="row g-5">
 					<div class="col-lg-4">
 						<div class="row g-5">
-							<div class="col-12" data-aos="zoom-in" data-aos-duration="1000">
+							<div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
 								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
 									<i class="fa fa-cubes text-white"></i>
 								</div>
-								<h4>Best In Industry</h4>
-								<p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+								<h4>Exceptional Academic Programs</h4>
+								<p class="mb-0">We take pride in offering a wide range of cutting-edge academic programs designed to prepare students for success in today's dynamic world.</p>
 							</div>
-							<div class="col-12 my-3"  data-aos="zoom-in" data-aos-duration="1200">
+							<div class="col-12 wow fadeInUp my-3" data-wow-delay="0.4s">
 								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
 									<i class="fa fa-award text-white"></i>
 								</div>
-								<h4>Award Winning</h4>
-								<p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+								<h4>Academic Excellence</h4>
+								<p class="mb-0">Our renowned faculty members are leaders in their fields, ensuring that you receive a world-class education.</p>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 mb-3"  data-aos="zoom-out-up" data-aos-duration="1300" style="min-height: 350px;">
+					<div class="col-lg-4 mb-3"  data-wow-delay="0.6s" style="min-height: 350px;">
 						<div class="position-relative h-100">
 							<img class="position-absolute w-100 h-100 rounded" data-aos-duration="0.1s" src="<?=ROOT?>assets/main/images/about.jpg" style="object-fit: cover;">
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="row g-5">
-							<div class="col-12"  data-aos="zoom-in" data-aos-duration="1400">
+							<div class="col-12 wow fadeInUp" data-wow-delay="0.8s">
 								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
 									<i class="fa fa-users-cog text-white"></i>
 								</div>
-								<h4>Professional Staff</h4>
-								<p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+								<h4>State-of-the-Art Facilities</h4>
+								<p class="mb-0">We believe that an exceptional learning environment is essential for your success. That's why we've invested in state-of-the-art facilities, laboratories, libraries, and study spaces that support your academic pursuits.</p>
 							</div>
-							<div class="col-12 mt-3"  data-aos="zoom-in" data-aos-duration="1600">
+							<div class="col-12 wow fadeInUp mt-3" data-wow-delay="1s" >
 								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
 									<i class="fa fa-phone-alt text-white"></i>
 								</div>
 								<h4>24/7 Support</h4>
-								<p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
+								<p class="mb-0">We prioritize your success and well-being.  We ensure that you receive the guidance you need to thrive both academically and personally.</p>
 							</div>
 						</div>
 					</div>
@@ -222,11 +90,11 @@
 			</div>
     	</div>
 
-		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<?=ROOT?>assets/main/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-2 d-flex">
 					<div class="col-md-6 align-items-stretch d-flex">
-						<div class="img img-video d-flex align-items-center" style="background-image: url(<?=ROOT?>assets/main/images/about-2.jpg);">
+						<div class="img img-video d-flex align-items-center" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-1.jpg);">
 							<div class="video justify-content-center">
 									<a href="https://www.youtube.com/watch?v=ljoTZ0CI2-g" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
 										<span class="fa-solid fa-play"></span>

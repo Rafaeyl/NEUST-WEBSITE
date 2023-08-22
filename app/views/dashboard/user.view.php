@@ -101,7 +101,7 @@
                     <select id="role" class="form-select" aria-label="Default select example" name="role">
                       <?php if(!empty($institutions)):?>
                           <?php foreach($institutions as $institutionz):?>
-                              <option <?=old_select('category_id',$institutionz->id)?> value="<?=$institutionz->acronym?>|<?=$institutionz->institution?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
+                              <option <?=old_select('category_id',$institutionz->id)?> value="<?=$institutionz->id?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
                           <?php endforeach;?>
                       <?php endif;?>
                     </select>
@@ -272,7 +272,7 @@
                     <select id="role" class="form-select" aria-label="Default select example" name="role">
                       <?php if(!empty($institutions)):?>
                           <?php foreach($institutions as $institutionz):?>
-                              <option <?=old_select('role',$institutionz->id,$row->role)?>  value="<?=$institutionz->acronym?>|<?=$institutionz->institution?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
+                              <option <?=old_select('role',$institutionz->id,$row->role)?>  value="<?=$institutionz->id?>"><?=$institutionz->name . ' ' . 'Rep'?></option>
                           <?php endforeach;?>
                       <?php endif;?>
                     </select>
@@ -398,9 +398,9 @@
                           <div style="overflow-x:auto;">
 
 
-                            <table class="table table-striped" id="userTable">
-                              <thead>
-                                <tr>
+                            <table class="table table-striped table-bordered" id="userTable">
+                              <thead class="bg-gradient-dark">
+                                <tr class="text-white text-center">
                                   <th class="text-center"> # </th>
                                   <th class="text-center"> Photo </th>
                                   <th class="text-center"> School #</th>
@@ -432,11 +432,11 @@
                                         <td><?= esc($row->email) ?></td>
                                         <td><?= esc($row->phone) ?></td>
                                         <td><?= esc($row->address) ?></td>
-                                        <?php 
-                                        $explode_role = explode("|",$row->role);
-                                        $role = $explode_role[0];
-                                        ?>
-                                        <td><?= esc($role) ?></td>
+                                        <?php
+                                          $query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $row->id";
+                                          $orgname = $this->query($query);
+                                          ?>
+                                          <td><?=$orgname[0]->name?></td>
                                         <td>
                                           <button type="button" class="btn btn-inverse-info btn-icon">
                                             <a  href="<?=ROOT?>dashboard/user/edit/<?=$row->id?>">

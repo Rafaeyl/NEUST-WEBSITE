@@ -52,6 +52,19 @@ class Home
 		];
 		$data['school_contact'] = $contact_info->findAll();
 
+		// Announcements
+		$announcement = new Institution();
+		$announcement->table = 'announcements';
+		$announcement->order_column = 'list_order';
+		$announcement->order_type = 'asc';
+		$announcement->allowedColumns = [
+
+			'description',
+			'list_order',
+			'disabled',
+		];
+		$data['announcements'] = $announcement->whereInstitution('disabled', 'Active');
+
 		// Teachers
 		$teachers = new Officials();
 
@@ -98,7 +111,7 @@ class Home
 	   $news->limit = 4;
 	   $sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 	   $data['news'] = $this->query($sql);
-
+	   $data['news_footer'] = $this->query_row($sql);
 		// Contact Form - Send Email
 
 		if (isset($_POST['send'])) {

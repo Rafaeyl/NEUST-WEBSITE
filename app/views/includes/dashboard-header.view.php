@@ -46,8 +46,8 @@
         <!-- Spinner End -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="<?= ROOT ?>assets/dashboard/images/logo.svg"
-            alt="logo" /></a>
+        <a class="navbar-brand brand-logo" href="<?= ROOT ?>dashboard/dashhome"><img src="<?= ROOT ?>assets/images/image-school/logo-2.png"
+            alt="logo" style="height: 80px; object-fit:contain;"/></a>
         <a class="navbar-brand brand-logo-mini" href="index.html"><img
             src="<?= ROOT ?>assets/dashboard/images/logo-mini.svg" alt="logo" /></a>
       </div>
@@ -83,8 +83,6 @@
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<?= ROOT ?>logout">
                 <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
@@ -111,12 +109,12 @@
               </div>
               <div class="nav-profile-text d-flex flex-column">
                 <span class="font-weight-bold mb-2"><?= $ses->user('first_name') ?></span>
-                <?php 
-                  $explode_role = explode("|", $ses->user('role'));
-                  $role = $explode_role[0];
-                  $institutionz = $explode_role[1];
-                ?>
-                <span class="text-secondary text-small"><?=  $role ?></span>
+                <?php
+                  $id = $ses->user('id');
+                  $query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                  $orgname = $this->query($query);
+                  ?>
+                <span class="text-secondary text-small"><?=$orgname[0]->name?></span>
               </div>
               <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
@@ -239,7 +237,7 @@
           </li>
         <?php endif; ?>
 
-        <?php if( $ses->user('institute') == 'organizat'): ?>
+        <?php if( $ses->user('institute') == 'organization'): ?>
           <li class="nav-item mt-0 sidebar-actions">
             <span class="nav-link">
               <div class="border-bottom">
@@ -304,6 +302,17 @@
             </a>
           </li>
         <?php endif; ?>
-
+        <li class="nav-item mt-0 sidebar-actions">
+            <span class="nav-link">
+              <div class="border-bottom">
+              </div>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>">
+              <span class="menu-title">NEUST Papaya Website</span>
+              <i class="mdi mdi-google-chrome menu-icon"></i>
+            </a>
+          </li>
         </ul>
       </nav>

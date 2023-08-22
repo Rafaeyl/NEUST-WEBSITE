@@ -100,10 +100,12 @@ class Dashboard
 					$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 					$_POST['date_created'] = date("Y-m-d H:i:s");
 					$_POST['date_updated'] = date("Y-m-d H:i:s");
-					
-					$explode_role = explode("|",$_POST['role']);
-					$institute = $explode_role[1];
-					$_POST['institute'] = $institute;
+
+				
+					$user_role = $_POST['role'];
+					$query  = "select institution FROM institutions WHERE id =$user_role";
+					$institute = $this->query($query);
+					$_POST['institute'] = $institute[0]->institution;
 
 					$data['user']->insert($_POST);
 					redirect('dashboard/user');
@@ -145,9 +147,10 @@ class Dashboard
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 					}
 					
-					$explode_role = explode("|",$_POST['role']);
-					$institute = $explode_role[1];
-					$_POST['institute'] = $institute;
+					$user_role = $_POST['role'];
+					$query  = "select institution FROM institutions WHERE id =$user_role";
+					$institute = $this->query($query);
+					$_POST['institute'] = $institute[0]->institution;
 
 					$data['user']->update($id, $_POST);
 
@@ -179,9 +182,6 @@ class Dashboard
 		$data['rows'] = $this->query($query);
 
 		$data['errors'] = $data['user']->errors;
-
-		// $explode_role = explode("|",$data['rows']['role']);
-		// $institute = $explode_role[1];
 
 		if( $ses->user('institute') == 'Admin')
 		{
@@ -501,17 +501,26 @@ class Dashboard
 			}
 		}
 
-		// all table
-		$OrganizationInfo = $data['OrganizationInfo'] ;
+		// Admin table
 		$query = "select * FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutions.institution = 'organization'";
-		
 		$data['rows'] = $this->query($query);
-
 		
+		// Organization Table
+		
+		
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+
+
+		$query = "select institutionsinfo.* FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.name = '$role'" ;
+		$data['single_rows'] = $this->query($query);
 
 		$data['errors'] = $data['OrganizationInfo']->errors;
 
-		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organization')
 		{
 			$this->view('dashboard/organization_info', $data);
 		}else
@@ -763,7 +772,7 @@ class Dashboard
 
 		$data['errors'] = $data['OrganizationOfficials']->errors;
 
-		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organization')
 		{
 			$this->view('dashboard/organization_officials', $data);
 		}else
@@ -985,16 +994,22 @@ class Dashboard
 			}
 		}
 
-		// all table
-		$OrganizationAbout = $data['OrganizationAbout'] ;
+		//Admin table
 		$query = "select * FROM institutions JOIN about ON about.institution = institutions.id WHERE institutions.institution = 'organization'";
-		
 		$data['rows'] = $this->query($query);
 
-	
+		// Organization Table
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+		$query = "select about.* FROM about JOIN institutions ON about.institution = institutions.id WHERE institutions.name = '$role'" ;
+		$data['single_rows'] = $this->query($query);
+
 		$data['errors'] = $data['OrganizationAbout']->errors;
 
-		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organizat')
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organization')
 		{
 			$this->view('dashboard/organization_about', $data);
 		}else

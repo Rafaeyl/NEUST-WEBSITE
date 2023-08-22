@@ -2,7 +2,7 @@
 
 
 <?php if ($action == 'new'): ?>
-
+  <?php $ses = new \Core\Session;  ?>
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -55,17 +55,30 @@
                       <div><small class="text-danger"> <?= $OrganizationAbout->getError('events') ?></small></div>
                   </div>
                   <div class="col-md-12 text-center ">
-                      <label for="role" class="form-label mt-3">Organization</label>
-                      <select id="institution" class="form-select mx-auto w-50 " aria-label="Default select example" name="institution">
-                        <?php if(!empty($organizations)):?>
-                            <?php foreach($organizations as $organization):?>
-                                <option class="text-center" <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
-                            <?php endforeach;?>
-                        <?php else: ?>
-                          <option value="">No Organization Available</option>
-                        <?php endif;?>
-                      </select>
-                      <div><small class="text-danger"> <?= $OrganizationAbout->getError('institution') ?></small></div>
+                       <label for="role" class="form-label">Organization</label>
+                        <?php if($ses->user('institute') == 'Admin'):?>
+                          <select id="institution" class="form-select mx-auto w-50" aria-label="Default select example" name="institution">
+                              <?php if(!empty($organizations)):?>
+                                    <?php foreach($organizations as $organization):?>
+                                        <option <?=old_select('institution',$organization->id)?> class="text-center" value="<?=$organization->id?>"><?=$organization->name?></option>
+                                    <?php endforeach;?>
+                                <?php else: ?>
+                                  <option value="">No Organization Available</option>
+                                <?php endif;?>
+                          </select>
+                        <?php elseif($ses->user('institute') == 'organization'):?>
+                          <?php
+                            $id = $ses->user('id');
+                            $query  = "select institutions.id,institutions.name  FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                            $orgname = $this->query($query);
+                            ?>
+                            <select id="institution" class="form-select mx-auto w-50" aria-label="Default select example" name="institution">
+                           
+                              <option <?=old_select('institution',$orgname[0]->id)?> class="text-center" value="<?=$orgname[0]->id?>"><?=$orgname[0]->name?></option>
+                                
+                          </select>
+
+                      <?php endif;?>  
                     </div> 
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
@@ -92,6 +105,7 @@
       </div>
 
     <?php elseif ($action == 'edit'):?>
+      <?php $ses = new \Core\Session;  ?>
         <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -145,14 +159,13 @@
                       <div><small class="text-danger"> <?= $OrganizationAbout->getError('events') ?></small></div>
                   </div>
                   <div class="col-md-12 text-center ">
-                        <label for="institution" class="form-label">Organization</label>
+                      <label for="institution" class="form-label">Organization</label>
                         <?php
                           $query  = "select institutions.name FROM institutions JOIN about ON about.institution = institutions.id WHERE about.id = $row->id";
                           $orgname = $this->query($query);
                         ?>
-                          <input class="form-control text-center mx-auto w-75" value="<?=old_value('institution',$orgname[0]->name)?>" name="institution" disabled>
+                          <input class="form-control text-center mx-auto w-50" value="<?=old_value('institution',$orgname[0]->name)?>" name="institution" disabled>
                              
-                        
                     </div> 
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
@@ -244,7 +257,7 @@
         </div>
       </div>
     <?php else: ?>
-
+      <?php $ses = new \Core\Session;  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -252,32 +265,34 @@
 
             <h1>
               Organization's About Us &nbsp;
-              <a href="<?= ROOT ?>dashboard/organization_about/new" class="mb-4">
-                <button type="button" class="btn btn-gradient-primary btn-icon-text">
-                  Add <i class="mdi mdi-account-plus btn-icon-append"></i>
-                </button>
-              </a>
+                <?php if($ses->user('institute') == 'Admin' || empty($single_rows)):?>
+                  <a href="<?= ROOT ?>dashboard/organization_about/new" class="mb-4">
+                  <button type="button" class="btn btn-gradient-primary btn-icon-text">
+                    Add Info <i class="mdi mdi-account-plus btn-icon-append"></i>
+                  </button>
+                  </a>
+                <?php endif;?>
             </h1>
           </div>
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                   <!-- Admin View -->
+                <?php if($ses->user('institute') == 'Admin'):?>
                   <div style="overflow-x:auto;">
-
-
-                    <table class="table table-striped" id="userTable">
-                      <thead>
-                        <tr>
-                          <th class="text-center"> # </th>
-                          <th class="text-center"> Image </th>
-                          <th class="text-center"> Name</th>
-                          <th class="text-center"> description</th>
-                          <th class="text-center"> Members</th>
-                          <th class="text-center"> Activities</th>
-                          <th class="text-center"> Events</th>
-                          <th class="text-center"> Organization </th>
-                          <th class="text-center"> Action </th>
+                    <table class="table table-bordered table-striped" id="userTable">
+                      <thead class="bg-gradient-dark">
+                        <tr  class="text-white text-center">
+                          <th> # </th>
+                          <th> Image </th>
+                          <th> Name</th>
+                          <th> description</th>
+                          <th> Members</th>
+                          <th> Activities</th>
+                          <th> Events</th>
+                          <th> Organization </th>
+                          <th> Action </th>
                           <!-- <th> Action</th> -->
                         </tr>
                       </thead>
@@ -324,6 +339,58 @@
                       </tbody>
                     </table>
                   </div>
+                   <!-- Organization Representative View -->
+                  <?php elseif($ses->user('institute') == 'organization'):?>
+
+                    <table class="table table-bordered" >
+                        <thead class="bg-gradient-dark">
+                          <tr class="text-white text-center">
+                          <th> Image </th>
+                          <th> Title</th>
+                          <th> Description</th>
+                          <th> Members</th>
+                          <th> Activities</th>
+                          <th> Events</th>
+                          <th> Organization </th>
+                          <th> Action </th>
+                            <!-- <th> Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php if(!empty($single_rows)):   ?>
+                            <?php foreach($single_rows as $row):?>
+                              <tr class="text-center">
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td><?= esc($row->title) ?></td>
+                                  <td><?= substr($row->description, 0,20) . '...' ?></td>
+                                  <td><?= esc($row->students) ?></td>
+                                  <td><?= esc($row->activities) ?></td>
+                                  <td><?= esc($row->events) ?></td>
+                                  <?php
+                                  $query  = "select institutions.name FROM institutions JOIN about ON about.institution = institutions.id WHERE about.id = $row->id";
+                                    $orgname = $this->query($query);
+                                  ?>
+                                  <td><?=$orgname[0]->name?></td>
+                                  <td>  
+                                    <button type="button" class="btn btn-inverse-info btn-icon">
+                                      <a  href="<?=ROOT?>dashboard/organization_about/edit/<?=$row->id?>">
+                                        <i class="mdi mdi-account-edit"></i>
+                                      </a>
+                                    </button>
+                                  </td>
+                                </tr>
+                            <?php endforeach;?>
+                          <?php else:?>
+                          <tr>
+                              <h1 class="alert alert-danger text-center">No results found</h1>
+                          </tr>
+                          <?php endif;?>
+                          
+                        </tbody>
+                      </table>
+                  <?php endif;?>
                 </div>
               </div>
             </div>

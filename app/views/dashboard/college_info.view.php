@@ -295,16 +295,16 @@
                   <div style="overflow-x:auto;">
 
 
-                    <table class="table table-striped" id="userTable">
-                      <thead>
-                        <tr>
-                          <th class="text-center"> # </th>
-                          <th class="text-center"> Logo </th>
-                          <th class="text-center"> Cover Photo</th>
-                          <th class="text-center"> Email</th>
-                          <th class="text-center"> Phone </th>
-                          <th class="text-center"> Institution </th>
-                          <th class="text-center"> Action </th>
+                    <table class="table table-striped table-bordered" id="userTable">
+                      <thead class="bg-gradient-dark">
+                        <tr class="text-white">
+                          <th> # </th>
+                          <th> Logo </th>
+                          <th> Cover Photo</th>
+                          <th> Email</th>
+                          <th> Phone </th>
+                          <th> Institution </th>
+                          <th> Action </th>
                           <!-- <th> Action</th> -->
                         </tr>
                       </thead>
@@ -312,13 +312,13 @@
                         
                         <?php if(!empty($rows)): $num = 1 ;?>
                           <?php foreach($rows as $row):?>
-                            <tr class="text-center">
+                            <tr>
                                <td><?= $num++ ?>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                   <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
-                                <td class="text-center">
+                                <td>
                                   <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?= esc($row->email) ?></td>
