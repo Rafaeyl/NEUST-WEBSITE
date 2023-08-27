@@ -63,7 +63,7 @@
                             <?php endforeach; ?>
                         <?php else: ?>
                             <center>
-                                <h1>NO NEWS FOUND IN THIS CATEGORY</h1>
+                                <h1 class="bg-danger p-5 text-white">NO NEWS FOUND IN THIS CATEGORY</h1>
                             </center>
                         <?php endif; ?>
                     </div>

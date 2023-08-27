@@ -176,7 +176,8 @@
                     <div class="card-body">
                       
 
-                        <h3 class="mb-5 text-center">Are you sure you want to delete <?=old_value('userid',$row->name)?> ?</h3>
+                        <h3 class="text-center">Are you sure you want to delete <?=old_value('userid',$row->name)?> ?</h3>
+                        <h4 class="mb-5 text-center">All of the related information about this Organization will also be delated!</h4>
 
                         <form method="post" class="text-center">
 

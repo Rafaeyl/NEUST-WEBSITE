@@ -332,7 +332,7 @@
                           <?php endforeach;?>
                         <?php else:?>
                         <tr>
-                            <h1>No results found</h1>
+                            <h1>No results found. Plead Add Information </h1>
                         </tr>
                         <?php endif;?>
                         
@@ -384,7 +384,7 @@
                             <?php endforeach;?>
                           <?php else:?>
                           <tr>
-                              <h1 class="alert alert-danger text-center">No results found</h1>
+                              <h1 class="alert alert-danger text-center">No results found. Plead Add Information </h1>
                           </tr>
                           <?php endif;?>
                           

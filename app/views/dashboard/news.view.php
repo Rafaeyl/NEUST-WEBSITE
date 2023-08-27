@@ -21,6 +21,8 @@
                     <label>
                       <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
                       <img src="<?= get_image() ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
+                      <div><small class="text-danger"> <?= $news->getError('image') ?></small></div>
+
                     </label>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">

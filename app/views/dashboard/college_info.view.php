@@ -2,17 +2,11 @@
 
 
 <?php if ($action == 'new'): ?>
-
+  <?php $ses = new \Core\Session;  ?>
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
         <h1>College's Info</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">College's Info</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add College's Info</li>
-          </ol>
-        </nav>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -20,26 +14,35 @@
             <div class="card-body">
               <h2 class="mb-4">Add College's Info</h2>
               <p class="text-danger">Make sure to click and watch this <a href="" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
-
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
-                  
                   <div class="row">
                    <div class="col-lg-4 mx-auto mb-3 text-center">
                       <label for="role" class="form-label">College</label>
-                      <select id="institution" class="form-select" aria-label="Default select example" name="institution">
-                        <?php if(!empty($colleges)):?>
-                            <?php foreach($colleges as $college):?>
-                                <option <?=old_select('institution',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
-                            <?php endforeach;?>
-                        <?php else: ?>
-                          <option value="">No College Available</option>
-                        <?php endif;?>
-                      </select>
-                      <div><small class="text-danger"> <?= $collegeInfo->getError('institution') ?></small></div>
+                      <?php if($ses->user('institute') == 'Admin'):?>
+                          <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <?php if(!empty($organizations)):?>
+                                    <?php foreach($organizations as $organization):?>
+                                        <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
+                                    <?php endforeach;?>
+                                <?php else: ?>
+                                  <option value="empty">No College Available</option>
+                                <?php endif;?>
+                          </select>
+                          <div><small class="text-danger"> <?= $collegeInfo->getError('institution') ?></small></div>
+
+                        <?php elseif($ses->user('institute') == 'organization'):?>
+                          <?php
+                            $id = $ses->user('id');
+                            $query  = "select institutions.id,institutions.name  FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                            $orgname = $this->query($query);
+                            ?>
+                            <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <option <?=old_select('institution',$orgname[0]->id)?> value="<?=$orgname[0]->id?>"><?=$orgname[0]->name?></option>
+                          </select>
+                      <?php endif;?>  
                     </div>
                   </div>
-                 
                   <div class="col-md-6 text-center mb-5">
                     <label class="mb-3 fw-bolder lead"> Logo</label><br>
                     <label>Click to change image</label><br>
@@ -111,12 +114,6 @@
     <div class="content-wrapper">
       <div class="page-header">
         <h1>  College's Info</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">College's Info</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Update College's Info</li>
-          </ol>
-        </nav>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -221,14 +218,6 @@
         <h1>
           Delete College's Info &nbsp;
         </h1>
-
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">College's Basic Info</a></li>
-            <li class="breadcrumb-item active" aria-current="page">View College's Basic Info</li>
-
-          </ol>
-        </nav>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -265,7 +254,7 @@
         </div>
       </div>
     <?php else: ?>
-
+      <?php $ses = new \Core\Session;  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -273,28 +262,22 @@
 
             <h1>
               College's  Info &nbsp;
-              <a href="<?= ROOT ?>dashboard/college_info/new" class="mb-4">
-                <button type="button" class="btn btn-gradient-primary btn-icon-text">
-                  Add Info <i class="mdi mdi-account-plus btn-icon-append"></i>
-                </button>
-              </a>
+              <?php if($ses->user('institute') == 'Admin' || empty($single_rows)):?>
+                <a href="<?= ROOT ?>dashboard/college_info/new" class="mb-4">
+                  <button type="button" class="btn btn-gradient-primary btn-icon-text">
+                    Add Info <i class="mdi mdi-account-plus btn-icon-append"></i>
+                  </button>
+                </a>
+              <?php endif;?>
             </h1>
 
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">College's Infos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">View College's Infos</li>
-
-              </ol>
-            </nav>
           </div>
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                <?php if($ses->user('institute') == 'Admin'):?>
                   <div style="overflow-x:auto;">
-
-
                     <table class="table table-striped table-bordered" id="userTable">
                       <thead class="bg-gradient-dark">
                         <tr class="text-white">
@@ -309,25 +292,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                        
                         <?php if(!empty($rows)): $num = 1 ;?>
                           <?php foreach($rows as $row):?>
                             <tr>
-                               <td><?= $num++ ?>
-                                </td>
-                                <td>
-                                  <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
-                                </td>
-                                <td>
-                                  <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
-                                </td>
+                               <td><?= $num++ ?></td>
+                                <td><img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;"></td>
+                                <td> <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;"></td>
                                 <td><?= esc($row->email) ?></td>
                                 <td><?= esc($row->phone) ?></td>
-                                <?php
-                                 $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
-                                  $orgname = $this->query($query);
-                                ?>
-                                <td><?=$orgname[0]->name?></td>
+                                <td><?= esc($row->name) ?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">
                                     <a  href="<?=ROOT?>dashboard/college_info/edit/<?=$row->id?>">
@@ -344,13 +317,57 @@
                           <?php endforeach;?>
                         <?php else:?>
                         <tr>
-                            <h1>No results found</h1>
+                            <h1>No results found. Please Add Information!</h1>
                         </tr>
                         <?php endif;?>
-                        
                       </tbody>
                     </table>
                   </div>
+                  <?php elseif($ses->user('institute') == 'college'):?>
+                    <table class="table table-bordered table-striped" >
+                        <thead class="bg-gradient-dark">
+                          <tr class="text-white text-center" >
+                            <th> Logo </th>
+                            <th> Cover Photo</th>
+                            <th> Email</th>
+                            <th> Phone </th>
+                            <th> College </th>
+                            <th> Action </th>
+                            <!-- <th> Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php if(!empty($single_rows)):   ?>
+                            <?php foreach($single_rows as $row):?>
+                              <tr class="text-center">
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->logo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td class="text-center">
+                                    <img src="<?= get_image($row->cover_photo) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                                  </td>
+                                  <td><?= esc($row->email) ?></td>
+                                  <td><?= esc($row->phone) ?></td>
+                                  <td><?= esc($row->name) ?></td>
+                                  <td>  
+                                    <button type="button" class="btn btn-inverse-info btn-icon">
+                                      <a  href="<?=ROOT?>dashboard/college_info/edit/<?=$row->id?>">
+                                        <i class="mdi mdi-account-edit"></i>
+                                      </a>
+                                    </button>
+                                  </td>
+                                </tr>
+                            <?php endforeach;?>
+                          <?php else:?>
+                          <tr>
+                              <h1 class="alert alert-danger text-center">No results found</h1>
+                          </tr>
+                          <?php endif;?>
+                          
+                        </tbody>
+                      </table>
+                  <?php endif;?>
+
                 </div>
               </div>
             </div>

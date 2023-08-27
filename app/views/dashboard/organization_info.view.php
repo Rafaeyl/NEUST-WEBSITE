@@ -29,9 +29,11 @@
                                         <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
                                     <?php endforeach;?>
                                 <?php else: ?>
-                                  <option value="">No Organization Available</option>
+                                  <option value="empty">No Organization Available</option>
                                 <?php endif;?>
                           </select>
+                          <div><small class="text-danger"> <?= $OrganizationInfo->getError('institution') ?></small></div>
+
                         <?php elseif($ses->user('institute') == 'organization'):?>
                           <?php
                             $id = $ses->user('id');
@@ -310,11 +312,7 @@
                                   </td>
                                   <td><?= esc($row->email) ?></td>
                                   <td><?= esc($row->phone) ?></td>
-                                  <?php
-                                  $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
-                                    $orgname = $this->query($query);
-                                  ?>
-                                  <td><?=$orgname[0]->name?></td>
+                                  <td><?= esc($row->name) ?></td>
                                   <td>
                                     <button type="button" class="btn btn-inverse-info btn-icon">
                                       <a  href="<?=ROOT?>dashboard/organization_info/edit/<?=$row->id?>">
@@ -364,11 +362,7 @@
                                   </td>
                                   <td><?= esc($row->email) ?></td>
                                   <td><?= esc($row->phone) ?></td>
-                                  <?php
-                                  $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";
-                                    $orgname = $this->query($query);
-                                  ?>
-                                  <td><?=$orgname[0]->name?></td>
+                                  <td><?= esc($row->name) ?></td>
                                   <td>  
                                     <button type="button" class="btn btn-inverse-info btn-icon">
                                       <a  href="<?=ROOT?>dashboard/organization_info/edit/<?=$row->id?>">

@@ -2,7 +2,7 @@
 
 
 <?php if ($action == 'new'): ?>
-
+  <?php $ses = new \Core\Session;  ?>
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -26,9 +26,9 @@
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="name" class="form-label">Name</label>
-                    <input value="<?= old_value('name') ?>" type="name" class="form-control text-center" id="name" name="name"
+                    <input value="<?= old_value('official_name') ?>" type="text" class="form-control text-center" id="name" name="official_name"
                       placeholder="Juan Dela Cruz">
-                      <div><small class="text-danger"> <?= $collegeOfficials->getError('name') ?></small></div>
+                      <div><small class="text-danger"> <?= $collegeOfficials->getError('official_name') ?></small></div>
 
                   </div>
                   <div class="col-md-6 text-center">
@@ -45,16 +45,26 @@
                   </div>
                   <div class="col-md-6 text-center">
                       <label for="role" class="form-label">College</label>
-                      <select id="institution" class="form-select" aria-label="Default select example" name="institution">
-                        <?php if(!empty($colleges)):?>
-                            <?php foreach($colleges as $college):?>
-                                <option class="text-center" <?=old_select('institution',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
-                            <?php endforeach;?>
-                        <?php else: ?>
-                          <option value="">No college Available</option>
-                        <?php endif;?>
-                      </select>
-                      <div><small class="text-danger"> <?= $collegeOfficials->getError('institution') ?></small></div>
+                      <?php if($ses->user('institute') == 'Admin'):?>
+                          <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <?php if(!empty($colleges)):?>
+                                    <?php foreach($colleges as $college):?>
+                                        <option <?=old_select('institution',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
+                                    <?php endforeach;?>
+                                <?php else: ?>
+                                  <option value="">No college Available</option>
+                                <?php endif;?>
+                          </select>
+                        <?php elseif($ses->user('institute') == 'college'):?>
+                          <?php
+                            $id = $ses->user('id');
+                            $query  = "select institutions.id,institutions.name  FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                            $orgname = $this->query($query);
+                            ?>
+                            <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <option <?=old_select('institution',$orgname[0]->id)?> value="<?=$orgname[0]->id?>"><?=$orgname[0]->name?></option>
+                          </select>
+                      <?php endif;?>  
                     </div> 
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
@@ -81,6 +91,7 @@
       </div>
 
     <?php elseif ($action == 'edit'):?>
+      <?php $ses = new \Core\Session;  ?>
         <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -105,9 +116,9 @@
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="name" class="form-label">Name</label>
-                    <input value="<?= old_value('name',$row->name) ?>" type="name" class="form-control text-center" id="name" name="name"
+                    <input value="<?= old_value('official_name',$row->official_name) ?>" type="text" class="form-control text-center" id="name" name="official_name"
                       placeholder="Juan Dela Cruz">
-                      <div><small class="text-danger"> <?= $collegeOfficials->getError('name') ?></small></div>
+                      <div><small class="text-danger"> <?= $collegeOfficials->getError('official_name') ?></small></div>
 
                   </div>
                   <div class="col-md-6 text-center">
@@ -124,16 +135,26 @@
                   </div>
                   <div class="col-md-6 text-center">
                       <label for="role" class="form-label">College</label>
-                      <select id="institution" class="form-select" aria-label="Default select example" name="institution">
-                        <?php if(!empty($colleges)):?>
-                            <?php foreach($colleges as $college):?>
-                                <option class="text-center" <?=old_select('institution',$college->id,$row->institution)?> value="<?=$college->id?>"><?=$college->name?></option>
-                            <?php endforeach;?>
-                        <?php else: ?>
-                          <option value="">No college Available</option>
-                        <?php endif;?>
-                      </select>
-                      <div><small class="text-danger"> <?= $collegeOfficials->getError('institution') ?></small></div>
+                      <?php if($ses->user('institute') == 'Admin'):?>
+                          <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <?php if(!empty($colleges)):?>
+                                    <?php foreach($colleges as $college):?>
+                                        <option <?=old_select('institution',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
+                                    <?php endforeach;?>
+                                <?php else: ?>
+                                  <option value="">No college Available</option>
+                                <?php endif;?>
+                          </select>
+                        <?php elseif($ses->user('institute') == 'college'):?>
+                          <?php
+                            $id = $ses->user('id');
+                            $query  = "select institutions.id,institutions.name  FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                            $orgname = $this->query($query);
+                            ?>
+                            <select id="institution" class="form-select" aria-label="Default select example" name="institution">
+                              <option <?=old_select('institution',$orgname[0]->id)?> value="<?=$orgname[0]->id?>"><?=$orgname[0]->name?></option>
+                          </select>
+                      <?php endif;?>  
                     </div> 
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
@@ -178,13 +199,8 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              
-              <?php
-                  $query  = "select institutions.name FROM institutions JOIN officials ON officials.institution = institutions.id WHERE officials.id = $row->id";
-                  $orgname = $this->query($query);
-                ?>
 
-                <h3 class="mb-5 text-center">Are you sure you want to delete <?= $row->name ?> ?</h3>
+                <h3 class="mb-5 text-center">Are you sure you want to delete <?= $row->official_name ?> ?</h3>
                 <form method="post" class="text-center">
 
                   <div class="row">
@@ -197,17 +213,13 @@
                       </label>
                     </div>
                     
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label class="mt-4">Name</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->name)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->official_name)?>" disabled>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label class="mt-4">Position</label>
                       <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->position)?>" disabled>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="mt-4">College</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$orgname[0]->name)?>" disabled>
                     </div>
                   </div>
                 
@@ -257,26 +269,20 @@
                           <th> College </th>
                           <th> List Order</th>
                           <th> Action </th>
-                          <!-- <th> Action</th> -->
                         </tr>
                       </thead>
                       <tbody>
                         
-                        <?php if(!empty($rows)): $num = 1 ;?>
+                        <?php if(!empty($rows)): $num = 1;?>
                           <?php foreach($rows as $row):?>
                             <tr>
-                               <td><?= $num++ ?>
-                                </td>
+                               <td><?= $num++ ?> </td>
                                 <td>
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
-                                <td><?= esc($row->name) ?></td>
+                                <td><?= esc($row->official_name) ?></td>
                                 <td><?= esc($row->position) ?></td>
-                                <?php
-                                 $query  = "select institutions.name FROM institutions JOIN officials ON officials.institution = institutions.id WHERE officials.id = $row->id";
-                                  $orgname = $this->query($query);
-                                ?>
-                                <td><?=$orgname[0]->name?></td>
+                                <td><?=$row->name?></td>
                                 <td><?= esc($row->list_order) ?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">
@@ -294,7 +300,7 @@
                           <?php endforeach;?>
                         <?php else:?>
                         <tr>
-                            <h1>No results found</h1>
+                          <h1 class="alert alert-danger text-center">No results found</h1>
                         </tr>
                         <?php endif;?>
                         

@@ -42,7 +42,7 @@
 			<div class="container py-5">
 				<div class="section-title text-center position-relative pb-3 mb-5 mx-auto "  style="max-width: 600px;">
 					<h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-					<h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
+					<h1 class="m-0">Why You Should Start Learning with Us?</h1>
 				</div>
 				<div class="row g-5">
 					<div class="col-lg-4">
@@ -147,7 +147,7 @@
 			<div class="container-fluid px-4">
 				<div class="row justify-content-center mb-5 pb-2">
 					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4"><span>Our</span> Courses</h2>
+						<h2 class="mb-4"><span>Our</span> <span class="text-primary">Courses</span></h2>
 						<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
 					</div>
         		</div>	
@@ -205,8 +205,8 @@
 			<div class="container-fluid">
 				<div class="row justify-content-center mb-5 pb-2">
 					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4">Certified Teachers</h2>
-						<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+						<h2 class="mb-4"> <span class="text-dark"> Meet Our</span> <span class="text-primary">Teachers</span> </h2>
+						<p>Our highly qualified teachers put in their best efforts for outstanding results in both studies and co-curricular activities.</p>
 					</div>
         		</div>	
 				<div class="row justify-content-center">
@@ -309,8 +309,8 @@
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-2">
 					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4"><span>Recent</span> Blog</h2>
-						<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+						<h2 class="mb-4"><span>Recent</span> <span class="text-primary">News</span></h2>
+						<p>Explore the recent news and happenings in our university</p>
 					</div>
 				</div>
 				<div class="row justify-content-center ">
@@ -332,7 +332,7 @@
 										<p class="mb-0"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="btn btn-primary">Read More 
 												<span class="fa-solid fa-arrow-right "></span></a></p>
 										<p class="ml-auto mb-0">
-											<a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="mr-2">Admin</a>
+											<a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="mr-2"><?=$row->name?></a>
 										</p>
 									</div>
 								</div>

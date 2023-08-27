@@ -10,4 +10,4 @@ RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 php_value upload_max_filesize 2000M
 php_value post_max_size 2000M
 php_value max_input_time 30
-php_value max_execution_time 180
+php_value max_execution_time 200

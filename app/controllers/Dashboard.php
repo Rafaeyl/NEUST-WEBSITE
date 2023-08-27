@@ -2,7 +2,6 @@
 
 namespace Controller;
 use Model\Database;
-use \Core\Request;
 use \Core\Session;
 use Model\History_model;
 use Model\InstitutionsInfo;
@@ -15,8 +14,6 @@ use \Model\About_school;
 use \Model\Settings;
 
 defined('ROOTPATH') or exit('Access Denied!');
-
-
 
 class Dashboard
 {
@@ -49,8 +46,11 @@ class Dashboard
 		$data['title'] = "Dashhome";
 		$data['action'] = $action;
 
-		$user = new User();
+		$id = $ses->user('id');
+		$query  = "select institutions.disabled FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$data['rows'] = $this->query($query);
 
+		
 		$this->view('dashboard/dashhome', $data);
 	}
 
@@ -502,20 +502,16 @@ class Dashboard
 		}
 
 		// Admin table
-		$query = "select * FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutions.institution = 'organization'";
+		$query = "select institutionsinfo.*, institutions.name FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.institution = 'organization'";
 		$data['rows'] = $this->query($query);
 		
 		// Organization Table
-		
-		
 		$id = $ses->user('id');
 		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
 		$orgname = $this->query($query);
 		$role = $orgname[0]->name;
 
-
-
-		$query = "select institutionsinfo.* FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.name = '$role'" ;
+		$query = "select institutionsinfo.*,  institutions.name  FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.name = '$role'" ;
 		$data['single_rows'] = $this->query($query);
 
 		$data['errors'] = $data['OrganizationInfo']->errors;
@@ -646,13 +642,18 @@ class Dashboard
 				redirect('dashboard/college_info');
 			}
 		}
-
-		// all table
-		$query = "select * FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutions.institution = 'college'";
-		
+		// Admin table
+		$query = "select institutionsinfo.*, institutions.name FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.institution = 'college'";
 		$data['rows'] = $this->query($query);
-
 		
+		// Organization Table
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+		$query = "select institutionsinfo.* , institutions.name FROM institutionsinfo JOIN institutions ON institutionsinfo.institution = institutions.id WHERE institutions.name = '$role'" ;
+		$data['single_rows'] = $this->query($query);
 
 		$data['errors'] = $data['collegeInfo']->errors;
 
@@ -765,8 +766,21 @@ class Dashboard
 			}
 		}
 
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
 		// all table
-		$query = "select * FROM institutions JOIN officials ON officials.institution = institutions.id WHERE institutions.institution = 'organization' AND institutions.disabled = 'Active'";
+		$insitution = $ses->user('institute');
+		if($insitution == 'Admin')
+		{
+			$query = "select officials.*, institutions.name FROM officials JOIN institutions ON officials.institution = institutions.id WHERE institutions.institution = 'organization' AND institutions.disabled = 'Active'";
+		}
+		if($insitution == 'organization')
+		{
+			$query = "select officials.*, institutions.name FROM officials JOIN institutions ON officials.institution = institutions.id WHERE institutions.name = '$role'" ;
+		}
 
 		$data['rows'] = $this->query($query);
 
@@ -878,8 +892,20 @@ class Dashboard
 			}
 		}
 
-		// all table
-		$query = "select * FROM institutions JOIN officials ON officials.institution = institutions.id WHERE institutions.institution = 'college' AND institutions.disabled = 'Active'";
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+		$insitution = $ses->user('institute');
+		if($insitution == 'Admin')
+		{
+			$query = "select officials.*, institutions.name FROM officials JOIN institutions ON officials.institution = institutions.id WHERE institutions.institution = 'college' AND institutions.disabled = 'Active'";
+		}
+		if($insitution == 'college')
+		{
+			$query = "select officials.*, institutions.name FROM officials JOIN institutions ON officials.institution = institutions.id WHERE institutions.name = '$role'" ;
+		}
 
 		$data['rows'] = $this->query($query);
 
@@ -1117,14 +1143,20 @@ class Dashboard
 			}
 		}
 
-		// all table
+		// Admin table
 		$query = "select * FROM institutions JOIN about ON about.institution = institutions.id WHERE institutions.institution = 'college'";
-		
 		$data['rows'] = $this->query($query);
 
+		// Organization Table
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+		$query = "select about.* FROM about JOIN institutions ON about.institution = institutions.id WHERE institutions.name = '$role'" ;
+		$data['single_rows'] = $this->query($query);
 	
 		$data['errors'] = $data['collegeAbout']->errors;
-
 			
 		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'college')
 		{

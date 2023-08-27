@@ -19,7 +19,7 @@ class Officials
 	public $allowedColumns = [
 
 		'image',
-		'name',
+		'official_name',
 		'position',
 		'suffix',
 		'institution',
@@ -65,13 +65,9 @@ class Officials
 		   }
 	   }
 
-	   if(empty($data['name']))
+	   if(empty($data['official_name']))
 	   {
-		   $this->errors['name'] = " Name is Required";
-	   }else
-	   if(!preg_match('/^[a-zA-Z .]+$/', $data['name']))
-	   {
-		   $this->errors['name'] = "Only letters allowed in name";
+		   $this->errors['official_name'] = " Name is Required";
 	   }
 
 	   if(empty($data['position']))

@@ -290,7 +290,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT ?>dashboard/college_officials">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/college_official">
               <span class="menu-title">College's Official</span>
               <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>

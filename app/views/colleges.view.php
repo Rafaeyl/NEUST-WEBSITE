@@ -190,7 +190,7 @@
                                     <img class="img-fluid" src="<?= get_image($official->image) ?>" alt="">
                                 </div>
                                 <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0"><?=$official->name?></h5>
+                                    <h5 class="fw-bold mb-0"><?=$official->official_name?></h5>
                                     <small><?=$official->position?></small>
                                 </div>
                             </div>

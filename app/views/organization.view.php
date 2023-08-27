@@ -213,7 +213,7 @@
                             <div class="team-member">
                                 <img src="<?= get_image($official->image) ?>" alt="">
                                 <div style="min-height: 130px;">
-                                    <h5 class="my-3"><?=$official->name?></h5>
+                                    <h5 class="my-3"><?=$official->official_name?></h5>
                                     <p><?=$official->position?></p>
                                 </div>
                             </div>

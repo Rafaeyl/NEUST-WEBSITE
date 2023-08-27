@@ -54,7 +54,7 @@
 				   <ul class="navbar-nav mx-auto">
 						<li class="nav-item active"><a href="<?=ROOT?>" class="nav-link pl-0">Home</a></li>
 						<li class="nav-item"><a href="<?=ROOT?>home/courses.php" class="nav-link">Courses</a></li>
-						<li class="nav-item"><a href="<?=ROOT?>home/teachers" class="nav-link">Teachers</a></li>
+						<li class="nav-item"><a href="http://localhost/NEUST-PAPAYA/public/home/teachers" class="nav-link">Teachers</a></li>
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Organizations</a>
 							<div class="dropdown-menu rounded-0 m-0">
