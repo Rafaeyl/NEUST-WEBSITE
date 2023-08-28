@@ -187,7 +187,7 @@
                         <div class="col-lg-3 col-md-6 wow fadeInUp mt-3" data-wow-delay="0.1s">
                             <div class="rounded shadow overflow-hidden">
                                 <div class="position-relative">
-                                    <img class="img-fluid" src="<?= get_image($official->image) ?>" alt="">
+                                    <img class="img-fluid w-100" style="min-height: 250px; max-height: 250px; background-size: cover;" src="<?= get_image($official->image) ?>" alt="">
                                 </div>
                                 <div class="text-center p-4 mt-3">
                                     <h5 class="fw-bold mb-0"><?=$official->official_name?></h5>

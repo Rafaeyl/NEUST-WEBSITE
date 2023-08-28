@@ -171,7 +171,6 @@ class Home
 			'address',
 		];
 		$data['school_contact'] = $contact_info->findAll();
-		$school_info = $data['school_contact'];
 
 	
 		// settings
@@ -185,7 +184,16 @@ class Home
 			}
 		}
 
-		
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+
 		// Contact Form - Send Email
 
 		// try{
@@ -288,6 +296,16 @@ class Home
 	    $teachers->order_column = 'list_order';
  		$data['teachers'] = $teachers ->findAll();
 
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+			
 		$data['title'] = "Teachers";
 		$this->view('home/teachers', $data);
 	}
@@ -330,6 +348,16 @@ class Home
 			}
 		}
 
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+
 		$data['title'] = "Mission and Vision";
 		$this->view('home/mission', $data);
 	}
@@ -371,6 +399,16 @@ class Home
 				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
 			}
 		}
+
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
 
 		$data['title'] = "NEUST March";
 		$this->view('home/march', $data);
@@ -421,6 +459,16 @@ class Home
 		$history->order_column = 'list_order';
 		
 		$data['histories'] = $history->findAll();
+
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
 
 		$data['title'] = "History";
 		$this->view('home/history', $data);

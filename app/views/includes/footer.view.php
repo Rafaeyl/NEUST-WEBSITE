@@ -19,7 +19,7 @@
               <div class="block-21 mb-5 d-flex">
                 <a class="blog-img mr-4" style="background-image: url(<?=get_image($news_footer['image'])?>);"></a>
                 <div class="text">
-                  <h5 class="heading"><a href="#"><?= substr($news_footer['title'], 0,30) . '...'?></a></h5>
+                  <h6><a href="<?=ROOT?>newsDetail/<?=$news_footer['slug']?>"><?= substr($news_footer['title'], 0,30) . '...'?></a></h6>
                   <div class="meta">
                     <div><a href="#"><span class="fa-regular fa-calendar-days"></span> <?= get_date($news_footer['date'])?></a></div>
                     <div><a href="#"><span class="fa-solid fa-user"></span> Admin</a></div>

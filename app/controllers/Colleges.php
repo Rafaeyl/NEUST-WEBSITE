@@ -55,6 +55,17 @@ class Colleges
 		$data['school_contact'] = $contact_info->findAll();
 		// 
 
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+	
+
 		$url = $_GET['url'] ?? 'home';
         $url = strtolower($url);
         $url = explode("/", $url);

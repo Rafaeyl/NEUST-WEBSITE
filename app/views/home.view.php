@@ -25,10 +25,12 @@
 			</div>
     	</div>
 	</div>
-	 
-    
-    <section class="home-slider owl-carousel">
-	  <div class="slider-item" style="background-image:url(<?= get_image($SETTINGS['Cover-photo 2'] ?? "Rafa")?>);">
+
+	<div class="school-cover">
+		<img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "Rafa")?>" alt="School Cover Image">
+	</div>
+    <!-- <section class="home-slider owl-carousel">
+	  <div class="slider-item" style="background-image:url();">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
@@ -37,7 +39,7 @@
         </div>
         </div>
       </div>
-    </section>
+    </section> -->
 		<div class="container-fluid py-5" data-aos="fade-up">
 			<div class="container py-5">
 				<div class="section-title text-center position-relative pb-3 mb-5 mx-auto "  style="max-width: 600px;">

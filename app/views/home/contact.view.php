@@ -86,8 +86,8 @@
 					</div>
 					<div class="col-md-6 d-flex align-items-stretch mb-5">
            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61544.24564958052!2d120.96213983005357!3d15.402711909364873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339724981f72b52f%3A0xaab029753d9a2287!2sNueva%20Ecija%20University%20of%20Science%20and%20Technology%20-%20Papaya!5e0!3m2!1sen!2sph!4v1680485889693!5m2!1sen!2sph" 
-            frameborder="0" style="min-height: 370px; border:0; min-width: 570px;" allowfullscreen="" aria-hidden="false"
-            tabindex="0"></iframe>
+            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+            tabindex="0" id="map"></iframe>
 					</div>
 				</div>
 			</div>
