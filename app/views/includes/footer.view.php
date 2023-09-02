@@ -33,7 +33,6 @@
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
                 <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>Home</a></li>
-                <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>About Us</a></li>
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
                 <li><a href="<?=ROOT?>/home/teachers"><span class="fa-solid fa-arrow-right  mr-2"></span>Teachers</a></li>
                 <li><a href="<?=ROOT?>/home/contact"><span class="fa-solid fa-arrow-right  mr-2"></span>Contact</a></li>

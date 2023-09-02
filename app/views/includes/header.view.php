@@ -53,8 +53,14 @@
 				 <div class="collapse navbar-collapse " id="ftco-nav">
 				   <ul class="navbar-nav mx-auto">
 						<li class="nav-item active"><a href="<?=ROOT?>" class="nav-link pl-0">Home</a></li>
-						<li class="nav-item"><a href="<?=ROOT?>home/courses.php" class="nav-link">Courses</a></li>
-						<li class="nav-item"><a href="http://localhost/NEUST-PAPAYA/public/home/teachers" class="nav-link">Teachers</a></li>
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+							<div class="dropdown-menu rounded-0 m-0">
+								<a href="<?=ROOT?>home/history" class="dropdown-item">History</a>
+								<a href="<?=ROOT?>home/mission" class="dropdown-item">Mission and Vision</a>
+								<a href="<?=ROOT?>home/march" class="dropdown-item">NEUST March</a>
+							</div>
+						</div>
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Organizations</a>
 							<div class="dropdown-menu rounded-0 m-0">
@@ -79,16 +85,10 @@
 								<?php endif;?>
 							</div>
 						</div>
-						<li class="nav-item"><a href="<?=ROOT?>home/blog.php" class="nav-link">Blog</a></li>
+						<li class="nav-item"><a href="http://localhost/NEUST-PAPAYA/public/home/teachers" class="nav-link">Teachers</a></li>
+						<li class="nav-item"><a href="<?=ROOT?>home/" class="nav-link">Courses</a></li>
+						<li class="nav-item"><a href="<?=ROOT?>home/frequently-asked-questions" class="nav-link">FAQS</a></li>
 					 	<li class="nav-item"><a href="<?=ROOT?>home/contact" class="nav-link">Contact</a></li>
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu rounded-0 m-0">
-								<a href="<?=ROOT?>home/history" class="dropdown-item">History</a>
-								<a href="<?=ROOT?>home/mission" class="dropdown-item">Mission and Vision</a>
-								<a href="<?=ROOT?>home/march" class="dropdown-item">NEUST March</a>
-							</div>
-						</div>
 				   </ul>
 				 </div>
 			 </nav>
