@@ -18,6 +18,10 @@
     scrollProperty: 'scroll'
   });
 
+
+//   ACCORDION
+
+
   // Initiate the wowjs
 	new WOW().init();
 

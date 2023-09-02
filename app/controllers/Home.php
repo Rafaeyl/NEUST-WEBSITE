@@ -143,7 +143,7 @@ class Home
 			header("Location: response.php");
 
 		}
-		$data['title'] = "home";
+		$data['title'] = "Home";
 		$this->view('home', $data);
 	}
 
@@ -459,7 +459,6 @@ class Home
 		$history->order_column = 'list_order';
 		
 		$data['histories'] = $history->findAll();
-
 		// News
 		$news = new Institution();
 	
@@ -474,5 +473,70 @@ class Home
 		$this->view('home/history', $data);
 	}
 
+	public function faqs()
+	{
+		$institutions = new Institution();
+		$institutions->order_type = 'asc';
+
+		// college
+		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$data['colleges'] = $this->query($college);
+
+		// organization
+		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$data['organizations'] = $this->query($organization);
+
+		// Contact Infomation
+		$contact_info = new Institution();
+		$contact_info->table = 'contact_info';
+		$contact_info->allowedColumns = [
+
+			'facebook_link',
+			'email',
+			'phone',
+			'address',
+		];
+		$data['school_contact'] = $contact_info->findAll();
+
+	
+		// settings
+		$settings = new Settings();
+		$data['settings'] = $settings->findAll();
+
+		$data['SETTINGS'] = [];
+		if ($data['settings']) {
+			foreach ($data['settings'] as $setting_row) {
+				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
+			}
+		}
+
+		// History
+		$faq = new Institution();
+		$faq->table = 'faqs';
+		$faq->order_type = 'asc';
+		$faq->limit = 10;
+		$faq->order_column = 'list_order';
+		$faq->allowedColumns = [
+
+			'question',
+			'answer',
+			'list_order',
+		];
+		
+		$data['faqs'] = $faq->findAll();
+		
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+
+		$data['title'] = "FAQs";
+		$this->view('home/faqs', $data);
+	}
 
 }

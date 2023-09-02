@@ -69,11 +69,13 @@
   <script src="<?=ROOT?>assets/main/js/jquery.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/popper.min.js"></script>
+  <script src="<?=ROOT?>assets/main/js/popper.js"></script>
   <script src="<?=ROOT?>assets/main/js/bootstrap.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.easing.1.3.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.stellar.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/owl.carousel.min.js"></script>
+  <script src="<?=ROOT?>assets/main/js/accordion.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.magnific-popup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/aos.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.animateNumber.min.js"></script>
@@ -83,6 +85,6 @@
   <script src="<?=ROOT?>assets/main/js/wow/wow.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/counterup/counterup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
-  <script src="<?=ROOT?>assets/main/js/main.js"></script>
+  <script src="<?=ROOT?>assets/main/js/main1.js"></script>
   </body>
 </html>

@@ -191,6 +191,12 @@
               <i class="mdi mdi-settings menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/faq">
+              <span class="menu-title">FAQs</span>
+              <i class="mdi mdi-comment-question-outline menu-icon"></i>
+            </a>
+          </li>
           <li class="nav-item mt-0 sidebar-actions">
             <span class="nav-link">
               <div class="border-bottom">

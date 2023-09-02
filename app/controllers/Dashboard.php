@@ -22,18 +22,9 @@ class Dashboard
 
 	public function index()
 	{
-		$data['title'] = "Dashome";
-
-		$ses = new Session;
-
-		if (!$ses->is_logged_in()) {
-
-			redirect('login');
-		}
-
+		$data['title'] = "Dashhome";
 		$this->view('dashboard/dashhome', $data);
 	}
-
 	// Dashome
 	public function dashhome($action = null, $id = null)
 	{
@@ -50,6 +41,12 @@ class Dashboard
 		$query  = "select institutions.disabled FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
 		$data['rows'] = $this->query($query);
 
+		$url = $_GET['url'] ?? 'home';
+        $url = strtolower($url);
+        $url = explode("/", $url);
+
+        $slug  = $url[1] ?? 'home';
+        $data['slug'] = $slug;
 		
 		$this->view('dashboard/dashhome', $data);
 	}
@@ -1918,6 +1915,83 @@ class Dashboard
 			$this->view('access-denied');
 		}
 	}
-	
+	public function faq($action = null, $id = null)
+	{
+		$ses = new Session;
+		if (!$ses->is_logged_in()) {
+
+			redirect('login');
+		}
+
+		$data['title'] = "FAQS";
+		$data['action'] = $action;
+		
+		$faq = new Institution();
+		$faq->table = 'faqs';
+		$faq->order_type = 'asc';
+		$faq->allowedColumns = [
+
+			'question',
+			'answer',
+			'list_order',
+		];
+
+		if($action == 'new')
+		{
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				
+				if($faq->validatee($_FILES, $_POST))
+				{
+		
+					$faq->insert($_POST);
+
+					redirect('dashboard/faq');
+				}
+			}
+		}else
+		if($action == 'edit')
+		{
+
+			$data['row'] = $faq->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+
+				if($faq->validatee($_POST, $id))
+				{
+ 
+					$faq->update($id, $_POST);
+
+					redirect('dashboard/faq');
+				}
+			}
+		}else
+		if($action == 'delete')
+		{
+			$data['row'] = $faq->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				$faq->delete($id);
+
+				redirect('dashboard/faq');
+				
+			}
+		}
+
+		$data['rows'] = $faq->findAll();
+		$data['errors'] = $faq->errors;
+		$data['faq'] = $faq;
+
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/faq', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
+	}
 }
 

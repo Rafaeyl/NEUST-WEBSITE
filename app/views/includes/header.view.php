@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><?=APP_NAME;?></title>
+    <title><?= $title . " | " . APP_NAME;?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" type="image/x-icon" href="<?= ROOT ?>/favicon.png" />
@@ -24,10 +24,12 @@
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style1.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom2.css">
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+
   </head>
   <body>
 	  <div class="bg-top navbar-light">
@@ -47,7 +49,7 @@
 		  </div>
 		  <div class="container-xxl bg-dark">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light" id="ftco-navbar">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				   <span class="oi oi-menu"></span> Menu
 				 </button>
 				 <div class="collapse navbar-collapse " id="ftco-nav">
@@ -87,7 +89,7 @@
 						</div>
 						<li class="nav-item"><a href="http://localhost/NEUST-PAPAYA/public/home/teachers" class="nav-link">Teachers</a></li>
 						<li class="nav-item"><a href="<?=ROOT?>home/" class="nav-link">Courses</a></li>
-						<li class="nav-item"><a href="<?=ROOT?>home/frequently-asked-questions" class="nav-link">FAQS</a></li>
+						<li class="nav-item"><a href="<?=ROOT?>home/faqs" class="nav-link">FAQS</a></li>
 					 	<li class="nav-item"><a href="<?=ROOT?>home/contact" class="nav-link">Contact</a></li>
 				   </ul>
 				 </div>

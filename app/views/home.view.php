@@ -40,58 +40,6 @@
         </div>
       </div>
     </section> -->
-		<div class="container-fluid py-5" data-aos="fade-up">
-			<div class="container py-5">
-				<div class="section-title text-center position-relative pb-3 mb-5 mx-auto "  style="max-width: 600px;">
-					<h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-					<h1 class="m-0">Why You Should Start Learning with Us?</h1>
-				</div>
-				<div class="row g-5">
-					<div class="col-lg-4">
-						<div class="row g-5">
-							<div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
-								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-									<i class="fa fa-cubes text-white"></i>
-								</div>
-								<h4>Exceptional Academic Programs</h4>
-								<p class="mb-0">We take pride in offering a wide range of cutting-edge academic programs designed to prepare students for success in today's dynamic world.</p>
-							</div>
-							<div class="col-12 wow fadeInUp my-3" data-wow-delay="0.4s">
-								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-									<i class="fa fa-award text-white"></i>
-								</div>
-								<h4>Academic Excellence</h4>
-								<p class="mb-0">Our renowned faculty members are leaders in their fields, ensuring that you receive a world-class education.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mb-3"  data-wow-delay="0.6s" style="min-height: 350px;">
-						<div class="position-relative h-100">
-							<img class="position-absolute w-100 h-100 rounded" data-aos-duration="0.1s" src="<?=ROOT?>assets/main/images/about.jpg" style="object-fit: cover;">
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="row g-5">
-							<div class="col-12 wow fadeInUp" data-wow-delay="0.8s">
-								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-									<i class="fa fa-users-cog text-white"></i>
-								</div>
-								<h4>State-of-the-Art Facilities</h4>
-								<p class="mb-0">We believe that an exceptional learning environment is essential for your success. That's why we've invested in state-of-the-art facilities, laboratories, libraries, and study spaces that support your academic pursuits.</p>
-							</div>
-							<div class="col-12 wow fadeInUp mt-3" data-wow-delay="1s" >
-								<div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-									<i class="fa fa-phone-alt text-white"></i>
-								</div>
-								<h4>24/7 Support</h4>
-								<p class="mb-0">We prioritize your success and well-being.  We ensure that you receive the guidance you need to thrive both academically and personally.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-    	</div>
-
 		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-2 d-flex">

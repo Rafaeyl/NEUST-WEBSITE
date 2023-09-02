@@ -126,6 +126,8 @@ class Colleges
 			}
 	
         }
+
+		$data['title'] = "Colleges";
 		$this->view('colleges',$data);
 	}
 

@@ -129,8 +129,8 @@ class Organization
 	
         }
 
-	
-			
+		
+		$data['title'] = "Organization";
 		$this->view('organization', $data);
         
 		

@@ -85,7 +85,8 @@ class NewsDetail
 
         $data['slug'] = $url[1] ?? 'home';
         $slug = $data['slug'];
-        
+
+        $data['title'] = "News Detail";
         if($slug)
         {
 			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE news.slug = '$slug'";
