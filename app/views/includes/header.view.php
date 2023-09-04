@@ -5,7 +5,7 @@
   <head>
     <title><?= $title . " | " . APP_NAME;?></title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/x-icon" href="<?= ROOT ?>/favicon.png" />
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
     
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style1.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom2.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style5.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css">
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

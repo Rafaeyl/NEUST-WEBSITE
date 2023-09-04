@@ -169,78 +169,83 @@
     }
   }
   
-/*   
-@media (min-width: 200px) {
-  .announcement-container {
-    display: flex;
-    flex-wrap: wrap;
+  /* Image slider */
+.school-slider{
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+
+}.
+wrapper{
+  display: flex;
+  max-width: 1200px;
+  position: relative;
+}
+.wrapper i{
+  top: 50%;
+  height: 44px;
+  width: 44px;
+  color: #343F4F;
+  cursor: pointer;
+  font-size: 1.15rem;
+  position: absolute;
+  text-align: center;
+  line-height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+.wrapper i:active{
+  transform: translateY(-50%) scale(0.9);
+}
+.wrapper i:hover{
+  background: #f2f2f2;
+}
+.wrapper i:first-child{
+  left: -22px;
+  display: none;
+}
+.wrapper i:last-child{
+  right: -22px;
+}
+.wrapper .carousel{
+  font-size: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+.carousel.dragging{
+  cursor: grab;
+  scroll-behavior: auto;
+}
+.carousel.dragging img{
+  pointer-events: none;
+}
+.carousel img{
+  height: 340px;
+  object-fit: cover;
+  user-select: none;
+  margin-left: 14px;
+  width: calc(100% / 3);
+}
+.carousel img:first-child{
+  margin-left: 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .carousel img{
+    width: calc(100% / 2);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .carousel img{
     width: 100%;
-    height: 100px;
   }
-
-  .announcement-container .news {
-    width: 100%;
-    background: var(--black);
-    padding: 10px 2%;
-  }
-
-  .announcement-container .news ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    animation: scroll 25s infinite linear;
-  }
-
-  .announcement-container .news ul:hover {
-    animation-play-state: paused;
-  }
-
-  .announcement-container .news ul li {
-    white-space: nowrap;
-    color: white;
-    padding: 0px 24px;
-    position: relative;
-  }
-
-  .announcement-container .news ul li::after {
-    content: "";
-    width: 1px;
-    height: 100%;
-    background: #b8b8b8;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-  .announcement-container .news ul li:last-child::after {
-    display: none;
-  }
-
-  .announcement-container .title {
-    width: 20%;
-    text-align: center;
-    background: var(--black);
-    position: relative;
-    color: white;
-    z-index: 200;
-  }
-
-
-  @keyframes scroll {
-    from {
-      transform: translateX(100%);
-    }
-
-    to {
-      transform: translateX(-1083px);
-
-    }
-  }
-} */
-
-  /* FAQS */
-
-  
+}
 /* faqs */
 .faq
 {
@@ -634,6 +639,7 @@ button[aria-expanded="true"] {
       transition: none; } }
   button[aria-expanded="true"] h3 {
     color: #fff; }
+    
   button[aria-expanded="true"] .icon {
     background: #fff !important; }
   button[aria-expanded="true"] .fa {

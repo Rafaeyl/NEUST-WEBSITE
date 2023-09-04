@@ -12,9 +12,9 @@
 <!-- endinject -->
 <!-- Plugin js for this page -->
 <script src="<?= ROOT ?>assets/dashboard/vendors/chart.js/Chart.min.js"></script>
-<script src="<?= ROOT ?>assets/dashboard/js/jquery351.js" type="text/javascript"></script>
-<script src="<?= ROOT ?>assets/dashboard/js/datatabless.js" type="text/javascript"></script>
-<script src="<?= ROOT ?>assets/dashboard/js/datatablebootstrap.js" type="text/javascript"></script>
+<script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+<script src="<?= ROOT ?>assets/dashboard/js/datatable.min.js" type="text/javascript"></script>
+<script src="<?= ROOT ?>assets/dashboard/js/bootstrap5.min.js" type="text/javascript"></script>
 <script src="<?= ROOT ?>assets/dashboard/js/main.js" type="text/javascript"></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->

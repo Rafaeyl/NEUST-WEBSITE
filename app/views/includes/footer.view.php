@@ -86,5 +86,6 @@
   <script src="<?=ROOT?>assets/main/js/counterup/counterup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/main1.js"></script>
+  <script src="<?=ROOT?>assets/main/js/slider1.js"></script>
   </body>
 </html>

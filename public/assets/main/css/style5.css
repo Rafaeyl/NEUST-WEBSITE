@@ -12130,12 +12130,13 @@ h5,
 
 .school-cover{
   position: relative;
-  height: 500px;
+  height: 400px;
   z-index: 0;
+  margin-bottom: 10px;
 }
 .school-cover img{
   width: 100%;
-  max-height: 500px;
+  max-height: 100px;
   min-height: 400px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -12143,8 +12144,11 @@ h5,
   z-index: 0;
 }
 
+
+
 @media screen and (max-width:500px)
 {
+
   .school-cover{
     position: relative;
     height: 450px;

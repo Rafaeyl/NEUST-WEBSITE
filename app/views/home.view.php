@@ -29,6 +29,19 @@
 	<div class="school-cover">
 		<img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "Rafa")?>" alt="School Cover Image">
 	</div>
+	
+	<div class="school-slider">
+		<div class="wrapper">
+		<ul class="carousel">
+		<img src="<?= ROOT?>/assets/main/images/image_1.jpg" alt="img" draggable="false">
+        <img src="<?= ROOT?>/assets/main/images/image_2.jpg" alt="img" draggable="false">
+        <img src="<?= ROOT?>/assets/main/images/image_3.jpg" alt="img" draggable="false">
+        <img src="<?= ROOT?>/assets/main/images/image_4.jpg" alt="img" draggable="false">
+        <img src="<?= ROOT?>/assets/main/images/image_5.jpg" alt="img" draggable="false">
+		</ul>
+		</div>
+	</div>
+	
     <!-- <section class="home-slider owl-carousel">
 	  <div class="slider-item" style="background-image:url();">
       	<div class="overlay"></div>
@@ -93,7 +106,7 @@
 			</div>
     	</section>
 
-		<section class="ftco-section">
+		<!-- <section class="ftco-section">
 			<div class="container-fluid px-4">
 				<div class="row justify-content-center mb-5 pb-2">
 					<div class="col-md-8 text-center heading-section ftco-animate">
@@ -148,7 +161,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<!-- Teachers -->
 		<section class="py-5 bg-light">
