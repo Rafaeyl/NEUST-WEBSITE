@@ -453,6 +453,12 @@ h6,
   font-weight: 300;
   line-height: 1.2;
 }
+.display-5 {
+  font-size: 2.0rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
 
 hr {
   margin-top: 1rem;
@@ -12306,6 +12312,12 @@ h5,
   position: relative;
   z-index: 0;
 } */
+
+ .ftco-heading-2 {
+  font-size: 17px;
+  font-weight: 400;
+  color: #000000;
+}
 .owl-carousel.home-slider {
   position: relative;
   height: 600px;
@@ -12983,7 +12995,7 @@ h5,
 
 .blog-entry .meta-date {
   display: inline-block;
-  background: #5d50c6;
+  background: #6f42c1;
 }
 
 .blog-entry .meta-date span {
@@ -13105,7 +13117,7 @@ textarea.form-control {
 }
 
 .ftco-section {
-  margin-bottom: 20px ;
+  margin-bottom: 5px;
   padding: 7em 0;
   position: relative;
 }

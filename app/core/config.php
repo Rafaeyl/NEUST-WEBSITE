@@ -16,13 +16,13 @@ if((empty($_SERVER['SERVER_NAME']) && php_sapi_name() == 'cli') || (!empty($_SER
 }else
 {
 	/** database config **/
-	define('DBNAME', 'neust');
+	define('DBNAME', 'neust');	
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBDRIVER', '');
 
-	define('ROOT', 'https://www.yourwebsite.com');
+	define('ROOT', 'http://localhost/NEUST-PAPAYA/public/');
 
 }
 

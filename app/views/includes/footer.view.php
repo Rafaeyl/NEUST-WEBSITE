@@ -15,17 +15,9 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-              <h2 class="ftco-heading-2">Recent News</h2>
-              <div class="block-21 mb-5 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(<?=get_image($news_footer['image'])?>);"></a>
-                <div class="text">
-                  <h6><a href="<?=ROOT?>newsDetail/<?=$news_footer['slug']?>"><?= substr($news_footer['title'], 0,30) . '...'?></a></h6>
-                  <div class="meta">
-                    <div><a href="#"><span class="fa-regular fa-calendar-days"></span> <?= get_date($news_footer['date'])?></a></div>
-                    <div><a href="#"><span class="fa-solid fa-user"></span> Admin</a></div>
-                  </div>
-                </div>
-              </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61544.24564958052!2d120.96213983005357!3d15.402711909364873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339724981f72b52f%3A0xaab029753d9a2287!2sNueva%20Ecija%20University%20of%20Science%20and%20Technology%20-%20Papaya!5e0!3m2!1sen!2sph!4v1680485889693!5m2!1sen!2sph" 
+            frameborder="0" style="border:0; max-height:250px;  min-height:200px;" allowfullscreen="" aria-hidden="false"
+            tabindex="0" id="map"></iframe>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
@@ -68,6 +60,7 @@
 
   <script src="<?=ROOT?>assets/main/js/jquery.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
+
   <script src="<?=ROOT?>assets/main/js/popper.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/popper.js"></script>
   <script src="<?=ROOT?>assets/main/js/bootstrap.min.js"></script>
@@ -85,7 +78,7 @@
   <script src="<?=ROOT?>assets/main/js/wow/wow.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/counterup/counterup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
-  <script src="<?=ROOT?>assets/main/js/main1.js"></script>
+  <script src="<?=ROOT?>assets/main/js/main6.js"></script>
   <script src="<?=ROOT?>assets/main/js/slider1.js"></script>
   </body>
 </html>

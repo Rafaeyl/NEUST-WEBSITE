@@ -26,185 +26,86 @@
     	</div>
 	</div>
 
-	<div class="school-cover">
-		<img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "Rafa")?>" alt="School Cover Image">
-	</div>
+	<!-- SLIDER START -->
+	<section aria-label="Newest Photos">
+    <div class="carousel" data-carousel>
+      <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+      <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+      <ul data-slides>
+
+        <li class="slide" data-active>
+          <img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "http://localhost/NEUST-PAPAYA/public/assets/images/events/start_of_classes.jpg")?>" alt="Nature Image #1">
+        </li>
+		<li class="slide" data-active>
+		<img src="<?= get_image($SETTINGS['Cover-photo 1'])?>" alt="Nature Image #1">
+        </li>
+      </ul>
+    </div>
+  </section>
+	<!-- SLIDER END -->
 	
-	<div class="school-slider">
-		<div class="wrapper">
-		<ul class="carousel">
-		<img src="<?= ROOT?>/assets/main/images/image_1.jpg" alt="img" draggable="false">
-        <img src="<?= ROOT?>/assets/main/images/image_2.jpg" alt="img" draggable="false">
-        <img src="<?= ROOT?>/assets/main/images/image_3.jpg" alt="img" draggable="false">
-        <img src="<?= ROOT?>/assets/main/images/image_4.jpg" alt="img" draggable="false">
-        <img src="<?= ROOT?>/assets/main/images/image_5.jpg" alt="img" draggable="false">
-		</ul>
+	<div class="row heading-section bg-darken p-4 heading-title">
+			<div class="col-1 d-none d-md-block">
+				<img src="<?= ROOT ?>/assets/images/title-image.png" class="title-image text-lg-start text-center"alt="">
+			</div>
+			<div class="col-md-8 text-center text-lg-left">
+				<span class="text-white ftco-animate px-4 ">ABOUT THE UNIVERSITY</span>
+			</div>
+	</div>
+	<section class="ftco-section ftco-counter img m-0" id="section-counter" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-2.jpg);" data-stellar-background-ratio="0.5">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-2 d-flex">
+				<div class="col-md-6 align-items-stretch d-flex">
+					<div class="img img-video d-flex align-items-center" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-1.jpg);">
+						<div class="video justify-content-center">
+								<a href="https://www.youtube.com/watch?v=ljoTZ0CI2-g" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+									<span class="fa-solid fa-play"></span>
+								</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
+					<h2 class="mb-4"><?=$about_school[0]->title?></h2>
+					<p><?=$about_school[0]->description?></p>
+				</div>
+			</div>
+			<div class="row d-md-flex align-items-center justify-content-center">
+				<div class="col-lg-12">
+					<div class="row d-md-flex align-items-center">
+						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18">
+								<div class="icon"><span class="flaticon-doctor"></span></div>
+							<div class="text">
+								<strong class="number" data-number="<?=$about_school[0]->teachers?>"><?=$about_school[0]->teachers?></strong>
+								<span>Certified Teachers</span>
+							</div>
+							</div>
+						</div>
+						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18">
+								<div class="icon"><span class="flaticon-doctor"></span></div>
+							<div class="text">
+								<strong class="number" data-number="<?=$about_school[0]->students?>"><?=$about_school[0]->students?></strong>
+								<span>Students</span>
+							</div>
+							</div>
+						</div>
+						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18">
+								<div class="icon"><span class="flaticon-doctor"></span></div>
+							<div class="text">
+								<strong class="number" data-number="<?=$about_school[0]->staffs?>"><?=$about_school[0]->staffs?></strong>
+								<span>Staffs</span>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	
-    <!-- <section class="home-slider owl-carousel">
-	  <div class="slider-item" style="background-image:url();">
-      	<div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-          <div class="col-md-6 ftco-animate">
-          </div>
-        </div>
-        </div>
-      </div>
-    </section> -->
-		<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-2.jpg);" data-stellar-background-ratio="0.5">
-			<div class="container">
-				<div class="row justify-content-center mb-5 pb-2 d-flex">
-					<div class="col-md-6 align-items-stretch d-flex">
-						<div class="img img-video d-flex align-items-center" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-1.jpg);">
-							<div class="video justify-content-center">
-									<a href="https://www.youtube.com/watch?v=ljoTZ0CI2-g" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-										<span class="fa-solid fa-play"></span>
-									</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-						<h2 class="mb-4"><?=$about_school[0]->title?></h2>
-						<p><?=$about_school[0]->description?></p>
-					</div>
-				</div>
-				<div class="row d-md-flex align-items-center justify-content-center">
-					<div class="col-lg-12">
-						<div class="row d-md-flex align-items-center">
-							<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18">
-									<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="<?=$about_school[0]->teachers?>"><?=$about_school[0]->teachers?></strong>
-									<span>Certified Teachers</span>
-								</div>
-								</div>
-							</div>
-							<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18">
-									<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="<?=$about_school[0]->students?>"><?=$about_school[0]->students?></strong>
-									<span>Students</span>
-								</div>
-								</div>
-							</div>
-							<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-								<div class="block-18">
-									<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="<?=$about_school[0]->staffs?>"><?=$about_school[0]->staffs?></strong>
-									<span>Staffs</span>
-								</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-    	</section>
-
-		<!-- <section class="ftco-section">
-			<div class="container-fluid px-4">
-				<div class="row justify-content-center mb-5 pb-2">
-					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4"><span>Our</span> <span class="text-primary">Courses</span></h2>
-						<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-					</div>
-        		</div>	
-				<div class="row">
-					<div class="col-md-3 course ftco-animate">
-						<div class="img" style="background-image: url(<?=ROOT?>assets/main/images/course-1.jpg);"></div>
-						<div class="text pt-4">
-							<p class="meta d-flex justify-content-center align-items-center text-center">
-								<span><i class="fa-regular fa-calendar-days mr-2"></i>4 Years</span>
-							</p>
-							<h3><a href="#">Electric Engineering</a></h3>
-							<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-							<p><a href="#" class="btn btn-primary">Apply now</a></p>
-						</div>
-					</div>
-					<div class="col-md-3 course ftco-animate">
-						<div class="img" style="background-image: url(<?=ROOT?>assets/main/images/course-2.jpg);"></div>
-						<div class="text pt-4">
-							<p class="meta d-flex justify-content-center align-items-center text-center">
-								<span><i class="fa-regular fa-calendar-days mr-2"></i>4 Years</span>
-							</p>
-							<h3><a href="#">Electric Engineering</a></h3>
-							<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-							<p><a href="#" class="btn btn-primary">Apply now</a></p>
-						</div>
-					</div>
-					<div class="col-md-3 course ftco-animate">
-						<div class="img" style="background-image: url(<?=ROOT?>assets/main/images/course-3.jpg);"></div>
-						<div class="text pt-4">
-							<p class="meta d-flex justify-content-center align-items-center text-center">
-								<span><i class="fa-regular fa-calendar-days mr-2"></i>4 Years</span>
-							</p>
-							<h3><a href="#">Electric Engineering</a></h3>
-							<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-							<p><a href="#" class="btn btn-primary">Apply now</a></p>
-						</div>
-					</div>
-					<div class="col-md-3 course ftco-animate">
-						<div class="img" style="background-image: url(<?=ROOT?>assets/main/images/course-4.jpg);"></div>
-						<div class="text pt-4">
-							<p class="meta d-flex justify-content-center align-items-center text-center">
-								<span><i class="fa-regular fa-calendar-days mr-2"></i>4 Years</span>
-							</p>
-							<h3><a href="#">Electric Engineering</a></h3>
-							<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-							<p><a href="#" class="btn btn-primary">Apply now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section> -->
-
-		<!-- Teachers -->
-		<section class="py-5 bg-light">
-			<div class="container-fluid">
-				<div class="row justify-content-center mb-5 pb-2">
-					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4"> <span class="text-dark"> Meet Our</span> <span class="text-primary">Teachers</span> </h2>
-						<p>Our highly qualified teachers put in their best efforts for outstanding results in both studies and co-curricular activities.</p>
-					</div>
-        		</div>	
-				<div class="row justify-content-center">
-					<?php if(!empty($teachers)): ?>
-						<?php foreach($teachers as $teacher): ?>
-							<div class="col-md-6 col-lg-4 ftco-animate">
-								<div class="staff">
-									<div class="img-wrap d-flex align-items-stretch">
-										<div class="img align-self-stretch" style="background-image: url(<?=get_image($teacher->image)?>);"></div>
-									</div>
-									<div class="text pt-3 text-center">
-										<h3><?= esc($teacher->name). "," . esc($teacher->suffixes)?></h3>
-										<span class="position mb-2"><?= esc($teacher->position) ?></span>
-										<div class="faded">
-											<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-											<ul class="ftco-social text-center">
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					<?php else:?>
-						<div class="bg-danger p-5 mb-5 mx-auto text-center">
-							<h2 class="lead display-4">NO TEACHERS AVAILABLE</h2>
-						</div>
-					<?php endif; ?>
-				</div>
-				<div class="float-right">
-					<a href="<?=ROOT?>/home/teachers"> See more <i class="fa-solid fa-arrow-right"></i></a>
-				</div>
-			</div>
-		</section>
-
-	<section class="pt-80 pb-80 bg-dark" style="background-image: url(<?=ROOT?>assets/main/images/bg-pattern.png)">
+	</section>
+			
+	<!-- <section class="pt-80 pb-80 bg-dark" style="background-image: url(<?=ROOT?>assets/main/images/bg-pattern.png)">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-8 text-center">
@@ -212,85 +113,30 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-    <!-- <section class="ftco-section ftco-counter  img" id="section-counter"  style="background-image: url(<?=ROOT?>assets/main/images/bg_5.jpg);" data-stellar-background-ratio="0.5" id="contact">
-
-    	<div class="container">
-    		<div class="row justify-content-end">
-    			<div class="col-md-6 py-5 px-md-5">
-    				<div class="py-md-5">
-                        <div class="heading-section heading-section-white ftco-animate mb-5">
-                            <h2 class="mb-4">Request A Quote</h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-		                <form action="#" class="appointment-form ftco-animate">
-                            <div class="d-md-flex">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="form-group ml-md-4">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="d-md-flex">
-                                <div class="form-group">
-                                    <div class="form-field">
-                                        <div class="select-wrap">
-                                            <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Select Your Course</option>
-                                            <option value="">Art Lesson</option>
-                                            <option value="">Language Lesson</option>
-                                            <option value="">Music Lesson</option>
-                                            <option value="">Sports</option>
-                                            <option value="">Other Services</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group ml-md-4">
-                                    <input type="text" class="form-control" placeholder="Phone">
-                                </div>
-                            </div>
-                            <div class="d-md-flex">
-                                <div class="form-group">
-                                    <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-                                </div>
-                                <div class="form-group ml-md-4">
-                                    <input type="submit" value="Request A Quote" class="btn btn-primary py-3 px-4">
-                                </div>
-                            </div>
-                        </form>
-		    		</div>
-    			</div>
-            </div>
-    	</div>
-    </section> -->
-
-		<section class="ftco-section bg-light">
-			<div class="container">
-				<div class="row justify-content-center mb-5 pb-2">
-					<div class="col-md-8 text-center heading-section ftco-animate">
-						<h2 class="mb-4"><span>Recent</span> <span class="text-primary">News</span></h2>
-						<p>Explore the recent news and happenings in our university</p>
-					</div>
-				</div>
-				<div class="row justify-content-center ">
+	</section> -->
+	<div class="row heading-section bg-darken p-4 heading-title">
+			<div class="col-1 d-none d-md-block">
+				<img src="<?= ROOT ?>/assets/images/title-image.png" class="title-image text-lg-start text-center"alt="">
+			</div>
+			<div class="col-md-8 text-center text-lg-left">
+				<span class="text-white ftco-animate px-4 ">RECENT NEWS AND EVENTS</span>
+			</div>
+	</div>
+		<section class="bg-light">
+			<div class="container-fluid ">
+				<div class="row justify-content-center  ">
 				<?php if(!empty($news)):?>
                     <?php foreach($news as $row):?>
-						
-						<div class="col-md-6 col-lg-4 ftco-animate">
+						<div class="col-md-6 col-lg-4 ftco-animate my-2">
 							<div class="blog-entry" >
 								<a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="block-20 d-flex align-items-end" width="200" height="250" style="background-image: url(<?= get_image($row->image) ?>); object-fit:cover;">
 									<div class="meta-date text-center p-2">
-
-									<span class="text-whote"><?= get_date($row->date)?></span> 
+										<span class="text-whote"><?= get_date($row->date)?></span> 
 									</div>
 								</a>
-								<div class="text bg-white p-4" style="height:250px;">
-									<h3 class="heading"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><?= substr($row->title, 0,20)?></a></h3>
-									<p><?=substr($row->description, 0,100)?></p>
+								<div class="text bg-white p-4" style="height:510px;">
+									<h3 class="heading text-justify"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><?= substr($row->title, 0,50)?></a></h3>
+									<p class="text-justify news-body"><?=substr($row->description, 0,450) . "..."?></p>
 									<div class="d-flex align-items-center mt-4">
 										<p class="mb-0"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="btn btn-primary">Read More 
 												<span class="fa-solid fa-arrow-right "></span></a></p>
@@ -310,7 +156,7 @@
 			</div>
 		</section>
 
-		<section class="ftco-section testimony-section">
+		<!-- <section class="ftco-section testimony-section">
 	  <div class="container">
 		<div class="row justify-content-center mb-5 pb-2">
 		  <div class="col-md-8 text-center heading-section ftco-animate">
@@ -395,8 +241,15 @@
           </div>
         </div>
       </div>
-    </section>
-
+    </section> -->
+	<div class="row heading-section bg-darken p-4 heading-title">
+			<div class="col-1 d-none d-md-block">
+				<img src="<?= ROOT ?>/assets/images/title-image.png" class="title-image text-lg-start text-center"alt="">
+			</div>
+			<div class="col-md-8 text-center text-lg-left">
+				<span class="text-white ftco-animate px-4 ">UNIVERSITY GALLERY</span>
+			</div>
+	</div>
 	<section class="ftco-gallery">
 		<div class="container-wrap">
 			<div class="row no-gutters">

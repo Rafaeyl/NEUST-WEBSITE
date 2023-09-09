@@ -20,16 +20,16 @@
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/aos.css">
 
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/ionicons.min.css">
-    
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style5.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom6.css">
+
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-
+	
   </head>
   <body>
 	  <div class="bg-top navbar-light">

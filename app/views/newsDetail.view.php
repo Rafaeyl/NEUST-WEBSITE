@@ -30,7 +30,7 @@
             <p><?= $row['description']?></p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
-                <a href="#" class="tag-cloud-link"><?=$row['name'] ?? 'Uncategorized' ?></a>
+                <a href="#" class="tag-cloud-link bg-primary text-white"><?=$row['name'] ?? 'Uncategorized' ?></a>
                 <span class="float-right fw-bolder"><?=get_date($row['date'] )?></span>
               </div>
             </div>

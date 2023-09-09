@@ -109,7 +109,7 @@ class Colleges
 					$mail->SMTPSecure = 'ssl';
 					$mail->isHTML(true);
 					$mail->setFrom($email, $name);
-					$mail->addAddress("villanuevarafaeljr129@gmail.com");
+					$mail->addAddress($collegeInfo['email']);
 
 					$mail->Subject = ("$email ($subject)");
 					$mail->Body = $message;

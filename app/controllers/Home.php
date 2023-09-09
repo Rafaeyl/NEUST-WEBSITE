@@ -9,13 +9,13 @@ use \Model\Settings;
 use \Model\Officials;
 use Model\Database;
 
-// use PHPMailer\PHPMailer\Exception;
-// use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
-// //Load Composer's autoloader
-// require ROOT . '/assets/PHPMailer/src/Exception.php';
-// require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
-// require ROOT . '/assets/PHPMailer/src/SMTP.php';
+//Load Composer's autoloader
+require ROOT . '/assets/PHPMailer/src/Exception.php';
+require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
+require ROOT . '/assets/PHPMailer/src/SMTP.php';
 
 defined('ROOTPATH') or exit('Access Denied!');
 
@@ -51,7 +51,7 @@ class Home
 			'address',
 		];
 		$data['school_contact'] = $contact_info->findAll();
-
+		$contact_school = $data['school_contact'];
 		// Announcements
 		$announcement = new Institution();
 		$announcement->table = 'announcements';
@@ -113,35 +113,39 @@ class Home
 	   $data['news'] = $this->query($sql);
 	   $data['news_footer'] = $this->query_row($sql);
 		// Contact Form - Send Email
+		try{
+			if (isset($_POST['send'])) {
+				$name = htmlentities($_POST["name"]);
+				$email = htmlentities($_POST["email"]);
+				$subject = htmlentities($_POST["subject"]);
+				$message = htmlentities($_POST["message"]);
 
-		if (isset($_POST['send'])) {
-			$name = htmlentities($_POST["name"]);
-			$email = htmlentities($_POST["email"]);
-			$subject = htmlentities($_POST["subject"]);
-			$message = htmlentities($_POST["message"]);
+				$mail = new PHPMailer(true);
+				$mail->isSMTP();
+				$mail->Host = "smtp.gmail.com";
+				$mail->SMTPAuth = true;
 
-			$mail = new PHPMailer(true);
-			$mail->isSMTP();
-			$mail->Host = "smtp.gmail.com";
-			$mail->SMTPAuth = true;
+				$mail->Username = $contact_school['email'];
+				$mail->Password = $contact_school['password'];
 
+				$mail->Port = 465;
+				$mail->SMTPSecure = 'ssl';
+				$mail->isHTML(true);
+				$mail->setFrom($email, $name);
+				$mail->addAddress( $contact_school['email']);
 
-			$mail->Username = "villanuevarafaeljr129@gmail.com";
-			$mail->Password = "ikox qwkl sfyk alwv";
+				$mail->Subject = ("$email ($subject)");
+				$mail->Body = $message;
 
-			$mail->Port = 465;
-			$mail->SMTPSecure = 'ssl';
-			$mail->isHTML(true);
-			$mail->setFrom($email, $name);
-			$mail->addAddress("villanuevarafaeljr129@gmail.com");
-
-			$mail->Subject = ("$email ($subject)");
-			$mail->Body = $message;
-
-			$mail->send();
-
-			header("Location: response.php");
-
+				if($mail->send())
+				{ 
+					$_SESSION['status'] = "Message Sent!";
+				}
+			}
+		}catch (Exception $e) {
+			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+			echo $e->getMessage(); //Boring error messages from anything else!
 		}
 		$data['title'] = "Home";
 		$this->view('home', $data);
