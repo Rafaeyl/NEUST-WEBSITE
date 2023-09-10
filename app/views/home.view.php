@@ -28,19 +28,19 @@
 
 	<!-- SLIDER START -->
 	<section aria-label="Newest Photos">
-    <div class="carousel" data-carousel>
-      <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
-      <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
-      <ul data-slides>
+		<div class="carousel" data-carousel>
+			<button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+			<button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+			<ul data-slides>
 
-        <li class="slide" data-active>
-          <img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "http://localhost/NEUST-PAPAYA/public/assets/images/events/start_of_classes.jpg")?>" alt="Nature Image #1">
-        </li>
-		<li class="slide" data-active>
-		<img src="<?= get_image($SETTINGS['Cover-photo 1'])?>" alt="Nature Image #1">
-        </li>
-      </ul>
-    </div>
+				<li class="slide" data-active>
+				<img src="<?= get_image($SETTINGS['Cover-photo 2'] ?? "http://localhost/NEUST-PAPAYA/public/assets/images/events/start_of_classes.jpg")?>" alt="Nature Image #1">
+				</li>
+				<li class="slide" data-active>
+				<img src="<?= get_image($SETTINGS['Cover-photo 1'])?>" alt="Nature Image #1">
+				</li>
+			</ul>
+		</div>
   </section>
 	<!-- SLIDER END -->
 	
@@ -118,7 +118,7 @@
 			<div class="col-1 d-none d-md-block">
 				<img src="<?= ROOT ?>/assets/images/title-image.png" class="title-image text-lg-start text-center"alt="">
 			</div>
-			<div class="col-md-8 text-center text-lg-left">
+			<div class="col-md-11 text-center text-lg-left">
 				<span class="text-white ftco-animate px-4 ">RECENT NEWS AND EVENTS</span>
 			</div>
 	</div>
@@ -250,6 +250,11 @@
 				<span class="text-white ftco-animate px-4 ">UNIVERSITY GALLERY</span>
 			</div>
 	</div>
+	<section class="ftco-section ftco-counter img m-0 bg-dark"   >
+		<div class="container">
+			
+		</div>
+	</section>
 	<section class="ftco-gallery">
 		<div class="container-wrap">
 			<div class="row no-gutters">

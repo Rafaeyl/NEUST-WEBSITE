@@ -204,62 +204,6 @@
     </div>
     <!-- Team End -->
 
-    <!-- Gallery -->
-    <div class="ftco-section py-5 mt-5">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Our Gallery</h6>
-                <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Gallery</span></h1>
-            </div>
-        
-        <div class="container mt-5">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col-md-4 my-3">
-                    <div class="card card-box shadow-sm ">
-                        <img class="bd-placeholder-img card-img-top album-img" width="100%" height="250" src="images/about.jpg" alt="">
-                        <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                           <button class="btn btn-primary py-1 px-3" type="submit">View Album</button>
-                            </div>
-                            <small class="text-muted">August 9, 2023</small>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3">
-                    <div class="card card-box shadow-sm">
-                        <img class="bd-placeholder-img card-img-top album-img" width="100%" height="250"  src="images/course-2.jpg" alt="">
-                        <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                           <button class="btn btn-primary py-1 px-3" type="submit">View Album</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3 " >
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top album-img" width="100%" height="250" src="images/teacher-3.jpg" alt="">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                <button class="btn btn-primary py-1 px-3" type="submit">View Album</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="float-right text-primary"><span class="fa-solid fa-arrow-right  mr-2"></span>See More</a>
-        </div>
-    </div>
-
 <?php else: ?>
     <div class="container">
         <div class=" p-5 my-5 bg-danger">

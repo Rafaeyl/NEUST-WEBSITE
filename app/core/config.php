@@ -2,30 +2,22 @@
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-if((empty($_SERVER['SERVER_NAME']) && php_sapi_name() == 'cli') || (!empty($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'localhost'))
-{
-	/** database config **/
-	define('DBNAME', 'neust');
-	define('DBHOST', 'localhost');
-	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('DBDRIVER', '');
-	
-	define('ROOT', 'http://localhost/NEUST-PAPAYA/public/');
+define('DBTYPE','mysql');
+define('DBNAME','neust');
+define('DBUSER','root');
+define('DBPASS','');
+define('DBHOST','localhost');
 
-}else
-{
-	/** database config **/
-	define('DBNAME', 'neust');	
-	define('DBHOST', 'localhost');
-	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('DBDRIVER', '');
+/*protocal type http or https*/
+define('PROTOCAL','http');
 
-	define('ROOT', 'http://localhost/NEUST-PAPAYA/public/');
+/*root and asset paths*/
 
-}
+$path = str_replace("\\", "/",PROTOCAL ."://" . $_SERVER['SERVER_NAME'] . __DIR__  . "/");
+$path = str_replace($_SERVER['DOCUMENT_ROOT'], "", $path);
 
+define('ROOT', str_replace("app/core", "public", $path));
+define('ASSETS', str_replace("app/core", "public/assets", $path));
 define('APP_NAME', "NEUST PAPAYA");
 define('APP_DESC', "University website of NEUST PAPAYA(GENERAL TINIO)");
 

@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/ionicons.min.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css">
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom6.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css?t=<?= time();?>">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css?t=<?= time();?>">
 
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
@@ -48,9 +48,9 @@
 		    </div>
 		  </div>
 		  <div class="container-xxl bg-dark">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light" id="ftco-navbar">
-				<button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				   <span class="oi oi-menu"></span> Menu
+			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light justify-content-end" id="ftco-navbar">
+				<button class="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				   <span class="oi oi-menu"></span>
 				 </button>
 				 <div class="collapse navbar-collapse " id="ftco-nav">
 				   <ul class="navbar-nav mx-auto">
