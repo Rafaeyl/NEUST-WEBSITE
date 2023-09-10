@@ -219,7 +219,6 @@
                     Info</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_about">Organization's About Us</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">Organization's Official</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Organization's Album</a></li>
               </ul>
             </div>
           </li>
@@ -236,8 +235,6 @@
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/college_about">College's About Us</a>
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/college_official">College's Official</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">College's Album</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -268,12 +265,6 @@
               <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT ?>dashboard/organizations_album">
-              <span class="menu-title">Organization's Album</span>
-              <i class="mdi mdi-history menu-icon"></i>
-            </a>
-          </li>
         <?php endif; ?>
 
         <?php if( $ses->user('institute') == 'college'): ?>
@@ -299,12 +290,6 @@
             <a class="nav-link" href="<?= ROOT ?>dashboard/college_official">
               <span class="menu-title">College's Official</span>
               <i class="mdi mdi-account-multiple menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT ?>dashboard/colleges_album">
-              <span class="menu-title">College's Album</span>
-              <i class="mdi mdi-history menu-icon"></i>
             </a>
           </li>
         <?php endif; ?>
