@@ -123,7 +123,7 @@
                         <form method="post" class="text-center">
 
                       
-                          <div class="form-control mt-3">   <?=old_value('userid',$row->description)?>   </div>
+                          <div class="form-control my-3 w-75 mx-auto">   <?=old_value('question',$row->question)?>   </div>
 
                           <button type="submit" class="btn btn-danger float-start btn-lg mt-3">DELETE</button>
                           <a href="<?= ROOT ?>dashboard/faq" class="btn btn-secondary float-end btn-lg mt-3">

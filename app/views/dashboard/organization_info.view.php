@@ -327,12 +327,7 @@
                                   </td>
                                 </tr>
                             <?php endforeach;?>
-                          <?php else:?>
-                          <tr>
-                              <h1 class="alert alert-danger text-center">No results found</h1>
-                          </tr>
                           <?php endif;?>
-                          
                         </tbody>
                       </table>
                     </div>

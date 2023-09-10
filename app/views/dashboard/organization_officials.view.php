@@ -298,10 +298,6 @@
                           <?php endforeach;?>
                       </tbody>
                     </table>
-                    <?php else:?>
-                      <tr>
-                      <h1 class="alert alert-danger text-center">No Officials found</h1>
-                      </tr>
                     <?php endif;?>
                   </div>
                 </div>

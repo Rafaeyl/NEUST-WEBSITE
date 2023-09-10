@@ -260,12 +260,7 @@
                                 </td>
                               </tr>
                           <?php endforeach;?>
-                        <?php else:?>
-                        <tr>
-                            <h1>No results found</h1>
-                        </tr>
                         <?php endif;?>
-                        
                       </tbody>
                     </table>
                   </div>
