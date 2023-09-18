@@ -15,18 +15,34 @@
               <h2 class="mb-4">Add Announcement</h2>
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
-
-                  <div class="col-md-8">
-                    <label for="description" class="form-label">Announcement's Description</label>
-                    <input value="<?= old_value('description') ?>" type="text" class="form-control" id="description" name="description"
-                      placeholder="Announcemnent(date)" Required>
+                  <div class="col-md-12 text-center mb-5">
+                    <label class="mb-3 fw-bolder lead"> Image</label><br>
+                    <label>Click to change Image</label><br>
+                    <label>
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
+                      <img src="<?= get_image() ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
+                      <div><small class="text-danger"> <?= $announcement->getError('image') ?></small></div>
+                    </label>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-12 mx-auto w-75 text-center">
+                    <label for="title" class="form-label">Title</label>
+                    <input value="<?= old_value('title') ?>" type="text" class="form-control text-center" id="title" name="title"
+                      placeholder="Enter title" required>
+                  </div>
+                  <div class="col-md-12 mx-auto text-center">
+                    <label for="description" class="form-label">Announcement's Description</label>
+                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description')?></textarea>
+                  </div>
+                  <div class="col-md-12 mx-auto w-75 text-center">
                     <label for="list_order" class="form-label">List Order</label>
-                    <input value="<?= old_value('list_order') ?>" type="number" class="form-control" id="list_order"
+                    <input value="<?= old_value('list_order') ?>" type="number" class="form-control text-center" id="list_order"
                       name="list_order" placeholder="Enter a number for list order" required>
                   </div>
-                  
+                  <div class="col-md-12 mx-auto w-75 text-center">
+                    <label for="date" class="form-label">Date</label>
+                    <input value="<?= old_value('date') ?>" type="date" class="form-control text-center" id="date"
+                      name="date" placeholder="Choose Date">
+                  </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-5 mx-auto my-3 text-center">
@@ -49,8 +65,6 @@
                         </div>
                     </div>
                 </div>
-                 
-                
                 <div class="row">
                 <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
@@ -60,8 +74,16 @@
                           BACK
                       </a>
                   </div>
+
                 </div>
               </form>
+              <script>
+                function display_image(file, e) {
+                  let img = e.currentTarget.parentNode.querySelector("img");
+
+                  img.src = URL.createObjectURL(file);
+                }
+              </script>
             </div>
           </div>
         </div>
@@ -85,18 +107,34 @@
               <?php if(!empty($row)):?>
               <form method="post" enctype="multipart/form-data">
               <div class="row g-3 my-3 mx-auto">
-
-                <div class="col-md-8">
-                <label for="description" class="form-label">Announcement's Description</label>
-                <input value="<?= old_value('description', $row->description) ?>" type="text" class="form-control" id="description" name="description"
-                    placeholder="Announcemnent(date)" Required>
-                </div>
-                <div class="col-md-4">
-                <label for="list_order" class="form-label">List Order</label>
-                <input value="<?= old_value('list_order', $row->list_order) ?>" type="number" class="form-control" id="list_order"
-                    name="list_order" placeholder="Enter a number for list order" required>
-                </div>
-
+                <div class="col-md-12 text-center mb-5">
+                    <label class="mb-3 fw-bolder lead"> Image</label><br>
+                    <label>Click to change Image</label><br>
+                    <label>
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
+                      <img src="<?= get_image($row->image) ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
+                      <div><small class="text-danger"> <?= $announcement->getError('image') ?></small></div>
+                    </label>
+                  </div>
+                  <div class="col-md-12 mx-auto w-75 text-center">
+                    <label for="title" class="form-label">Title</label>
+                    <input value="<?= old_value('title',$row->title) ?>" type="text" class="form-control text-center" id="title" name="title"
+                      placeholder="Enter title" required>
+                  </div>
+                  <div class="col-md-12 mx-auto text-center">
+                    <label for="description" class="form-label text-center">Description</label>
+                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description',$row->description)?></textarea>
+                  </div>
+                  <div class="col-md-12 mx-auto w-75 text-center">
+                    <label for="list_order" class="form-label">List Order</label>
+                    <input value="<?= old_value('list_order', $row->list_order) ?>" type="number" class="form-control text-center"" id="list_order"
+                        name="list_order" placeholder="Enter a number for list order" required>
+                  </div>
+                  <div class="col-md-12 mx-auto w-75 text-center">
+                    <label for="date" class="form-label">Date</label>
+                    <input value="<?= old_value('date',$row->date) ?>" type="date" class="form-control text-center" id="date"
+                      name="date" placeholder="Choose Date">
+                  </div>
                 </div>
                 <div class="row">
                 <div class="col-lg-5 mx-auto my-3 text-center">
@@ -132,6 +170,13 @@
               </form>
             </div>
           </div>
+          <script>
+                function display_image(file, e) {
+                  let img = e.currentTarget.parentNode.querySelector("img");
+
+                  img.src = URL.createObjectURL(file);
+                }
+              </script>
         </div>
       </div>
 
@@ -163,8 +208,8 @@
                         <form method="post" class="text-center">
 
                       
-                          <div class="form-control mt-3">   <?=old_value('userid',$row->description)?>   </div>
-
+                          <div class="form-control mt-3">   <?=old_value('userid',$row->title)?>   </div>
+      
                           <button type="submit" class="btn btn-danger float-start btn-lg mt-3">DELETE</button>
                           <a href="<?= ROOT ?>dashboard/announcement" class="btn btn-secondary float-end btn-lg mt-3">
                             BACK
@@ -194,15 +239,17 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-
               <div style="overflow-x:auto;">
               <table class="table table-striped  table-bordered" id="userTable">
                 <thead  class="bg-gradient-dark">
                   <tr class="text-white text-center">
                     <th> # </th>
-                    <th> Announcement's Name</th>
+                    <th> Image</th>
+                    <th> Title</th>
+                    <th> Description</th>
                     <th> Active/Inactive  </th>
                     <th> Announcement Order </th>
+                    <th> Date </th>
                     <th> Action</th>
                   </tr>
                 </thead>
@@ -214,6 +261,12 @@
                         <td>
                           <?= $num++ ?>
                         </td>
+                        <td class="text-center">
+                          <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
+                        </td>
+                        <td>
+                          <?= substr($row->title, 0,30) . '...'?>
+                        </td>
                         <td>
                           <?= substr($row->description, 0,30) . '...'?>
                         </td>
@@ -222,6 +275,9 @@
                         </td>
                         <td>
                           <?= esc($row->list_order) ?>
+                        </td>
+                        <td>
+                          <?= get_date($row->date) ?>
                         </td>
                         <td>
                           <button type="button" class="btn btn-inverse-info btn-icon">

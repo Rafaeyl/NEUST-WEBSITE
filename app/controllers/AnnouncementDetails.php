@@ -1,25 +1,23 @@
 <?php 
 
 namespace Controller;
-use Model\Database;
 use Model\Institution;
 use Model\Settings;
+use Model\Database;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
 /**
- * Category class
+ * NewsDetail class
  */
-class Category
+class AnnouncementDetails
 {
 	use MainController;
 	use Database;
 	public function index()
 	{
-		
-		$data['title'] = 'News Categories';
-
-		$institutions = new Institution();
+        $data['title'] = "Announcement Details";
+        $institutions = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
@@ -53,48 +51,38 @@ class Category
 			}
 		}
 
-		// News Categories
-		$news_categories = new Institution();
-		$news_categories->table = 'news_categories';
-		$news_categories->allowedColumns = [
-		    'name',
-			'slug',
-		  	'disabled',
-	   ];
-	    $data['categories'] = $news_categories->findAll();
+        $announcement = new Institution();
+		$announcement->table = 'announcements';
+		$announcement->order_type = 'asc';
+		$announcement->allowedColumns = [
 
-		// Latest News
-		$news = new Institution();
-		
-		$news->table = 'news';
-		$news->allowedColumns = [
-			
-			'category_id',
-		    'title',
 			'description',
-		  	'image',
-			'date',
+			'list_order',
+			'disabled',
 			'slug',
-	   ];
+		];
 
-		$news->order_type = 'desc';
-		$news->limit = 6;
-		$data['latest_news'] = $news->findAll();
-
-		// News detailes
+        // News detailes
 		$url = $_GET['url'] ?? 'home';
         $url = strtolower($url);
         $url = explode("/", $url);
 
         $data['slug'] = $url[1] ?? 'home';
         $slug = $data['slug'];
-        
-         if($slug)
+
+        $data['title'] = "Announcement Detail";
+
+        if($slug)
         {
-			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug'";
-			$data['rows']  = $this->query($sql);
+			$sql = "select * FROM announcements WHERE slug = '$slug'";
+			$data['row']  = $this->query_row($sql);
 			
+			$sql = "select * FROM announcements WHERE slug <> '$slug'";
+			$data['announce']  = $this->query($sql);
+
+            $this->view('announcementDetails', $data);
 		}
-		$this->view('category', $data);
+		
 	}
+
 }

@@ -1,9 +1,9 @@
 <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row mb-5">
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2 text-primary">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="fa-solid fa-location-dot mr-2"> </span><span class="text"> Brgy. Conception, General Tinio, Nueva Ecija</span></li>
@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
+              <h2 class="ftco-heading-2 text-primary">Links</h2>
               <ul class="list-unstyled">
                 <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>Home</a></li>
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
@@ -34,7 +34,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
+            	<h2 class="ftco-heading-2 text-primary mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                 <li class="ftco-animate"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
               </ul>
@@ -58,8 +58,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="<?=ROOT?>assets/main/js/jquery.min.js"></script>
-  <script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
+  
 
   <script src="<?=ROOT?>assets/main/js/popper.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/popper.js"></script>

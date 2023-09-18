@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css?t=<?= time();?>">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css?t=<?= time();?>">
+	<script src="<?=ROOT?>assets/main/js/jquery.min.js"></script>
+  <script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
 
 	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
@@ -42,14 +44,14 @@
     	<div class="container-fluid">
     		<div class="row no-gutters d-flex align-items-center align-items-stretch">
     			<div class="col-md-12 d-flex align-items-center text-center py-3 ">
-    				<!-- <a class="navbar-brand" href="<?=ROOT?>">Fox. <span>University</span></a> -->
-					<img class="logo mx-auto" src="<?= get_image($SETTINGS['Logo'] ?? "Rafa")?>" alt="">
+					<a href="<?=ROOT?>" class="mx-auto"><img class="logo mx-auto" src="<?= get_image($SETTINGS['Logo'] ?? "Rafa")?>" alt=""></a>
+					
     			</div>
 		    </div>
 		  </div>
 		  <div class="container-xxl bg-dark">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light justify-content-end" id="ftco-navbar">
-				<button class="navbar-toggler bg-dark text-white" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light justify-content-end " id="ftco-navbar">
+				<button class="navbar-toggler bg-dark text-white text-center p-2" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				   <span class="oi oi-menu"></span>
 				 </button>
 				 <div class="collapse navbar-collapse " id="ftco-nav">

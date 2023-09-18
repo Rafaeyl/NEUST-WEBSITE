@@ -1,24 +1,21 @@
 <?php 
 
 namespace Controller;
-use Model\Database;
 use Model\Institution;
 use Model\Settings;
+use Model\Database;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
 /**
- * Category class
+ * newsAndEvents class
  */
-class Category
+class NewsAndEvents
 {
 	use MainController;
 	use Database;
 	public function index()
 	{
-		
-		$data['title'] = 'News Categories';
-
 		$institutions = new Institution();
 		$institutions->order_type = 'asc';
 
@@ -63,38 +60,18 @@ class Category
 	   ];
 	    $data['categories'] = $news_categories->findAll();
 
-		// Latest News
-		$news = new Institution();
+        $data['title'] = "News and Events";
+     
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id ORDER BY date desc limit 12";
+		$data['rows']  = $this->query($sql);
 		
-		$news->table = 'news';
-		$news->allowedColumns = [
-			
-			'category_id',
-		    'title',
-			'description',
-		  	'image',
-			'date',
-			'slug',
-	   ];
 
-		$news->order_type = 'desc';
-		$news->limit = 6;
-		$data['latest_news'] = $news->findAll();
 
-		// News detailes
-		$url = $_GET['url'] ?? 'home';
-        $url = strtolower($url);
-        $url = explode("/", $url);
-
-        $data['slug'] = $url[1] ?? 'home';
-        $slug = $data['slug'];
-        
-         if($slug)
-        {
-			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug'";
-			$data['rows']  = $this->query($sql);
-			
-		}
-		$this->view('category', $data);
+		
+		$this->view('newsAndEvents', $data);
+		
+	   
+		
 	}
+
 }

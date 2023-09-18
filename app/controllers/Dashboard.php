@@ -1181,19 +1181,46 @@ class Dashboard
 		$announcement->order_type = 'asc';
 		$announcement->allowedColumns = [
 
+			'image',
+			'title',
 			'description',
 			'list_order',
 			'disabled',
+			'slug',
+			'date',
+			
 		];
-
+		
 		if($action == 'new')
 		{
-			if($_SERVER['REQUEST_METHOD'] == "POST")
+			$folder = "uploads/";
+			if(!file_exists($folder))
 			{
+				mkdir($folder, 0777, true);
+			}
 				
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{	
+				
+				$slug = str_to_url($_POST['title']);
+				
+				$query = "select id from $announcement->table where slug = :slug limit 1";
+				$slug_row = $this->query($query, ['slug'=>$slug]);
+		
+				if($slug_row)
+				{
+					$slug .= rand(1000,9999);
+				}
 				if($announcement->validatee($_FILES, $_POST))
 				{
-		
+					$destination = $folder . time() . $_FILES['image']['name'];
+					move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+					$image_class = new Image();
+					$image_class->resize($destination);
+
+					$_POST['image'] = $destination;
+					$_POST['slug']        = $slug;
 					$announcement->insert($_POST);
 
 					redirect('dashboard/announcement');
@@ -1207,10 +1234,27 @@ class Dashboard
 
 			if($_SERVER['REQUEST_METHOD'] == "POST")
 			{
-
+				$folder = "uploads/";
+				if(!file_exists($folder))
+				{
+					mkdir($folder, 0777, true);
+				}
 				if($announcement->validatee($_POST, $id))
 				{
- 
+					if(!empty($_FILES['image']['name']))
+					{
+						$destination = $folder . time() . $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+						
+						$image_class = new Image();
+						$image_class->resize($destination);
+
+						$_POST['image'] = $destination;
+
+						if(file_exists($data['row']->image))
+							unlink($data['row']->image);
+					}
+					
 					$announcement->update($id, $_POST);
 
 					redirect('dashboard/announcement');
@@ -1224,6 +1268,9 @@ class Dashboard
 			if($_SERVER['REQUEST_METHOD'] == "POST")
 			{
 				$announcement->delete($id);
+
+				if(file_exists($data['row']->image))
+					unlink($data['row']->image);
 
 				redirect('dashboard/announcement');
 				

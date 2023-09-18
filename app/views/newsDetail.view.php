@@ -24,9 +24,11 @@
 				<div class="row">
           <div class="col-lg-8 ftco-animate">
             <h2 class="mb-3 text-justify"><?= $row['title']?></h2>
+            <hr class="bg-darken">
             <p>
               <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid w-100" >
             </p>
+            <hr class="bg-darken">
             <p><?= $row['description']?></p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
@@ -66,7 +68,7 @@
                       <div class="text">
                         <h3 class="heading"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><?= substr($row->title, 0,18)?></a></h3>
                         <div class="meta">
-                          <div><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><span class="fa-regular fa-calendar-days"></span> &nbsp; <?=get_date($row->date)?></a></div>
+                          <div><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="text-info"><span class="fa-regular fa-calendar-days"></span> &nbsp; <?=get_date($row->date)?></a></div>
                         </div>
                       </div>
                     </div>  
@@ -88,8 +90,9 @@
 
 
             <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+            <p><a href="<?=ROOT?>newsAndEvents" class="more">More News and Events
+              <span class="fa-solid fa-arrow-right "></span></a>
+            </p>
             </div>
           </div><!-- END COL -->
         </div>

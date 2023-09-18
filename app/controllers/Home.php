@@ -56,7 +56,7 @@ class Home
 		$announcement = new Institution();
 		$announcement->table = 'announcements';
 		$announcement->order_column = 'list_order';
-		$announcement->order_type = 'asc';
+		$announcement->order_type = 'desc';
 		$announcement->allowedColumns = [
 
 			'description',
@@ -108,7 +108,7 @@ class Home
 			'slug',
 	   ];
 	   $news->order_type = 'desc';
-	   $news->limit = 4;
+	   $news->limit = 3;
 	   $sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 	   $data['news'] = $this->query($sql);
 	   $data['news_footer'] = $this->query_row($sql);

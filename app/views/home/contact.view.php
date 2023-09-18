@@ -18,19 +18,19 @@
           <div class="col-md-4 d-flex">
           	<div class="bg-info align-self-stretch box p-4 text-center">
           		<h3 class="mb-4 text-white">Address</h3>
-	            <p class="text-white">198 West 21th Street, Suite 721 New York NY 10016</p>
+	            <p class="text-white"> Brgy. Conception, General Tinio, Nueva Ecija</p>
 	          </div>
           </div>
           <div class="col-md-4 d-flex">
           	<div class="bg-dark  align-self-stretch box p-4 text-center">
           		<h3 class="mb-4 text-white">Contact Number</h3>
-	            <p><a href="tel://1234567920"class="text-white">+ 1235 2355 98</a></p>
+	            <p><a href="tel://1234567920"class="text-white"><?= $school_contact[0]->phone?></a></p>
 	          </div>
           </div>
           <div class="col-md-4 d-flex">
           	<div class="bg-primary align-self-stretch box p-4 text-center">
           		<h3 class="mb-4 text-white">Email Address</h3>
-	            <p><a href="mailto:faeyldojo@gmail.com"  class="text-white">info@yoursite.com</a></p>
+	            <p><a href="mailto:faeyldojo@gmail.com"  class="text-white"><?= $school_contact[0]->email?></a></p>
 	          </div>
           </div>
         </div>
