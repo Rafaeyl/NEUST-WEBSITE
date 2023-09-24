@@ -3,6 +3,8 @@
 
 <?php if ($action == 'new'): ?>
 
+  <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
+
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -26,17 +28,17 @@
                     </label>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label fw-bolder">Title</label>
                     <input value="<?= old_value('title') ?>" type="text" class="form-control text-center" id="title" name="title"
                       placeholder="Enter title">
 
                   </div>
-                  <div class="col-md-12 mx-auto text-center">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description')?></textarea>
+                  <div class="col-md-12 mx-auto text-center w-75">
+                    <label for="description" class="form-label fw-bolder">Description</label>
+                    <textarea rows="8"name="description" class="form-control mx-auto " id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description')?></textarea>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
-                      <label for="role" class="form-label">Organization</label>
+                      <label for="role" class="form-label fw-bolder">Category</label>
                       <select id="institution" class="form-select" aria-label="Default select example" name="category_id">
                         <?php if(!empty($categories)):?>
                             <?php foreach($categories as $category):?>
@@ -70,8 +72,28 @@
           </div>
         </div>
       </div>
+      <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+      <script src="<?=ROOT?>assets/main/summernote/summernote-lite.min.js"></script>
+      <script>
+      $('#summernote').summernote({
+        placeholder: 'News content',
+        tabsize: 2,
+        height: 300,
+        width: 640,
+        toolbar: [
+        // [groupName, [list of button]]
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']]
+        ]
+      });
+    </script>
 
     <?php elseif ($action == 'edit'):?>
+      <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
         <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -94,17 +116,17 @@
                     </label>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label fw-bolder">Title</label>
                     <input value="<?= old_value('title',$row->title) ?>" type="text" class="form-control text-center" id="title" name="title"
                       placeholder="Enter title">
 
                   </div>
-                  <div class="col-md-12 mx-auto text-center">
-                    <label for="description" class="form-label text-center">Description</label>
-                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description',$row->description)?></textarea>
+                  <div class="col-md-12 mx-auto text-center  w-75">
+                    <label for="description" class="form-label fw-bolder text-center">Description</label>
+                    <textarea rows="8"name="description" class="form-control mx-auto" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description',$row->description)?></textarea>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
-                      <label for="role" class="form-label">Organization</label>
+                      <label for="role" class="form-label fw-bolder">Category</label>
                       <select id="category_id" class="form-select" aria-label="Default select example" name="category_id">
                         <?php if(!empty($categories)):?>
                             <?php foreach($categories as $category):?>
@@ -140,7 +162,25 @@
           </div>
         </div>
       </div>
-    
+      <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+      <script src="<?=ROOT?>assets/main/summernote/summernote-lite.min.js"></script>
+      <script>
+      $('#summernote').summernote({
+        placeholder: 'News content',
+        tabsize: 2,
+        height: 300,
+        width: 640,
+        toolbar: [
+        // [groupName, [list of button]]
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']]
+        ]
+      });
+    </script>
 
 <?php elseif ($action == 'delete'): ?>
   <!-- partial -->
@@ -217,7 +257,6 @@
                             <th>#</th>
                             <th>Image</th>
                             <th>News title</th>
-                            <th>Description</th>
                             <th>Category</th>
                             <th>Date</th>
                             <th>Action</th>
@@ -234,7 +273,6 @@
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?=substr($row->title, 0,20) . '...' ?></td>
-                                <td><?=substr($row->description, 0,20) . '...' ?></td>
                                 <?php
                                  $query  = "select news_categories.name FROM news_categories JOIN news ON news.category_id = news_categories.id WHERE news.id = $row->id";
                                   $orgname = $this->query($query);

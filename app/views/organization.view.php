@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
-                        <h2 class="mb-4"><span>About</span> Us</h2>
+                        <h2 class="mb-4"><span>About</span> Our Organization</h2>
                         <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
                     </div>
                 </div><!-- end title -->
@@ -43,7 +43,7 @@
                     
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="post-media wow fadeIn">
-                            <img src="<?=get_img($organizationAbout['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 216px;">
+                            <img src="<?=get_img($organizationAbout['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 300px; object-fit:contain;">
                         </div><!-- end media -->
                     </div><!-- end col -->
                 <?php else: ?>
@@ -164,7 +164,7 @@
     <!-- Contact End -->
 
   <!-- our -->
-<div id="important" class="important">
+<!-- <div id="important" class="important">
    
     <div class="important_bg">
         <div class="container">
@@ -194,14 +194,14 @@
         </div>
         </div>
     </div>
-</div>
+</div> -->
 
     <!-- Officers -->
     <section class="ftco-section bg-light">
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
-                    <h2 class="mb-4"><span> Officers of Papayahagan</span></h2>
+                    <h2 class="mb-4"><span> Officers Of <?=esc($organizationInfo['name'])?></span></h2>
                     <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
                 </div>
             </div><!-- end title -->

@@ -3,7 +3,7 @@
 <!-- Page Header Start -->
 
 
-    <section class="hero-wrap hero-wrap-2"
+    <section class="hero-wrap hero-wrap-2 mb-0"
         style="background-image: url('<?= ROOT ?>/assets/images/image-school/school-1.jpg');">
         <div class="overlay"></div>
         <div class="container">
@@ -18,10 +18,10 @@
         </div>
     </section>
     <!-- Page Header End -->
-    <section class="ftco-section ">
+    <section class="ftco-section bg-light" id="FAQs">
         <div class="container ">
             <div class="row justify-content-center ">
-                <div class="col-md-7 col-lg-6 bg-darken p-5">
+                <div class="col-md-10 col-lg-9  p-5">
                     <div id="accordion" class="myaccordion w-100">
                     <?php if(!empty($faqs)): $num = 0;?>
                         <?php foreach($faqs as $row): $ber = $num++;?>
@@ -32,7 +32,7 @@
                                         data-toggle="collapse" data-target="#collapse<?=$ber?>" aria-expanded="false"
                                         aria-controls="collapse<?=$ber?>">
                                         <div class="heading d-flex align-items-center">
-                                            <h3 class="mb-0"> <?= $row->question?></h3>
+                                            <h3 class="mb-0 text-white"> <?= $row->question?></h3>
                                         </div>
                                         <div class="icon d-flex align-items-center justify-content-center">
                                             <i class="fa" aria-hidden="true"></i>

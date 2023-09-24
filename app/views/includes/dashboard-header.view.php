@@ -19,6 +19,7 @@
   <!-- Layout styles -->
   <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/style2.css">
   <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/datatable.css">
+  
   <!-- End layout styles -->
   <link rel="icon" type="image/x-icon" href="<?= ROOT ?>/favicon.png" />
 

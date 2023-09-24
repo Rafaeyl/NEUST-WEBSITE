@@ -50,6 +50,24 @@ class NewsAndEvents
 			}
 		}
 
+		// Latest News
+		$news = new Institution();
+		
+		$news->table = 'news';
+		$news->allowedColumns = [
+			
+			'category_id',
+		    'title',
+			'description',
+		  	'image',
+			'date',
+			'slug',
+	   ];
+
+		$news->order_type = 'desc';
+		$news->limit = 5;
+		$data['latest_news'] = $news->findAll();
+
 		// News Categories
 		$news_categories = new Institution();
 		$news_categories->table = 'news_categories';
@@ -62,12 +80,16 @@ class NewsAndEvents
 
         $data['title'] = "News and Events";
      
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id ORDER BY date desc limit 12";
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id ORDER BY date desc limit 5";
 		$data['rows']  = $this->query($sql);
 		
+	    // Pagination
+		$page_query = "SELECT COUNT(ID) AS news_total FROM news";
+		$query =  $this->query($page_query);
+		$data['total_news'] = $query[0]->news_total;
+	   	
 
 
-		
 		$this->view('newsAndEvents', $data);
 		
 	   

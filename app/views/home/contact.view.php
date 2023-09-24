@@ -12,23 +12,26 @@
       </div>
     </section>
 
-    <section class="ftco-section contact-section">
+    <section class="ftco-section contact-section" id="contact">
       <div class="container">
         <div class="row d-flex contact-info">
           <div class="col-md-4 d-flex">
           	<div class="bg-info align-self-stretch box p-4 text-center">
-          		<h3 class="mb-4 text-white">Address</h3>
+              <i class="fa-solid fa-location-dot mr-2 fa-2x text-white"></i>
+          		<span><h3 class="mb-4 text-white">Address</h3></span>
 	            <p class="text-white"> Brgy. Conception, General Tinio, Nueva Ecija</p>
 	          </div>
           </div>
           <div class="col-md-4 d-flex">
           	<div class="bg-dark  align-self-stretch box p-4 text-center">
+            <i class="fa fa-2x fa-phone text-white"></i>
           		<h3 class="mb-4 text-white">Contact Number</h3>
 	            <p><a href="tel://1234567920"class="text-white"><?= $school_contact[0]->phone?></a></p>
 	          </div>
           </div>
           <div class="col-md-4 d-flex">
           	<div class="bg-primary align-self-stretch box p-4 text-center">
+            <i class="fa fa-2x fa-envelope text-white"></i>
           		<h3 class="mb-4 text-white">Email Address</h3>
 	            <p><a href="mailto:faeyldojo@gmail.com"  class="text-white"><?= $school_contact[0]->email?></a></p>
 	          </div>
@@ -66,6 +69,8 @@
 			<div class="container mb-5">
 				<div class="row d-flex align-items-stretch no-gutters">
 					<div class="col-md-6 p-4 p-md-5 order-md-last bg-light mb-5">
+          <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Need Help?</h6>
+            <h1 class="mb-5">Send Us A Message</h1>
 						<form action="" method="POST">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" placeholder="Your Name" required>
@@ -79,8 +84,8 @@
               <div class="form-group">
                 <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
               </div>
-              <div class="form-group">
-                <input type="submit" name="send" value="Send Message" class="btn btn-primary py-3 px-5">
+              <div class="form-group mt-5">
+                <input type="submit" name="send" value="Send Message" class="btn btn-block btn-primary py-3 px-5 ">
               </div>
             </form>
 					</div>

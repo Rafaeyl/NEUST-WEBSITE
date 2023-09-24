@@ -10,6 +10,20 @@
             array_push($news_slug,$row->slug) ;
         }
     }
+
+    $db = new mysqli('localhost', 'root', '', 'neust'); 
+
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    }else{
+        $page = 1;
+    }
+    $limit = 5;
+    $offset = ($page-1)*$limit;
+
+  
+    $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug' ORDER BY date desc limit $offset, $limit");
+
 ?>
 
 
@@ -27,57 +41,103 @@
       </div>
     </section>
 
-		
-    <section class="ftco-section">
+    <section class="ftco-section bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 ftco-animate">
-                    <div class="row justify-content-center">
-                        <?php if (!empty($rows)): ?>
-                            <?php foreach ($rows as $row): ?>
+            <div class="col-lg-8 ftco-animate">
+                <?php 
+                        if($query->num_rows > 0){ 
+                            while($row = $query->fetch_assoc()){ 
+                                $offset++
+                        ?> 
 
-                                <div class="col-md-6 mb-5">
-                                    <div class="blog-entry" >
-                                        <a href="<?= ROOT ?>newsDetail/<?= $row->slug ?>" class="block-20 d-flex align-items-end" width="200" height="250"
-                                            style="background-image: url(<?= get_image($row->image) ?>); object-fit:cover;">
-                                            <div class="meta-date text-center p-2">
-                        
-                                                <span class="text-whote">
-                                                    <?= get_date($row->date) ?>
-                                                </span>
-                                            </div>
-                                        </a>
-                                        <div class="text bg-white p-4" style="height:250px;">
-                                            <h3 class="heading"><a href="<?= ROOT ?>newsDetail/<?= $row->slug ?>"><?= substr($row->title, 0, 20) ?></a></h3>
-                                            <p><?= substr($row->description, 0, 100) ?></p>
-                                            <div class="d-flex align-items-center mt-4">
-                                                <p class="mb-0"><a href="<?= ROOT ?>newsDetail/<?= $row->slug ?>" class="btn btn-primary">Read More
-                                                        <span class="fa-solid fa-arrow-right "></span></a></p>
-                                                <p class="ml-auto mb-0">
-                                                    <a href="<?= ROOT ?>newsDetail/<?= $row->slug ?>" class="mr-2"><?= $row->name ?></a>
-                                                </p>
-                                            </div>
-                                        </div>
+                            <div class="card shadow mb-2">
+                                <div class="card-body d-flex blog_flex">
+                                    <div class="flex-part1">
+                                        <a href="<?= ROOT ?>newsDetail/<?= $row['slug'] ?>"> <img src="<?= get_image($row['image']) ?>"> </a>
+                                    </div>
+                                    <div class="flex-grow-1 flex-part2">
+                                        <a href="<?= ROOT ?>newsDetail/<?= $row['slug'] ?>" id="title"><?= substr($row['title'], 0, 50) . "..."?></a>
+                                        <p>
+                                        <a href="<?= ROOT ?>newsDetail/<?= $row['slug'] ?>" id="body" class="news-body">
+                                        <?php 
+                                        $des = strip_tags($row['description']); 
+                                        $des2 = str_replace("&nbsp;", "",$des);
+                                        echo substr($des2, 0,150) . "...";
+                                        
+                                        ?>
+                                        </a> 
+                                        <span><br>
+                                        <a href="<?= ROOT ?>newsDetail/<?= $row['slug'] ?>" class="btn btn-sm btn-primary mt-2">Continue Reading  </a></span>
+                                        </p>
+                                        <ul>
+                                            <li class="mr-4">
+                                                <span><i class="fa-regular fa-calendar-days" aria-hidden="true"></i></span> <?= get_date($row['date']) ?>
+                                            </li>
+                                            <li>
+                                                <span><i class="fa-solid fa-tag"></i></span> <?= $row['name'] ?>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <center>
-                                <h1 class="bg-danger p-5 text-white">NO NEWS FOUND IN THIS CATEGORY</h1>
-                            </center>
-                        <?php endif; ?>
-                    </div>
-                </div> <!-- .col-md-8 -->
+                            </div>  
+                            <?php 
+                            } 
+                        }else{  
+                            echo '
+                            <div class="border p-5">
+                                <h1 class="text-danger text-white">NO CATEGORY FOUND</h1>
+                                <b>Its seems like there are no news under this category. </b>
+                            </div>
+                        ';
+                    } 
+                    ?> 
+                   
+                    <!-- Pagination Begin -->
+                                        
+                    <?php $pages = ceil($total_news/$limit);?>
+
+                    <?php if($total_news > $limit): ?>
+                        <ul class="pagination pt-2 pb-5">
+
+                            <?php for ($i=1; $i <= $pages ; $i++) {?>
+                            <li class="page-item <?=($i == $page) ? $active="active":"";?>">
+                                <a href="<?=ROOT?>category/<?=$slug?>?page=<?=$i?>" class="page-link"><?=$i  ?></a>
+                            </li>
+                            <?php }?>
+                        </ul>
+                    <?php endif; ?>
+                    <!-- Pagination End -->
+               
+                   
+                   
+                </div>
 
                 <div class="col-lg-4 sidebar ftco-animate">
                     <div class="sidebar-box ftco-animate">
-                        <h3>Category</h3>
+                    <?php
+                        if(isset($_GET['keyword'])){
+                        $keyword = $_GET['keyword'];
+                        }else{
+                        $keyword = '';
+                        }
+                    ?>
+                    <form method="GET" action="<?=ROOT?>search#search" class="search-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control p-3 search-input" name="keyword"  
+                            max-length="70" placeholder="Keyword" required autocomplete="off" value="<?=$keyword?>">
+                            <button class="btn-search btn-search-primary px-4" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="sidebar-box ftco-animate">
+                        <h3 class="title">Category</h3>
                     <ul class="categories">
                                         
                         <?php if (!empty($categories)): ?>
                         <?php foreach ($categories as $row): ?>
                             
-                        <li><a href="<?= ROOT ?>category/<?= $row->slug ?>" > <?= $row->name ?> <span>(6)</span></a></li>
+                        <li><a href="<?= ROOT ?>category/<?= $row->slug ?>" > <?= $row->name ?></a></li>
                         <?php endforeach; ?>
                         <?php else: ?>
                         <center>
@@ -89,7 +149,7 @@
                     </div>
 
                     <div class="sidebar-box ftco-animate">
-                    <h3>Recent News</h3>
+                    <h3 class="title">Recent News</h3>
 
                     <?php if(!empty($latest_news)): ?>
                         <?php foreach($latest_news as $row):  ?>
@@ -109,7 +169,7 @@
                     </div>
 
                     <div class="sidebar-box ftco-animate">
-                    <h3>Archives</h3>
+                    <h3 class="title">Archives</h3>
                     <ul class="categories">
                         <li><a href="#">December 2018 <span>(30)</span></a></li>
                         <li><a href="#">Novemmber 2018 <span>(20)</span></a></li>
@@ -120,8 +180,9 @@
 
 
                     <div class="sidebar-box ftco-animate">
-                    <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    <p><a href="<?=ROOT?>newsAndEvents" class="more">More News and Events
+                    <span class="fa-solid fa-arrow-right "></span></a>
+                    </p>
                     </div>
                 </div><!-- END COL -->
             </div>

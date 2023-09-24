@@ -23,35 +23,50 @@
 			<div class="container">
 				<div class="row">
           <div class="col-lg-8 ftco-animate">
-            <h2 class="mb-3 text-justify"><?= $row['title']?></h2>
-            <hr class="bg-darken">
-            <p>
-              <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid w-100" >
+            <div class="bg-light p-3">
+            <h2 class="mb-3"><?= $row['title']?></h2>
+            <p class="border  border-dark p-2">
+              <img src="<?=get_image($row['image'])?>" alt="" style="height: 500px; object-fit: cover;" class="img-fluid w-100" >
             </p>
-            <hr class="bg-darken">
             <p><?= $row['description']?></p>
-            <div class="tag-widget post-tag-container mb-5 mt-5">
+            <div class="tag-widget post-tag-container  mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link bg-primary text-white"><?=$row['name'] ?? 'Uncategorized' ?></a>
-                <span class="float-right fw-bolder"><?=get_date($row['date'] )?></span>
+                <span class="float-right fw-bolder text-primary"><?=get_date($row['date'] )?></span>
               </div>
             </div>
-        
+            </div>
           </div> <!-- .col-md-8 -->
 
           <div class="col-lg-4 sidebar ftco-animate">
             <div class="sidebar-box ftco-animate">
-            	<h3>Category</h3>
+              <?php
+                if(isset($_GET['keyword'])){
+                  $keyword = $_GET['keyword'];
+                }else{
+                  $keyword = '';
+                }
+              ?>
+              <form method="GET" action="<?=ROOT?>search#search" class="search-form">
+                <div class="input-group">
+                    <input type="text" class="form-control p-3 search-input" name="keyword"  
+                    max-length="70" placeholder="Keyword" required autocomplete="off" value="<?=$keyword?>">
+                    <button class="btn-search btn-search-primary px-4" type="submit"><i class="fa fa-search"></i></button>
+                  </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate">
+            	<h3 class="title">Category</h3>
               <ul class="categories">
                                 
                 <?php if (!empty($categories)): ?>
                   <?php foreach ($categories as $row): ?>
                     
-                  <li><a href="<?= ROOT ?>category/<?= $row->slug ?>" > <?= $row->name ?> <span>(6)</span></a></li>
+                  <li><a href="<?= ROOT ?>category/<?= $row->slug ?>" > <?= $row->name ?></a></li>
                   <?php endforeach; ?>
                 <?php else: ?>
                   <center>
-                    <h1 class="bg-danger py-3">NO CATEGORIES FOUND</h1>
+                    <h1 class="bg-danger py-3">NO RECENT NEWS FOUND</h1>
                   </center>
                 <?php endif; ?>
 
@@ -59,7 +74,8 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Recent News</h3>
+              
+              <h3 class="title">Recent News</h3>
 
               <?php if(!empty($latest_news)): ?>
                   <?php foreach($latest_news as $row):  ?>
@@ -68,10 +84,11 @@
                       <div class="text">
                         <h3 class="heading"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><?= substr($row->title, 0,18)?></a></h3>
                         <div class="meta">
-                          <div><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="text-info"><span class="fa-regular fa-calendar-days"></span> &nbsp; <?=get_date($row->date)?></a></div>
+                          <div><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="text-dark"><span class="fa-regular fa-calendar-days"></span> &nbsp; <?=get_date($row->date)?></a></div>
                         </div>
                       </div>
                     </div>  
+                    <hr>
                   <?php  endforeach; ?>
               <?php else: ?>
                   <center><h1 class="bg-danger py-3">NO CATEGORIES FOUND</h1></center>
@@ -79,7 +96,7 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Archives</h3>
+              <h3 class="title">Archives</h3>
               <ul class="categories">
                 <li><a href="#">December 2018 <span>(30)</span></a></li>
                 <li><a href="#">Novemmber 2018 <span>(20)</span></a></li>

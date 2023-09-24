@@ -5,6 +5,7 @@
 $(document).ready(function () {
     let table =  $('#userTable').DataTable();
     
+    
 });
 
 
@@ -22,3 +23,5 @@ $(document).ready(function () {
     spinner();
 
 })(jQuery);
+
+

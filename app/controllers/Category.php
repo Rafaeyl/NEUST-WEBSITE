@@ -78,7 +78,7 @@ class Category
 	   ];
 
 		$news->order_type = 'desc';
-		$news->limit = 6;
+		$news->limit = 5;
 		$data['latest_news'] = $news->findAll();
 
 		// News detailes
@@ -93,7 +93,12 @@ class Category
         {
 			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug'";
 			$data['rows']  = $this->query($sql);
-			
+
+			// Pagination
+			$page_query = "SELECT COUNT(news.id) AS news_total FROM news LEFT JOIN news_categories ON news.category_id = news_categories.id WHERE news_categories.slug = '$slug'";
+
+			$query =  $this->query($page_query);
+			$data['total_news'] = $query[0]->news_total;
 		}
 		$this->view('category', $data);
 	}

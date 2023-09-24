@@ -179,7 +179,7 @@
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">Our Officers</h6>
-                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Officers</span></h1>
+                    <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
                 </div>
                 <div class="row g-4 justify-content-center">
                 <?php if(!empty($collegeOfficials)):?>

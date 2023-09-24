@@ -123,7 +123,14 @@
 							<div class="text bg-white p-4" style="height:510px;">
 								<h3 class="heading text-justify"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>"><?= substr($row->title, 0,50)?></a></h3>
 								<hr class="bg-primary">
-								<p class="text-justify news-body"><?=substr($row->description, 0,400) . "..."?></p>
+								<p class=" news-body">
+                                            <?php 
+                                            $des = strip_tags($row->description); 
+                                            $des2 = str_replace("&nbsp;", "",$des);
+                                            echo substr($des2, 0,400);
+                                            
+                                            ?>
+                                        </p>
 								<div class="d-flex align-items-center mt-4">
 									<p class="mb-0"><a href="<?=ROOT?>newsDetail/<?=$row->slug?>" class="btn btn-primary">Read More 
 											<span class="fa-solid fa-arrow-right "></span></a></p>

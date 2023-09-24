@@ -94,6 +94,12 @@ class Home
 		$about_school = new About_school();
 		$data['about_school'] = $about_school->findAll();
 		
+		// url
+		$url = $_GET['url'] ?? 'home';
+        $url = strtolower($url);
+        $url = explode("/", $url);
+
+        $data['slug'] = $url[1] ?? 'home';
 		// News
 		$news = new Institution();
 		
@@ -175,7 +181,7 @@ class Home
 			'address',
 		];
 		$data['school_contact'] = $contact_info->findAll();
-
+		$school_contact = $data['school_contact'] ;
 	
 		// settings
 		$settings = new Settings();
@@ -187,6 +193,13 @@ class Home
 				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
 			}
 		}
+
+			// url
+			$url = $_GET['url'] ?? 'home';
+			$url = strtolower($url);
+			$url = explode("/", $url);
+	
+			$data['slug'] = $url[1] ?? 'home';
 
 		// News
 		$news = new Institution();
@@ -200,45 +213,45 @@ class Home
 
 		// Contact Form - Send Email
 
-		// try{
+		try{
 
 		
-		// if (isset($_POST['send'])) {
-		// 	$name = htmlentities($_POST["name"]);
-		// 	$email = htmlentities($_POST["email"]);
-		// 	$subject = htmlentities($_POST["subject"]);
-		// 	$message = htmlentities($_POST["message"]);
+		if (isset($_POST['send'])) {
+			$name = htmlentities($_POST["name"]);
+			$email = htmlentities($_POST["email"]);
+			$subject = htmlentities($_POST["subject"]);
+			$message = htmlentities($_POST["message"]);
 
-		// 	$mail = new PHPMailer(true);
-		// 	$mail->isSMTP();
-		// 	$mail->Host = "smtp.gmail.com";
-		// 	$mail->SMTPAuth = true;
+			$mail = new PHPMailer(true);
+			$mail->isSMTP();
+			$mail->Host = "smtp.gmail.com";
+			$mail->SMTPAuth = true;
 
-		// 	$school_email = $school_info[0]->email;
-		// 	$email_password = $school_info[0]->password;
+			$school_email = $school_contact[0]->email;
+			$email_password = $school_contact[0]->password;
 
-		// 	$mail->Username = $school_email;
-		// 	$mail->Password = $email_password;
+			$mail->Username = $school_email;
+			$mail->Password = $email_password;
 
-		// 	$mail->Port = 465;
-		// 	$mail->SMTPSecure = 'ssl';
-		// 	$mail->isHTML(true);
-		// 	$mail->setFrom($email, $name);
-		// 	$mail->addAddress("villanuevarafaeljr129@gmail.com");
+			$mail->Port = 465;
+			$mail->SMTPSecure = 'ssl';
+			$mail->isHTML(true);
+			$mail->setFrom($email, $name);
+			$mail->addAddress("villanuevarafaeljr129@gmail.com");
 
-		// 	$mail->Subject = ("$email ($subject)");
-		// 	$mail->Body = $message;
+			$mail->Subject = ("$email ($subject)");
+			$mail->Body = $message;
 
-		// 	if($mail->send())
-		// 	{ 
-		// 		$_SESSION['status'] = "Message Sent!";
-		// 	}
-		// }
-		// }catch (Exception $e) {
-		// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-		// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-		// 	echo $e->getMessage(); //Boring error messages from anything else!
-		// }
+			if($mail->send())
+			{ 
+				$_SESSION['status'] = "Message Sent!";
+			}
+		}
+		}catch (Exception $e) {
+			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
 
 		
 
@@ -300,6 +313,13 @@ class Home
 	    $teachers->order_column = 'list_order';
  		$data['teachers'] = $teachers ->findAll();
 
+			// url
+			$url = $_GET['url'] ?? 'home';
+			$url = strtolower($url);
+			$url = explode("/", $url);
+	
+			$data['slug'] = $url[1] ?? 'home';
+
 		// News
 		$news = new Institution();
 	
@@ -316,6 +336,13 @@ class Home
 
 	public function mission()
 	{
+			// url
+			$url = $_GET['url'] ?? 'home';
+			$url = strtolower($url);
+			$url = explode("/", $url);
+	
+			$data['slug'] = $url[1] ?? 'home';
+			
 		$institutions = new Institution();
 		$institutions->order_type = 'asc';
 
@@ -368,6 +395,13 @@ class Home
 
 	public function march()
 	{
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+
 		$institutions = new Institution();
 		$institutions->order_type = 'asc';
 
@@ -420,6 +454,13 @@ class Home
 
 	public function history()
 	{
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+		
 		$institutions = new Institution();
 		$institutions->order_type = 'asc';
 
@@ -479,6 +520,13 @@ class Home
 
 	public function faqs()
 	{
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+
 		$institutions = new Institution();
 		$institutions->order_type = 'asc';
 
@@ -542,5 +590,64 @@ class Home
 		$data['title'] = "FAQs";
 		$this->view('home/faqs', $data);
 	}
+	public function admission()
+	{
+			// url
+			$url = $_GET['url'] ?? 'home';
+			$url = strtolower($url);
+			$url = explode("/", $url);
+	
+			$data['slug'] = $url[1] ?? 'home';
+			
+		$institutions = new Institution();
+		$institutions->order_type = 'asc';
+
+		// college
+		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$data['colleges'] = $this->query($college);
+
+		// organization
+		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$data['organizations'] = $this->query($organization);
+
+		// Contact Infomation
+		$contact_info = new Institution();
+		$contact_info->table = 'contact_info';
+		$contact_info->allowedColumns = [
+
+			'facebook_link',
+			'email',
+			'phone',
+			'address',
+		];
+		$data['school_contact'] = $contact_info->findAll();
+		$school_info = $data['school_contact'];
+
+	
+		// settings
+		$settings = new Settings();
+		$data['settings'] = $settings->findAll();
+
+		$data['SETTINGS'] = [];
+		if ($data['settings']) {
+			foreach ($data['settings'] as $setting_row) {
+				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
+			}
+		}
+
+		// News
+		$news = new Institution();
+	
+		$news->table = 'news';
+		$news->order_type = 'desc';
+		$news->limit = 1;
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news_footer'] = $this->query_row($sql);
+		// News End
+
+		$data['title'] = "Admission";
+		$this->view('home/admission', $data);
+	}
+
 
 }

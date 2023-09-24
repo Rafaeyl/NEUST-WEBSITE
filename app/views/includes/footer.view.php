@@ -7,8 +7,8 @@
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="fa-solid fa-location-dot mr-2"> </span><span class="text"> Brgy. Conception, General Tinio, Nueva Ecija</span></li>
-	                <li><a href="#"><span class="fa-solid fa-phone mr-2"></span><span class="text"><?= $school_contact[0]->phone?></span></a></li>
-	                <li><a href="#"><span class="fa-solid fa-envelope mr-2"></span><span class="text"><?= $school_contact[0]->email?></span></a></li>
+	                <li><span class="fa-solid fa-phone mr-2"></span><span class="text"><?= $school_contact[0]->phone?></span></li>
+	                <li><span class="fa-solid fa-envelope mr-2"></span><span class="text"><?= $school_contact[0]->email?></span></li>
 	              </ul>
 	            </div>
             </div>
@@ -26,7 +26,7 @@
               <ul class="list-unstyled">
                 <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>Home</a></li>
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
-                <li><a href="<?=ROOT?>/home/teachers"><span class="fa-solid fa-arrow-right  mr-2"></span>Teachers</a></li>
+                <li><a href="<?=ROOT?>/home/faqs"><span class="fa-solid fa-arrow-right  mr-2"></span>FAQs</a></li>
                 <li><a href="<?=ROOT?>/home/contact"><span class="fa-solid fa-arrow-right  mr-2"></span>Contact</a></li>
                 <li><a href="<?=ROOT?>/login"><span class="fa-solid fa-arrow-right  mr-2"></span>Login</a></li>
               </ul>
@@ -36,7 +36,8 @@
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 text-primary mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.facebook.com/NEUSTPAPAYA/"><span class="fab fa-facebook-f"></span></a></li>
+                <li class="ftco-animate"><a href="mailto:<?= $school_contact[0]->email?>"><span class="fa-solid fa-envelope"></span></a></li>
               </ul>
             </div>
           </div>
@@ -77,7 +78,7 @@
   <script src="<?=ROOT?>assets/main/js/wow/wow.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/counterup/counterup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
-  <script src="<?=ROOT?>assets/main/js/main6.js"></script>
+  <script src="<?=ROOT?>assets/main/js/main6.js?t=<?= time();?>"></script>
   <script src="<?=ROOT?>assets/main/js/slider1.js"></script>
   </body>
 </html>

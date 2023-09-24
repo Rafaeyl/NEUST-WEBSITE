@@ -15,7 +15,7 @@
 	</div>
 </section>
 
-<div class="hmv-box">
+<section class="hmv-box" id="missionAndVision">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-12 my-3 wow fadeInUp" data-wow-delay="0s">
@@ -50,6 +50,6 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 
 <?php include '../app/views/includes/footer.view.php'; ?>
