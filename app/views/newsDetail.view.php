@@ -42,7 +42,7 @@
             <div class="sidebar-box ftco-animate">
               <?php
                 if(isset($_GET['keyword'])){
-                  $keyword = $_GET['keyword'];
+                  $keyword =  mysqli_real_escape_string($db,$_GET['keyword']);
                 }else{
                   $keyword = '';
                 }

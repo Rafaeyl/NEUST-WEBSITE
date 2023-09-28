@@ -13,10 +13,12 @@
         $offset = ($page-1)*$limit;
 
         if(isset($_GET['keyword'])){
-            $keyword = $_GET['keyword'];
+            $keyword = mysqli_real_escape_string($db,$_GET['keyword']);
+        }else{
+            $keyword = '';
         }
-      
         $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE ( title LIKE '%".$keyword."%' OR description LIKE '%".$keyword."%' OR name LIKE '%".$keyword."%') ORDER BY date desc limit $offset, $limit");
+
     
     ?>
 
@@ -97,7 +99,17 @@
 
                      <!-- Pagination Begin -->
                     
-                        <?php $pages = ceil($total_news/$limit);?>
+                        <?php 
+                        if(isset($_GET['keyword'])){
+                            $keyword = mysqli_real_escape_string($db,$_GET['keyword']);
+                        }
+                        // Pagination
+                        $page_query = "SELECT * FROM news WHERE ( title LIKE '%".$keyword."%' OR description LIKE '%".$keyword."%')";
+                        $query =  mysqli_query($db,$page_query);
+                        $total_news = mysqli_num_rows($query);
+                               
+                        $pages = ceil($total_news/$limit);
+                        ?>
 
                         <?php if($total_news > $limit): ?>
                             <ul class="pagination pt-2 pb-5">

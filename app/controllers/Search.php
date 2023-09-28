@@ -81,13 +81,7 @@ class Search
 		$news->limit = 5;
 		$data['latest_news'] = $news->findAll();
 
-		if(isset($_GET['keyword'])){
-            $keyword = $_GET['keyword'];
-        }
-		// Pagination
-		$page_query = "SELECT COUNT(ID) AS news_total FROM news WHERE ( title LIKE '%".$keyword."%' OR description LIKE '%".$keyword."%')";
-		$query =  $this->query($page_query);
-		$data['total_news'] = $query[0]->news_total;
+	
 
 		$this->view('search', $data);
 	}

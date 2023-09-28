@@ -213,7 +213,7 @@
                   $orgname = $this->query($query);
                 ?>
 
-                <h3 class="mb-5 text-center">Are you sure you want to delete <?= $row->name ?> ?</h3>
+                <h3 class="mb-5 text-center">Are you sure you want to delete?</h3>
                 <form method="post" class="text-center">
 
                   <div class="row">
@@ -228,15 +228,15 @@
                     
                     <div class="col-md-4">
                       <label class="mt-4">Name</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->name)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=esc(old_value('institution',$row->title))?>" disabled>
                     </div>
                     <div class="col-md-4">
                       <label class="mt-4">description</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->description)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=esc(old_value('institution',$row->description))?>" disabled>
                     </div>
                     <div class="col-md-4">
                       <label class="mt-4">college</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$orgname[0]->name)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=esc(old_value('institution',$orgname[0]->name))?>" disabled>
                     </div>
                   </div>
                 
@@ -303,7 +303,7 @@
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?= esc($row->title) ?></td>
-                                <td><?= substr($row->description, 0,20) . '...'?></td>
+                                <td><?= esc(substr($row->description, 0,20)) . '...'?></td>
                                 <td><?= esc($row->students) ?></td>
                                 <td><?= esc($row->activities) ?></td>
                                 <td><?= esc($row->events) ?></td>
@@ -359,7 +359,7 @@
                                     <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                   </td>
                                   <td><?= esc($row->title) ?></td>
-                                  <td><?= substr($row->description, 0,20) . '...' ?></td>
+                                  <td><?= esc(substr($row->description, 0,20)) . '...' ?></td>
                                   <td><?= esc($row->students) ?></td>
                                   <td><?= esc($row->activities) ?></td>
                                   <td><?= esc($row->events) ?></td>

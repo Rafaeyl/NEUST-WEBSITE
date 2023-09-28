@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6 mt-2">
                     <div class="card-effect">
                         <h5 class="text-center">GENERAL REQUIREMENTS</h5>
                         <hr>
@@ -30,7 +30,7 @@
                         <p> 3. Performance in the national Scholastic Aptitude Test (optional)</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6 mt-2">
                     <div class="card-effect">
                         <h5 class="text-center">REQUIREMENTS FOR TAKING NEUST CAT</h5>
                         <hr>
@@ -41,7 +41,7 @@
 
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6 mt-2">
                     <div class="card-effect">
                         <h5 class="text-center">WHO CAN TAKE THE NEUST COLLEGE ADMISSION TEST?</h5>
                         <hr>
@@ -49,6 +49,14 @@
                         <p> 2. High School graduates who have not taken and are not taking any college subject/course in any other school, college or university. </p>
 
                     </div>
+                </div>
+            </div>
+            <div class="row my-4 img-admission">
+                <div class="col-md-6 mt-2">
+                    <img src="<?= ROOT?>/assets/images/events/admission-1.jpg" alt="">
+                </div>
+                <div class="col-md-6 mt-2">
+                    <img src="<?= ROOT?>/assets/images/events/admission-2.jpg" alt="">
                 </div>
             </div>
         </div>

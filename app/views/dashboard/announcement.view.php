@@ -208,7 +208,7 @@
                         <form method="post" class="text-center">
 
                       
-                          <div class="form-control mt-3">   <?=old_value('userid',$row->title)?>   </div>
+                          <div class="form-control mt-3">   <?=esc(old_value('userid',$row->title))?>   </div>
       
                           <button type="submit" class="btn btn-danger float-start btn-lg mt-3">DELETE</button>
                           <a href="<?= ROOT ?>dashboard/announcement" class="btn btn-secondary float-end btn-lg mt-3">
@@ -265,10 +265,10 @@
                           <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                         </td>
                         <td>
-                          <?= substr($row->title, 0,30) . '...'?>
+                          <?= esc(substr($row->title, 0,30)) . '...'?>
                         </td>
                         <td>
-                          <?= substr($row->description, 0,30) . '...'?>
+                          <?= esc(substr($row->description, 0,30)) . '...'?>
                         </td>
                         <td>
                           <?= esc($row->disabled) ?>

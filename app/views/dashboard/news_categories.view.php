@@ -143,12 +143,12 @@
                     <div class="card-body">
                       
 
-                        <h3 class="mb-5 text-center">Are you sure you want to delete <?=old_value('userid',$row->name)?> ?</h3>
+                        <h3 class="mb-5 text-center">Are you sure you want to delete <?=esc(old_value('userid',$row->name))?> ?</h3>
 
                         <form method="post" class="text-center">
 
                           <label> News Category</label>
-                          <div class="form-control m-3 mx-auto w-75">   <?=old_value('userid',$row->name)?>   </div>
+                          <div class="form-control m-3 mx-auto w-75">   <?=esc(old_value('userid',$row->name))?>   </div>
 
                           <button type="submit" class="btn btn-danger float-start btn-lg mt-3">DELETE</button>
                           <a href="<?= ROOT ?>dashboard/news_categories" class="btn btn-secondary float-end btn-lg mt-3">

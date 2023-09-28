@@ -98,8 +98,10 @@
             <div class="col-lg-4 sidebar ftco-animate">
                 <div class="sidebar-box ftco-animate">
                     <?php
-                        if(isset($_GET['keyword'])){
-                        $keyword = $_GET['keyword'];
+                        if(isset($_POST['keyword'])){
+
+                            $keyword =$_POST['keyword'];
+                          
                         }else{
                         $keyword = '';
                         }
@@ -155,10 +157,18 @@
                 <div class="sidebar-box ftco-animate">
                     <h3 class="title">Archives</h3>
                     <ul class="categories">
-                    <li><a href="#">December 2018 <span>(30)</span></a></li>
-                    <li><a href="#">Novemmber 2018 <span>(20)</span></a></li>
-                    <li><a href="#">September 2018 <span>(6)</span></a></li>
-                    <li><a href="#">August 2018 <span>(8)</span></a></li>
+                        <?php 
+                            $query = "SELECT DATE_FORMAT(date, '%M %Y') AS 'article', DATE_FORMAT(date, '%m') AS 'm',DATE_FORMAT(date, '%Y') 
+                            AS 'y', COUNT(id) AS 'total' FROM `news` GROUP BY DATE_FORMAT(date, '%Y %M') LIMIT 5";
+                            $articles = mysqli_query($db, $query);
+
+                            while($row = mysqli_fetch_assoc($articles)){ ?>
+                                    <li><a href="#"><?=$row['article']?><span>(<?=$row['total']?>)</span></a></li>
+                                <?php
+                            }
+                        ?>
+                        
+
                     </ul>
                 </div>
 

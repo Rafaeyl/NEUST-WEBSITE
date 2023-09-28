@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PAGE NOT FOUND</title>
     <!-- plugins:css -->
+    <link rel="icon" type="image/x-icon" href="<?= ROOT ?>/favicon.png" />
     <link rel="stylesheet" href="<?=ROOT?>assets/dashboard/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/dashboard/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
@@ -16,7 +17,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?=ROOT?>assets/dashboard/css/style2.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="<?=ROOT?>assets/dashboard/images/favicon.ico" />
+    <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
   </head>
   <body>
     <div class="container-scroller">

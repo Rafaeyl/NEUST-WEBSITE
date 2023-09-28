@@ -986,18 +986,52 @@ button[aria-expanded="false"] {
   color:#fd7e14;
   }
 
+
+/* IMAGE SLIDER */
+@media (min-width: 567px) {
   .card-effect {
     box-shadow: var(--box-shadow);
     background-color: var(--white);
     padding: 20px;
     transition: all 0.35s ease;
     height: 400px;
-
+    border-radius: 10px;
+    border: 2px solid var(--black);
 }
-
+}
+@media (min-width: 200px) {
+  .card-effect {
+    box-shadow: var(--box-shadow);
+    background-color: var(--white);
+    padding: 20px;
+    transition: all 0.35s ease;
+    height: 350px;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+}
+}
+@media (min-width: 992px) {
+  .card-effect {
+    box-shadow: var(--box-shadow);
+    background-color: var(--white);
+    padding: 20px;
+    transition: all 0.35s ease;
+    height: 400px;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+}
+}
 .card-effect:hover {
     box-shadow: none;
     transform: translateY(5px);
+}
+.card-effect p{
+  font-size: clamp(0.75rem, 0.5156rem + 0.75vw, 0.9375rem);
+}
+
+.img-admission img{
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 /* search blog */
