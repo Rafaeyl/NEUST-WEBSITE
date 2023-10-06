@@ -294,3 +294,5 @@ buttons.forEach(button => {
 
 })(jQuery);
 
+// School Album
+

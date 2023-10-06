@@ -29,6 +29,7 @@
                 <li><a href="<?=ROOT?>/home/faqs"><span class="fa-solid fa-arrow-right  mr-2"></span>FAQs</a></li>
                 <li><a href="<?=ROOT?>/home/contact"><span class="fa-solid fa-arrow-right  mr-2"></span>Contact</a></li>
                 <li><a href="<?=ROOT?>/login"><span class="fa-solid fa-arrow-right  mr-2"></span>Login</a></li>
+
               </ul>
             </div>
           </div>
@@ -80,5 +81,6 @@
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/main6.js?t=<?= time();?>"></script>
   <script src="<?=ROOT?>assets/main/js/slider1.js"></script>
+
   </body>
 </html>

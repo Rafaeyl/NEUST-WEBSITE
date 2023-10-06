@@ -49,8 +49,8 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="<?= ROOT ?>dashboard/dashhome"><img src="<?= ROOT ?>assets/images/image-school/logo-2.png"
             alt="logo" style="height: 80px; object-fit:contain;"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img
-            src="<?= ROOT ?>assets/dashboard/images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="<?= ROOT ?>dashboard/dashhome"><img
+            src="<?= ROOT ?>assets/images/image-school/main-logo.png" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -183,6 +183,21 @@
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/news_categories">Category</a>
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/news"> News Info</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#album" aria-expanded="false"
+              aria-controls="album">
+              <span class="menu-title">School Gallery</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-folder-multiple-image menu-icon"></i>
+            </a>
+            <div class="collapse" id="album">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/album">Album</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/gallery"> Gallery</a></li>
               </ul>
             </div>
           </li>

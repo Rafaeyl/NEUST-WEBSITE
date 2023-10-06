@@ -1,5 +1,8 @@
 
 * { box-sizing: border-box; }
+:root {
+  --box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+}
 .news-body {
   font-size: clamp(0.75rem, 0.5156rem + 0.75vw, 0.9375rem);}
 
@@ -749,6 +752,14 @@ button[aria-expanded="false"] {
 	padding: 10px;
 }
 
+.featured-wrapper{
+  display: flex;
+}
+
+.featured-wrapper .arrow{
+  margin-top: 250px;
+}
+
 #featured{
 	max-width: 900px;
 	max-height: 600px;
@@ -785,7 +796,8 @@ button[aria-expanded="false"] {
 }
 
 #slider{
-	width: 1200px;
+  margin-left: 50px;
+	width: 1000px;
 	display: flex;
 	flex-wrap: nowrap;
 	overflow-x: auto;
@@ -1135,4 +1147,208 @@ button[aria-expanded="false"] {
   .flex-part1{
 	height: 10rem !important;
   }
+}
+
+
+/* 
+---------------------------------------------
+Most Popular Style
+--------------------------------------------- 
+*/
+
+.most-popular {
+  margin-top: 60px;
+  padding: 30px;
+  border-radius: 23px;
+}
+
+.most-popular .item {
+  border: 2px solid gray;
+  background-color: #fff;
+  padding: 30px 15px;
+  border-radius: 23px;
+  margin-bottom: 30px;
+  transition: all 0.35s ease;
+  box-shadow: var(--box-shadow);
+  cursor: zoom-in;
+}
+
+.most-popular .item:hover {
+box-shadow: none;
+transform: translateY(5px);
+}
+
+.most-popular .item:focus {
+  border-color: #fd5f00;
+  }
+
+.most-popular .item .item {
+  padding: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  margin-bottom: 0px;
+  
+}
+
+.most-popular .item img {
+  border-radius: 23px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.most-popular .item h4 {
+  color: #fd5f00;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  font-weight: 900;
+  
+}
+
+.most-popular .item span {
+  color: #666;
+  display: block;
+  margin-top: 7px;
+  font-weight: 400;
+}
+
+.most-popular .item ul {
+  float: right;
+  margin-top: 20px;
+}
+
+.most-popular .item ul li {
+  text-align: right;
+  color: #fff;
+  font-size: 14px;
+}
+.most-popular .item .info{
+  color: #0d1128 ;
+  text-align: center;
+}
+
+
+.most-popular .main-button {
+  text-align: center;
+  margin-bottom: -53px;
+}
+
+/*** Section Title ***/
+.section-title-gallery::before {
+  position: absolute;
+  content: "";
+  width: 200px;
+  height: 5px;
+  left: 0;
+  bottom: 0;
+  background: #fd7e14;
+  border-radius: 2px;
+}
+
+.section-title-gallery.text-center::before {
+  left: 50%;
+  margin-left: -75px;
+}
+
+.section-title-gallery.section-title-gallery-sm::before {
+  width: 100px;
+  height: 3px;
+}
+
+.section-title-gallery::after {
+  position: absolute;
+  content: "";
+  width: 6px;
+  height: 5px;
+  bottom: 0px;
+  background: #FFFFFF;
+  -webkit-animation: section-title-gallery-run 5s infinite linear;
+  animation: section-title-gallery-run 5s infinite linear;
+}
+
+.section-title-gallery.section-title-gallery-sm::after {
+  width: 4px;
+  height: 3px;
+}
+
+.section-title-gallery.text-center::after {
+  -webkit-animation: section-title-gallery-run-center 5s infinite linear;
+  animation: section-title-gallery-run-center 5s infinite linear;
+}
+
+.section-title-gallery.section-title-gallery-sm::after {
+  -webkit-animation: section-title-gallery-run-sm 5s infinite linear;
+  animation: section-title-gallery-run-sm 5s infinite linear;
+}
+
+@keyframes section-title-gallery-run {
+  0% {left: 0; } 50% { left : 145px; } 100% { left: 0; }
+}
+
+@keyframes section-title-gallery-run-center {
+  0% { left: 50%; margin-left: -75px; } 50% { left : 50%; margin-left: 45px; } 100% { left: 50%; margin-left: -75px; }
+}
+
+@keyframes section-title-gallery-run-sm {
+  0% {left: 0; } 50% { left : 85px; } 100% { left: 0; }
+}
+
+
+/* Academic Calendar */
+
+.calendar_title h1{
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.calendar_title h2{
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+
+/* Testimonial */
+
+
+/*** Testimonial ***/
+.testimonial {
+  background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(http://localhost/NEUST-PAPAYA/public/assets/images/image-school/school-2.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+}
+
+.testimonial .explore_title{
+  padding: 15px;
+  color: white;
+  font-size: 30px;
+  border: 2px solid white;
+  margin-bottom: 10px;
+}
+
+.testimonial h1{
+  color: white;
+  font-weight: 700;
+}
+.testimonial h5{
+  margin-top: 20px;
+  color: white;
+}
+
+.explore_link .fa-solid {
+  font-size: 10px;
+  margin-right: 10px;
+  border: 2px solid white;
+  padding: 3px;
+  border-radius: 50%;
+}
+
+.explore_link h5:hover{
+  color: #fd7e14;
+}
+
+.explore_link span:hover{
+  color: #fd7e14;
 }

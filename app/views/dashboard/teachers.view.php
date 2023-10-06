@@ -19,7 +19,7 @@
                     <label class="mb-3 fw-bolder lead"> Image</label><br>
                     <label>Click to change Image</label><br>
                     <label>
-                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none" accept="image/*">
                       <img src="<?= get_image() ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
                       <div><small class="text-danger"> <?= $teachers->getError('image') ?></small></div>
                     </label>
@@ -91,7 +91,7 @@
                     <label class="mb-3 fw-bolder lead"> Image</label><br>
                     <label>Click to change Image</label><br>
                     <label>
-                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none" accept="image/*">
                       <img src="<?= get_image($row->image) ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
                       <div><small class="text-danger"> <?= $teachers->getError('image') ?></small></div>
                     </label>

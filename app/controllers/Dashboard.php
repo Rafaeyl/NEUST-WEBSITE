@@ -2040,5 +2040,233 @@ class Dashboard
 		}
 		
 	}
+
+	public function album($action = null, $id = null)
+	{
+		$ses = new Session;
+		if (!$ses->is_logged_in()) {
+
+			redirect('login');
+		}
+
+		$data['title'] = "News Categories";
+		$data['action'] = $action;
+
+		$album = new Institution();
+		$album->table = 'album';
+		$album->allowedColumns = [
+
+		    'album_name',
+			'image',
+		  	'date_created',
+	   ];
+
+		if($action == 'new')
+		{
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				
+				$folder = "uploads/";
+				if(!file_exists($folder))
+				{
+					mkdir($folder, 0777, true);
+				}
+
+				if($album->validatee($_FILES, $_POST))
+				{
+					$destination = $folder . time() . $_FILES['image']['name'];
+					move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+					$image_class = new Image();
+					$image_class->resize($destination);
+
+					$_POST['image'] = $destination;
+
+					$album->insert($_POST);
+
+					redirect('dashboard/album');
+				}
+			}
+		}else
+		if($action == 'edit')
+		{
+			$data['row'] = $album->first(['id'=>$id]);
+
+			$folder = "uploads/";
+			if(!file_exists($folder))
+			{
+				mkdir($folder, 0777, true);
+			}
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+
+				if($album->validatee($_POST, $id))
+				{
+					if(!empty($_FILES['image']['name']))
+					{
+						$destination = $folder . time() . $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+						
+						$image_class = new Image();
+						$image_class->resize($destination);
+
+						$_POST['image'] = $destination;
+
+						if(file_exists($data['row']->image))
+							unlink($data['row']->image);
+					}
+
+					$album->update($id, $_POST);
+
+					redirect('dashboard/album');
+				}
+			}
+		}else
+		if($action == 'delete')
+		{
+			$data['row'] = $album->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				$album->delete($id);
+
+				if(file_exists($data['row']->value))
+					unlink($data['row']->value);
+				
+				redirect('dashboard/album');
+			}
+		}
+
+		$data['errors'] = $album->errors;
+
+		$query = "select * from $album->table";
+		$data['rows'] = $this->query($query);
+
+		$data['album'] = $album;
+
+		
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/album', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+	}
+
+	public function gallery($action = null, $id = null)
+	{
+		$ses = new Session;
+		if (!$ses->is_logged_in()) {
+
+			redirect('login');
+		}
+
+		$data['title'] = "News Categories";
+		$data['action'] = $action;
+
+		$gallery = new Institution();
+		$gallery->table = 'gallery';
+		$gallery->allowedColumns = [
+
+		    'album_id',
+			'image',
+		  	'image_name',
+	   ];
+
+		if($action == 'new')
+		{
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				
+				$folder = "uploads/";
+				if(!file_exists($folder))
+				{
+					mkdir($folder, 0777, true);
+				}
+
+				if($gallery->validatee($_FILES, $_POST))
+				{
+					$destination = $folder . time() . $_FILES['image']['name'];
+					move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+					$image_class = new Image();
+					$image_class->resize($destination);
+
+					$_POST['image'] = $destination;
+
+					$gallery->insert($_POST);
+
+					redirect('dashboard/gallery');
+				}
+			}
+		}else
+		if($action == 'edit')
+		{
+			$data['row'] = $gallery->first(['id'=>$id]);
+
+			$folder = "uploads/";
+			if(!file_exists($folder))
+			{
+				mkdir($folder, 0777, true);
+			}
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+
+				if($gallery->validatee($_POST, $id))
+				{
+					if(!empty($_FILES['image']['name']))
+					{
+						$destination = $folder . time() . $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+						
+						$image_class = new Image();
+						$image_class->resize($destination);
+
+						$_POST['image'] = $destination;
+
+						if(file_exists($data['row']->image))
+							unlink($data['row']->image);
+					}
+
+					$gallery->update($id, $_POST);
+
+					redirect('dashboard/gallery');
+				}
+			}
+		}else
+		if($action == 'delete')
+		{
+			$data['row'] = $gallery->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				$gallery->delete($id);
+
+				if(file_exists($data['row']->value))
+					unlink($data['row']->value);
+				
+				redirect('dashboard/gallery');
+			}
+		}
+
+		$data['errors'] = $gallery->errors;
+
+		$query = "select * from $gallery->table";
+		$data['rows'] = $this->query($query);
+
+		$data['$gallery'] = $gallery;
+
+		
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/gallery', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+	}
 }
 

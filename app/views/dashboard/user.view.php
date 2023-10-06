@@ -24,7 +24,7 @@
                   <div class="col-md-12 text-center mb-5">
                       <label class="form-label">Choose Image </label><br>
                     
-                      <input  type="file" name="image" class="crop_image form-control mx-auto w-50" id="upload_image">
+                      <input  type="file" name="image" class="crop_image form-control mx-auto w-50" id="upload_image" accept="image/*">
                       <div><small class="text-danger"> <?= $user->getError('image') ?></small></div>
                     
                   </div>
@@ -193,7 +193,7 @@
                   <div class="col-md-12 text-center mb-5">
                     <label>Click to change image</label><br>
                     <label>
-                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none">
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none" accept="image/*">
                       <img src="<?= get_image($row->image) ?>" style="width: 200px;height:200px;object-fit: cover;cursor: pointer;">
                       <div><small class="text-danger"> <?= $user->getError('image') ?></small></div>
                     </label>
@@ -346,7 +346,7 @@
                           <div class="col-md-12 text-center">
                             <label>
                               <input onchange="display_image(this.files[0], event)" type="file" name="image"
-                                class="d-none">
+                                class="d-none" accept="image/*">
                               <img src="<?= get_img($row->image) ?>"
                                 style="width: 200px;height:200px;object-fit: cover;cursor: pointer;">
                             </label>

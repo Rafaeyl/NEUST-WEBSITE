@@ -29,20 +29,20 @@ class Home
 	public function index()
 	{
 
-		$institutions = new Institution();
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -50,25 +50,25 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$contact_school = $data['school_contact'];
+		$data['school_contact']       = $contact_info->findAll();
+		$contact_school               = $data['school_contact'];
 		// Announcements
-		$announcement = new Institution();
-		$announcement->table = 'announcements';
-		$announcement->order_column = 'list_order';
-		$announcement->order_type = 'desc';
+		$announcement                 = new Institution();
+		$announcement->table          = 'announcements';
+		$announcement->order_column   = 'list_order';
+		$announcement->order_type     = 'desc';
 		$announcement->allowedColumns = [
 
 			'description',
 			'list_order',
 			'disabled',
 		];
-		$data['announcements'] = $announcement->whereInstitution('disabled', 'Active');
+		$data['announcements']        = $announcement->whereInstitution('disabled', 'Active');
 
 		// Teachers
 		$teachers = new Officials();
 
-		$teachers->table = 'teachers';
+		$teachers->table          = 'teachers';
 		$teachers->allowedColumns = [
 
 			'image',
@@ -76,11 +76,11 @@ class Home
 			'suffixes',
 			'position',
 		];
-		$teachers->order_column = 'list_order';
-		$data['teachers'] = $teachers->findAll();
+		$teachers->order_column   = 'list_order';
+		$data['teachers']         = $teachers->findAll();
 
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -91,64 +91,63 @@ class Home
 		}
 
 		// About School
-		$about_school = new About_school();
+		$about_school         = new About_school();
 		$data['about_school'] = $about_school->findAll();
-		
+
 		// url
 		$url = $_GET['url'] ?? 'home';
-        $url = strtolower($url);
-        $url = explode("/", $url);
+		$url = strtolower($url);
+		$url = explode("/", $url);
 
-        $data['slug'] = $url[1] ?? 'home';
+		$data['slug'] = $url[1] ?? 'home';
 		// News
 		$news = new Institution();
-		
-		$news->table = 'news';
+
+		$news->table          = 'news';
 		$news->allowedColumns = [
-			
+
 			'category_id',
-		    'title',
+			'title',
 			'description',
-		  	'image',
+			'image',
 			'date',
 			'slug',
-	   ];
-	   $news->order_type = 'desc';
-	   $news->limit = 3;
-	   $sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
-	   $data['news'] = $this->query($sql);
-	   $data['news_footer'] = $this->query_row($sql);
+		];
+		$news->order_type     = 'desc';
+		$news->limit          = 3;
+		$sql                  = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news']         = $this->query($sql);
+		$data['news_footer']  = $this->query_row($sql);
 		// Contact Form - Send Email
-		try{
+		try {
 			if (isset($_POST['send'])) {
-				$name = htmlentities($_POST["name"]);
-				$email = htmlentities($_POST["email"]);
+				$name    = htmlentities($_POST["name"]);
+				$email   = htmlentities($_POST["email"]);
 				$subject = htmlentities($_POST["subject"]);
 				$message = htmlentities($_POST["message"]);
 
 				$mail = new PHPMailer(true);
 				$mail->isSMTP();
-				$mail->Host = "smtp.gmail.com";
+				$mail->Host     = "smtp.gmail.com";
 				$mail->SMTPAuth = true;
 
 				$mail->Username = $contact_school['email'];
 				$mail->Password = $contact_school['password'];
 
-				$mail->Port = 465;
+				$mail->Port       = 465;
 				$mail->SMTPSecure = 'ssl';
 				$mail->isHTML(true);
 				$mail->setFrom($email, $name);
-				$mail->addAddress( $contact_school['email']);
+				$mail->addAddress($contact_school['email']);
 
 				$mail->Subject = ("$email ($subject)");
-				$mail->Body = $message;
+				$mail->Body    = $message;
 
-				if($mail->send())
-				{ 
+				if ($mail->send()) {
 					$_SESSION['status'] = "Message Sent!";
 				}
 			}
-		}catch (Exception $e) {
+		} catch (Exception $e) {
 			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
 		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
 			echo $e->getMessage(); //Boring error messages from anything else!
@@ -159,20 +158,20 @@ class Home
 
 	public function contact()
 	{
-		$institutions = new Institution();
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -180,11 +179,11 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$school_contact = $data['school_contact'] ;
-	
+		$data['school_contact']       = $contact_info->findAll();
+		$school_contact               = $data['school_contact'];
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -194,66 +193,65 @@ class Home
 			}
 		}
 
-			// url
-			$url = $_GET['url'] ?? 'home';
-			$url = strtolower($url);
-			$url = explode("/", $url);
-	
-			$data['slug'] = $url[1] ?? 'home';
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
 
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
 		// Contact Form - Send Email
 
-		try{
+		try {
 
-		
-		if (isset($_POST['send'])) {
-			$name = htmlentities($_POST["name"]);
-			$email = htmlentities($_POST["email"]);
-			$subject = htmlentities($_POST["subject"]);
-			$message = htmlentities($_POST["message"]);
 
-			$mail = new PHPMailer(true);
-			$mail->isSMTP();
-			$mail->Host = "smtp.gmail.com";
-			$mail->SMTPAuth = true;
+			if (isset($_POST['send'])) {
+				$name    = htmlentities($_POST["name"]);
+				$email   = htmlentities($_POST["email"]);
+				$subject = htmlentities($_POST["subject"]);
+				$message = htmlentities($_POST["message"]);
 
-			$school_email = $school_contact[0]->email;
-			$email_password = $school_contact[0]->password;
+				$mail = new PHPMailer(true);
+				$mail->isSMTP();
+				$mail->Host     = "smtp.gmail.com";
+				$mail->SMTPAuth = true;
 
-			$mail->Username = $school_email;
-			$mail->Password = $email_password;
+				$school_email   = $school_contact[0]->email;
+				$email_password = $school_contact[0]->password;
 
-			$mail->Port = 465;
-			$mail->SMTPSecure = 'ssl';
-			$mail->isHTML(true);
-			$mail->setFrom($email, $name);
-			$mail->addAddress("villanuevarafaeljr129@gmail.com");
+				$mail->Username = $school_email;
+				$mail->Password = $email_password;
 
-			$mail->Subject = ("$email ($subject)");
-			$mail->Body = $message;
+				$mail->Port       = 465;
+				$mail->SMTPSecure = 'ssl';
+				$mail->isHTML(true);
+				$mail->setFrom($email, $name);
+				$mail->addAddress("villanuevarafaeljr129@gmail.com");
 
-			if($mail->send())
-			{ 
-				$_SESSION['status'] = "Message Sent!";
+				$mail->Subject = ("$email ($subject)");
+				$mail->Body    = $message;
+
+				if ($mail->send()) {
+					$_SESSION['status'] = "Message Sent!";
+				}
 			}
-		}
-		}catch (Exception $e) {
+		} catch (Exception $e) {
 			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
 		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
 			echo $e->getMessage(); //Boring error messages from anything else!
 		}
 
-		
+
 
 		$data['title'] = "Contact";
 		$this->view('home/contact', $data);
@@ -262,20 +260,20 @@ class Home
 
 	public function teachers()
 	{
-		$institutions = new Institution();
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -283,12 +281,12 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$school_info = $data['school_contact'];
+		$data['school_contact']       = $contact_info->findAll();
+		$school_info                  = $data['school_contact'];
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -300,63 +298,63 @@ class Home
 
 		// Teachers
 		$teachers = new Officials();
-		
-		$teachers->table = 'teachers';
-		$teachers->allowedColumns = [
-			
-			'image',
-		    'name',
-			'suffixes',
-		  	'position',
-			'list_order',
-	   ];
-	    $teachers->order_column = 'list_order';
- 		$data['teachers'] = $teachers ->findAll();
 
-			// url
-			$url = $_GET['url'] ?? 'home';
-			$url = strtolower($url);
-			$url = explode("/", $url);
-	
-			$data['slug'] = $url[1] ?? 'home';
+		$teachers->table          = 'teachers';
+		$teachers->allowedColumns = [
+
+			'image',
+			'name',
+			'suffixes',
+			'position',
+			'list_order',
+		];
+		$teachers->order_column   = 'list_order';
+		$data['teachers']         = $teachers->findAll();
+
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
 
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
-			
+
 		$data['title'] = "Teachers";
 		$this->view('home/teachers', $data);
 	}
 
 	public function mission()
 	{
-			// url
-			$url = $_GET['url'] ?? 'home';
-			$url = strtolower($url);
-			$url = explode("/", $url);
-	
-			$data['slug'] = $url[1] ?? 'home';
-			
-		$institutions = new Institution();
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -364,12 +362,12 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$school_info = $data['school_contact'];
+		$data['school_contact']       = $contact_info->findAll();
+		$school_info                  = $data['school_contact'];
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -381,11 +379,11 @@ class Home
 
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
@@ -402,20 +400,20 @@ class Home
 
 		$data['slug'] = $url[1] ?? 'home';
 
-		$institutions = new Institution();
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -423,12 +421,12 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$school_info = $data['school_contact'];
+		$data['school_contact']       = $contact_info->findAll();
+		$school_info                  = $data['school_contact'];
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -440,11 +438,11 @@ class Home
 
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
@@ -460,21 +458,21 @@ class Home
 		$url = explode("/", $url);
 
 		$data['slug'] = $url[1] ?? 'home';
-		
-		$institutions = new Institution();
+
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -482,11 +480,11 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
+		$data['school_contact']       = $contact_info->findAll();
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -498,19 +496,19 @@ class Home
 
 		// History
 		$history = new History_model;
-		
-		$history->order_type = 'asc';
-		$history->limit = 10;
+
+		$history->order_type   = 'asc';
+		$history->limit        = 10;
 		$history->order_column = 'list_order';
-		
+
 		$data['histories'] = $history->findAll();
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
@@ -527,20 +525,20 @@ class Home
 
 		$data['slug'] = $url[1] ?? 'home';
 
-		$institutions = new Institution();
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -548,11 +546,11 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
+		$data['school_contact']       = $contact_info->findAll();
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -563,27 +561,27 @@ class Home
 		}
 
 		// History
-		$faq = new Institution();
-		$faq->table = 'faqs';
-		$faq->order_type = 'asc';
-		$faq->limit = 10;
-		$faq->order_column = 'list_order';
+		$faq                 = new Institution();
+		$faq->table          = 'faqs';
+		$faq->order_type     = 'asc';
+		$faq->limit          = 10;
+		$faq->order_column   = 'list_order';
 		$faq->allowedColumns = [
 
 			'question',
 			'answer',
 			'list_order',
 		];
-		
+
 		$data['faqs'] = $faq->findAll();
-		
+
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
@@ -592,27 +590,27 @@ class Home
 	}
 	public function admission()
 	{
-			// url
-			$url = $_GET['url'] ?? 'home';
-			$url = strtolower($url);
-			$url = explode("/", $url);
-	
-			$data['slug'] = $url[1] ?? 'home';
-			
-		$institutions = new Institution();
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+
+		$institutions             = new Institution();
 		$institutions->order_type = 'asc';
 
 		// college
-		$college = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
 		$data['colleges'] = $this->query($college);
 
 		// organization
-		$organization = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
 		$data['organizations'] = $this->query($organization);
 
 		// Contact Infomation
-		$contact_info = new Institution();
-		$contact_info->table = 'contact_info';
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
 		$contact_info->allowedColumns = [
 
 			'facebook_link',
@@ -620,12 +618,12 @@ class Home
 			'phone',
 			'address',
 		];
-		$data['school_contact'] = $contact_info->findAll();
-		$school_info = $data['school_contact'];
+		$data['school_contact']       = $contact_info->findAll();
+		$school_info                  = $data['school_contact'];
 
-	
+
 		// settings
-		$settings = new Settings();
+		$settings         = new Settings();
 		$data['settings'] = $settings->findAll();
 
 		$data['SETTINGS'] = [];
@@ -637,11 +635,11 @@ class Home
 
 		// News
 		$news = new Institution();
-	
-		$news->table = 'news';
-		$news->order_type = 'desc';
-		$news->limit = 1;
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+
+		$news->table         = 'news';
+		$news->order_type    = 'desc';
+		$news->limit         = 1;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
 
@@ -649,5 +647,52 @@ class Home
 		$this->view('home/admission', $data);
 	}
 
+	public function academic_calendar()
+	{
+		// url
+		$url = $_GET['url'] ?? 'home';
+		$url = strtolower($url);
+		$url = explode("/", $url);
+
+		$data['slug'] = $url[1] ?? 'home';
+
+		$institutions             = new Institution();
+		$institutions->order_type = 'asc';
+
+		// college
+		$college          = "select * from institutions where institution='college' and disabled='Active' LIMIT 10";
+		$data['colleges'] = $this->query($college);
+
+		// organization
+		$organization          = "select * from institutions where institution='organization' and disabled='Active' LIMIT 20";
+		$data['organizations'] = $this->query($organization);
+
+		// Contact Infomation
+		$contact_info                 = new Institution();
+		$contact_info->table          = 'contact_info';
+		$contact_info->allowedColumns = [
+
+			'facebook_link',
+			'email',
+			'phone',
+			'address',
+		];
+		$data['school_contact']       = $contact_info->findAll();
+
+		// settings
+		$settings         = new Settings();
+		$data['settings'] = $settings->findAll();
+
+		$data['SETTINGS'] = [];
+		if ($data['settings']) {
+			foreach ($data['settings'] as $setting_row) {
+				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
+			}
+		}
+
+
+		$data['title'] = "Academic Calendar";
+		$this->view('home/academic_calendar', $data);
+	}
 
 }

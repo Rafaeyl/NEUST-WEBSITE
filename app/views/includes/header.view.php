@@ -101,6 +101,7 @@
 						<li class="nav-item  <?=$slug == 'faqs' ? 'active' : ''?>"><a href="<?=ROOT?>home/faqs#FAQs" class="nav-link ">FAQS</a></li>
 						<li class="nav-item  <?=$slug == 'admission' ? 'active' : ''?>"><a href="<?=ROOT?>home/admission#admission" class="nav-link ">Admission</a></li>
 					 	<li class="nav-item  <?=$slug == 'contact' ? 'active' : ''?>"><a href="<?=ROOT?>home/contact#contact" class="nav-link">Contact</a></li>
+						<li class="nav-item  <?=$slug == 'academic_calendar' ? 'active' : ''?>"><a href="<?=ROOT?>home/academic_calendar#academic_calendar" class="nav-link">Academic Calendar</a></li>
 				   </ul>
 				 </div>
 			 </nav>

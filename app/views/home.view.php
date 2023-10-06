@@ -168,10 +168,15 @@
 	<section class="ftco-section ftco-counter img m-0 bg-dark d-none d-md-block"  id="section-counter" style="background-image: url(<?= ROOT?>/assets/images/image-school/school-1.jpg);" data-stellar-background-ratio="0.5">
 		<div id="content-wrapper">
 			<div class="column">
-				<img id=featured src="<?= ROOT?>/assets/main/images/image_1.jpg">
+				
+				<div class="featured-wrapper">
+					<img id="slideLeft" class="arrow" src="<?= ROOT?>/assets/main/images/left-arrow.png">
+					<img id=featured src="<?= ROOT?>/assets/main/images/image_1.jpg">
+					<img id="slideRight" class="arrow" src="<?= ROOT?>/assets/main/images/right-arrow.png">
+				</div>
+				
 
 				<div id="slide-wrapper" >
-					<img id="slideLeft" class="arrow" src="<?= ROOT?>/assets/main/images/left-arrow.png">
 
 					<div id="slider">
 						<img class="thumbnail active" src="<?= ROOT?>/assets/main/images/image_1.jpg">
@@ -183,17 +188,43 @@
 						<img class="thumbnail" src="<?= ROOT?>/assets/main/images/image_3.jpg">
 						<img class="thumbnail" src="<?= ROOT?>/assets/main/images/image_4.jpg">
 					</div>
-
-					<img id="slideRight" class="arrow" src="<?= ROOT?>/assets/main/images/right-arrow.png">
 				</div>
 			</div>
 		</div>
 		<div class="d-flex align-items-center mt-5 mr-5 justify-content-end">
-			<p><a href="<?=ROOT?>university_gallery" class="more">More Gallery
+			<p><a href="<?=ROOT?>schoolAlbum" class="more">More Gallery
 					<span class="fa-solid fa-arrow-right "></span></a>
 			</p>
 		</div>
 	</section>
+
+	<!-- Testimonial Start -->
+	<div class="container-xxl testimonial py-5 bg-dark" >
+		<div class="container">
+			<div class="row p-5 d-flex justify-content-center">
+				<div class="col-7 text-center">
+					<span class="fa-solid fa-check explore_title"> </span>
+					<h1>APPLY NOW</h1>
+
+					<h5>BE A NEUSTIAN</h5>
+				</div>
+				<div class="col-5">
+					<div class="text-center">
+					<span class="fa-solid fa-magnifying-glass explore_title"> </span>
+					<h1>EXPLORE</h1>
+					</div>
+				
+					
+					<a href="<?=ROOT?>home/academic_calendar" class="explore_link"><h5><span class="fa-solid fa-arrow-right"> </span>ACADEMIC CALENDAR</h5></a> 
+					<a href="<?=ROOT?>home/faqs" class="explore_link"><h5><span class="fa-solid fa-arrow-right"> </span> FREQUENTLY ASKED QUESTIONS</h5></a>
+					<a href="<?=ROOT?>home/schoolAlbum" class="explore_link"><h5><span class="fa-solid fa-arrow-right"> </span> GALLERY</h5></a>
+					<a href="<?=ROOT?>home/newsAndEvents" class="explore_link">   <h5 ><span class="fa-solid fa-arrow-right"> </span> NEWS AND EVENTS</h5></a>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Testimonial End -->
 
 	<script type="text/javascript">
 		let thumbnails = document.getElementsByClassName('thumbnail')
@@ -226,6 +257,7 @@
 		buttonRight.addEventListener('click', function(){
 			document.getElementById('slider').scrollLeft += 180
 		})
+
 
 
 	</script>
