@@ -1,5 +1,5 @@
-<footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container-fluid">
+<footer class="ftco-footer ftco-bg-dark ftco-section" style="margin-top:auto">
+      <div class="container">
         <div class="row mb-5">
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
@@ -26,7 +26,7 @@
               <ul class="list-unstyled">
                 <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>Home</a></li>
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
-                <li><a href="<?=ROOT?>/home/faqs"><span class="fa-solid fa-arrow-right  mr-2"></span>FAQs</a></li>
+                <li><a href="<?=ROOT?>/home/Admission"><span class="fa-solid fa-arrow-right  mr-2"></span>Admission</a></li>
                 <li><a href="<?=ROOT?>/home/contact"><span class="fa-solid fa-arrow-right  mr-2"></span>Contact</a></li>
                 <li><a href="<?=ROOT?>/login"><span class="fa-solid fa-arrow-right  mr-2"></span>Login</a></li>
 
@@ -69,6 +69,11 @@
   <script src="<?=ROOT?>assets/main/js/jquery.waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.stellar.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/owl.carousel.min.js"></script>
+  <script src="<?=ROOT?>assets/main/slider/script.js"></script>
+
+  <script src="<?=ROOT?>assets/main/swiperjs-slider/js/swiper.js"></script>
+  <script src="<?=ROOT?>assets/main/swiperjs-slider/js/app.js"></script>
+
   <script src="<?=ROOT?>assets/main/js/accordion.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.magnific-popup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/aos.js"></script>
@@ -80,7 +85,6 @@
   <script src="<?=ROOT?>assets/main/js/counterup/counterup.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/waypoints/waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/main6.js?t=<?= time();?>"></script>
-  <script src="<?=ROOT?>assets/main/js/slider1.js"></script>
 
   </body>
 </html>

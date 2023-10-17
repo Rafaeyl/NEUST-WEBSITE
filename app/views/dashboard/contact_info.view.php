@@ -13,7 +13,7 @@
           <div class="card">
             <div class="card-body">
               <h2 class="mb-4">Add Contact Info</h2>
-              <p class="text-danger">Make sure to click and watch this <a href="" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
+              <p class="text-danger">Make sure to click and watch this <a href="https://youtu.be/sT2ZbN3etTk" target="_blank" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
               <?php if(!empty($row)):?>
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">

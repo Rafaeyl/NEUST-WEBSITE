@@ -63,6 +63,13 @@ class Category
 	   ];
 	    $data['categories'] = $news_categories->findAll();
 
+		$url = $_GET['url'] ?? 'home';
+        $url = strtolower($url);
+        $url = explode("/", $url);
+
+        $data['slug'] = $url[1] ?? 'home';
+        $slug = $data['slug'];
+
 		// Latest News
 		$news = new Institution();
 		
@@ -79,7 +86,8 @@ class Category
 
 		$news->order_type = 'desc';
 		$news->limit = 5;
-		$data['latest_news'] = $news->findAll();
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug' and  news.isArchived='no' ORDER BY date desc limit $news->limit ";
+		$data['latest_news']  = $this->query($sql);
 
 		// News detailes
 		$url = $_GET['url'] ?? 'home';
@@ -91,11 +99,11 @@ class Category
         
          if($slug)
         {
-			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug'";
+			$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug' and  news.isArchived='no' ";
 			$data['rows']  = $this->query($sql);
 
 			// Pagination
-			$page_query = "SELECT COUNT(news.id) AS news_total FROM news LEFT JOIN news_categories ON news.category_id = news_categories.id WHERE news_categories.slug = '$slug'";
+			$page_query = "SELECT COUNT(news.id) AS news_total FROM news LEFT JOIN news_categories ON news.category_id = news_categories.id WHERE news_categories.slug = '$slug' and news.isArchived='no' ";
 
 			$query =  $this->query($page_query);
 			$data['total_news'] = $query[0]->news_total;

@@ -3895,6 +3895,11 @@ input[type="button"].btn-block {
   text-decoration: none;
   background-color: #f8f9fa;
 }
+ .dropdown-item:hover {
+  background: var(--secondary);
+  border-radius: 5px;
+  color: #00008b;
+}
 
 .dropdown-item.active,
 .dropdown-item:active {
@@ -14240,7 +14245,7 @@ textarea.form-control {
   font-size: 18px;
   margin-bottom: 20px;
   padding: 5px;
-  background-color: var(--gray);
+  background-color: #0d1128 ;
   color: var(--white);
 }
 

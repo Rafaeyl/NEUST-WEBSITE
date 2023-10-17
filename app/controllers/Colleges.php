@@ -64,7 +64,6 @@ class Colleges
 		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
 		$data['news_footer'] = $this->query_row($sql);
 		// News End
-	
 
 		$url = $_GET['url'] ?? 'home';
         $url = strtolower($url);
@@ -72,6 +71,13 @@ class Colleges
 
         $data['slug'] = $url[1] ?? 'home';
         $slug = $data['slug'];
+
+		// Teachers Start
+		$query = "select teachers.*, institutions.name FROM teachers JOIN institutions ON teachers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
+	   	$data['teachers'] = $this->query($query);
+		// Teachers end
+
+	
         
          if($slug)
         {

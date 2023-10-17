@@ -12,6 +12,11 @@
         $limit = 5;
         $offset = ($page-1)*$limit;
 
+        // Previous Page
+        $previous_page = $page-1;
+        // Next Page
+        $next_page = $page+1;
+
         if(isset($_GET['keyword'])){
             $keyword = mysqli_real_escape_string($db,$_GET['keyword']);
         }else{
@@ -110,20 +115,38 @@
                                
                         $pages = ceil($total_news/$limit);
                         ?>
-
-                        <?php if($total_news > $limit): ?>
-                            <ul class="pagination pt-2 pb-5">
-
-                                <?php for ($i=1; $i <= $pages ; $i++) {?>
-                                <li class="page-item <?=($i == $page) ? $active="active":"";?>">
-                                    <a href="<?=ROOT?>search?keyword=<?=$keyword?>&page=<?=$i?>" class="page-link"><?=$i  ?></a>
-                                </li>
-                                <?php }?>
-                            </ul>
-                        <?php endif; ?>
-                    <!-- Pagination End -->
                    
-                   
+                     <?php if($total_news > $limit): ?>
+                        <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-md m-0">
+
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0" 
+                                <?php if($page > 1) { ?> href="<?=ROOT?>search?keyword=<?=$keyword?>&page=<?=$previous_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+                                </a>
+                            </li>
+
+
+                            <?php for ($i=1; $i <= $pages ; $i++) {?>
+                            <li class="page-item <?=($i == $page) ? $active="active":"";?>">
+                                <a href="<?=ROOT?>search?keyword=<?=$keyword?>&page=<?=$i?>" class="page-link"><?=$i  ?></a>
+                            </li>
+                            <?php }?>
+
+
+                            <li class="page-item <?= ($page >= $pages) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0 " 
+                                <?php if($page < $pages) { ?> href="<?=ROOT?>search?keyword=<?=$keyword?>&page=<?=$next_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="p-10">
+                        <strong>Page <?=$page ?> of  <?=$pages ?>  </strong>
+                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col-lg-4 sidebar ftco-animate">

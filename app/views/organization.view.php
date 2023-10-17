@@ -163,8 +163,7 @@
     </div>
     <!-- Contact End -->
 
-  <!-- our -->
-<!-- <div id="important" class="important">
+ <div id="important" class="important">
    
     <div class="important_bg">
         <div class="container">
@@ -194,7 +193,7 @@
         </div>
         </div>
     </div>
-</div> -->
+</div>
 
     <!-- Officers -->
     <section class="ftco-section bg-light">

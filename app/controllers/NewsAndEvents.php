@@ -66,7 +66,8 @@ class NewsAndEvents
 
 		$news->order_type = 'desc';
 		$news->limit = 5;
-		$data['latest_news'] = $news->findAll();
+		$latest_news = "select * FROM news WHERE isArchived='no' ORDER BY date desc limit 5";
+		$data['latest_news']  = $this->query($latest_news);
 
 		// News Categories
 		$news_categories = new Institution();
@@ -80,11 +81,11 @@ class NewsAndEvents
 
         $data['title'] = "News and Events";
      
-		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id ORDER BY date desc limit 5";
+		$sql = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE news.isArchived='no' ORDER BY date desc limit 5";
 		$data['rows']  = $this->query($sql);
 		
 	    // Pagination
-		$page_query = "SELECT COUNT(ID) AS news_total FROM news";
+		$page_query = "SELECT COUNT(ID) AS news_total FROM news WHERE isArchived='no'";
 		$query =  $this->query($page_query);
 		$data['total_news'] = $query[0]->news_total;
 	   	

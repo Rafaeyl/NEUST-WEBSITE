@@ -39,7 +39,7 @@
 
   .announcement-container .news {
     width: 100%;
-    background: black;
+    background: #0d1128;
     padding: 10px 2%;
     color: white;
   }
@@ -119,7 +119,7 @@
 
   .announcement-container .news {
     width: 80%;
-    background: var(--black);
+    background: #0d1128;
     padding: 10px 2%;
   }
 
@@ -158,7 +158,7 @@
   .announcement-container .title {
     width: 20%;
     text-align: center;
-    background: var(--black);
+    background: #0d1128;
     position: relative;
     color: white;
     z-index: 200;
@@ -194,6 +194,8 @@
   height:30px;
   padding: 0px 20px;
 }
+
+
 
 
 /* faqs */
@@ -746,7 +748,12 @@ button[aria-expanded="false"] {
 	justify-content: center;
 	align-items: center;
 }
-
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+  #content-wrapper{ display: none; } 
+}
+/* @media screen and (min-width: 769px) and (max-width: 1024px) {
+  #content-wrapper{ display: block; }  
+} */
 .column{
 	width: 900px;
 	padding: 10px;
@@ -872,9 +879,27 @@ button[aria-expanded="false"] {
 
 .post-box{
   background: #fff;
-  box-shadow: 0 4px 14px hsl(35deg 25% 15% / 10%);
+  box-shadow: var(--box-shadow);
   padding: 15px;
   border-radius: 0.5rem;
+  transition: all 0.35s ease;
+  height: 400px;
+}
+.post-box:hover {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+.post-box-lg{
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+  border-radius: 0.5rem;
+  transition: all 0.35s ease;
+}
+.post-box-lg:hover {
+  box-shadow: none;
+  transform: translateY(5px);
 }
 
 .post-img{
@@ -885,6 +910,7 @@ button[aria-expanded="false"] {
   border-radius: 0.5rem;
 }
 
+
 .category{
   font-size: 0.9rem;
   font-weight: 500;
@@ -893,7 +919,7 @@ button[aria-expanded="false"] {
 }
 
 .post-title{
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #172317;
   display: -webkit-box;
@@ -940,6 +966,9 @@ button[aria-expanded="false"] {
   font-size: .8rem;
   font-weight: 500;
 }
+
+
+
 
 /* News and Detail Search Bar */
 .search-container{
@@ -1313,7 +1342,7 @@ transform: translateY(5px);
 
 /*** Testimonial ***/
 .testimonial {
-  background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(http://localhost/NEUST-PAPAYA/public/assets/images/image-school/school-2.jpg);
+  background: linear-gradient(rgba(21, 20, 51, 0.8), rgba(21, 20, 51, 0.8)), url(http://localhost/NEUST-PAPAYA/public/assets/images/image-school/school-2.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1352,3 +1381,4 @@ transform: translateY(5px);
 .explore_link span:hover{
   color: #fd7e14;
 }
+

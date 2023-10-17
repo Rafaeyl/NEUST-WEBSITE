@@ -15,11 +15,12 @@
 
     <div class="container">
       <section class="my-5" id="">
-        <div class="post-box">
+        <div class="post-box-lg border">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div>
                         <h2 class="text-center"><?= $row['title']; ?></h2>
+                        <hr class="bg-primary">
                         <p><?= $row['description']; ?></p>
                         <div class="tag-widget post-tag-container">
                             <div class="tagcloud">
@@ -32,7 +33,7 @@
                 
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
-                        <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 300px; object-fit: cover;">
+                        <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 300px; object-fit: contain;">
                     </div><!-- end media -->
                 </div><!-- end col -->
             </div>
@@ -55,16 +56,18 @@
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>"><img src="<?=get_image($ann->image)?>" alt="" class="post-img"></a>
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>" class="post-title"><?=$ann->title?></a>
                         <span class="post-date text-primary"><?=get_date($ann->date)?></span>
-                        <p class="post-description"><?=$ann->description?></p>
-                        <div class="profile">
-                            <img src="<?=get_image($ann->image)?>" alt="" class="profile-img">
-                            <span class="profile-name">MKHB</span>
-                        </div>
+                        <p class="post-description">
+                            <?php 
+                                $des = strip_tags($ann->description); 
+                                $des2 = str_replace("&nbsp;", "",$des);
+                                echo substr($des2, 0,200);
+                            ?>
+                        </p>
                     </div>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
-                <center><h1>NO NEWS FOUND</h1></center>
+                <center><h1>NO ANNOUNCEMENTS FOUND</h1></center>
             <?php endif;?>
         </div>
    

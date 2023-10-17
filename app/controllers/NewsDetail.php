@@ -64,19 +64,11 @@ class NewsDetail
 		$news = new Institution();
 		
 		$news->table = 'news';
-		$news->allowedColumns = [
-			
-			'category_id',
-		    'title',
-			'description',
-		  	'image',
-			'date',
-			'slug',
-	   ];
 
 		$news->order_type = 'desc';
 		$news->limit = 5;
-		$data['latest_news'] = $news->findAll();
+		$latest_news = "select * FROM news WHERE isArchived='no' ORDER BY date $news->order_type limit $news->limit";
+		$data['latest_news']  = $this->query($latest_news);
 
 		// News detailes
 		$url = $_GET['url'] ?? 'home';

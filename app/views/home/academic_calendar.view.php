@@ -28,45 +28,25 @@
         </div>
 
         <table class="table table-striped table-bordered my-5">
-            <thead class="bg-secondary">
+            <thead class="bg-darken text-white">
                 <tr>
                     <th></th>
                     <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <h5>General Registration</h5>
-                    </td>
-                    <td>
-                        <h5>June 13 - August 19 </h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>1<sup>st</sup> Semester Begins</h5>
-                    </td>
-                    <td>
-                        <h5> August 22 </h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>Last Day of Registration</h5>
-                    </td>
-                    <td>
-                        <h5> August 30 </h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>Deadline of Adding, Changing, and Dropping of Subject</h5>
-                    </td>
-                    <td>
-                        <h5> August 29 - 30 </h5>
-                    </td>
-                </tr>
+            <?php if(!empty($general)): ?>
+                    <?php foreach($general as $row):?>
+                        <tr>
+                            <td><?= esc($row->title)?></td>
+                            <td><?= esc($row->date) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+            <?php else: ?>
+                    <center>
+                        <h1 class="bg-danger p-5 text-white">NO ACADEMIC CALENDAR FOUND</h1>
+                    </center>
+            <?php endif; ?>    
             </tbody>
         </table>
 
@@ -77,53 +57,25 @@
         </div>
 
         <table class="table table-striped table-bordered my-5">
-            <thead class="bg-secondary">
+            <thead class="bg-darken text-white">
                 <tr>
                     <th></th>
                     <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <h5>Independence Day (Regular Holiday)</h5>
-                    </td>
-                    <td>
-                        <h5>June 12 </h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>Ninoy Aquino Day (Regular Holiday)</h5>
-                    </td>
-                    <td>
-                        <h5>August 21</h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5> National Hero's Day (Regular Holiday)</h5>
-                    </td>
-                    <td>
-                        <h5> August 29 </h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5> Nueva Ecija Day (Regular Holiday) </h5>
-                    </td>
-                    <td>
-                        <h5> September 02</h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5> All Saint's Day (Special Non-Working Day) </h5>
-                    </td>
-                    <td>
-                        <h5> November 01</h5>
-                    </td>
-                </tr>
+            <?php if(!empty($holiday)): ?>
+                    <?php foreach($holiday as $row):?>
+                        <tr>
+                            <td><?= esc($row->title)?></td>
+                            <td><?= esc($row->date) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+            <?php else: ?>
+                    <center>
+                        <h1 class="bg-danger p-5 text-white">NO HOLIDAYS FOUND</h1>
+                    </center>
+            <?php endif; ?>   
             </tbody>
         </table>
 

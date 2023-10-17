@@ -1,7 +1,7 @@
 <?= $this->view('includes/dashboard-header', $data); ?>
 
 
-<?php if ($action == 'new'): ?>
+<?php if ($action == 'new'):?>
 
   <div class="main-panel">
     <div class="content-wrapper">
@@ -181,8 +181,8 @@
                 <thead  class="bg-gradient-dark">
                   <tr class="text-white">
                     <th> # </th>
-                    <th> News Category</th>
-                    <th> Active/Inactive </th>
+                    <th> Featured Image</th>
+                    <th> Album Name </th>
                     <th> Action</th>
                   </tr>
                 </thead>

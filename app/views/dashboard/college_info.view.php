@@ -13,16 +13,16 @@
           <div class="card">
             <div class="card-body">
               <h2 class="mb-4">Add College's Info</h2>
-              <p class="text-danger">Make sure to click and watch this <a href="" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
+              <p class="text-danger">Make sure to click and watch this <a  href="https://youtu.be/sT2ZbN3etTk" target="_blank" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
                   <div class="row">
-                   <div class="col-lg-4 mx-auto mb-3 text-center">
+                   <div class="col-lg-6 mx-auto mb-3 text-center">
                       <label for="role" class="form-label">College</label>
                       <?php if($ses->user('institute') == 'Admin'):?>
                           <select id="institution" class="form-select" aria-label="Default select example" name="institution">
-                              <?php if(!empty($organizations)):?>
-                                    <?php foreach($organizations as $organization):?>
+                              <?php if(!empty($colleges)):?>
+                                    <?php foreach($colleges as $organization):?>
                                         <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
                                     <?php endforeach;?>
                                 <?php else: ?>
@@ -127,7 +127,7 @@
                   <div class="row g-3 my-3 mx-auto">
                     
                     <div class="row">
-                    <div class="col-lg-4 mx-auto mb-3 text-center">
+                    <div class="col-lg-6 mx-auto mb-3 text-center">
                         <label for="institution" class="form-label">college</label>
                         <?php
                           $query  = "select institutions.name FROM institutions JOIN institutionsinfo ON institutionsinfo.institution = institutions.id WHERE institutionsinfo.id = $row->id";

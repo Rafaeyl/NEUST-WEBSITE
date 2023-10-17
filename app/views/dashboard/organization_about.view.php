@@ -330,10 +330,6 @@
                                 </td>
                               </tr>
                           <?php endforeach;?>
-                        <?php else:?>
-                        <tr>
-                            <h1>No results found. Plead Add Information </h1>
-                        </tr>
                         <?php endif;?>
                         
                       </tbody>

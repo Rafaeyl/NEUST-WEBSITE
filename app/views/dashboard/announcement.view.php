@@ -2,7 +2,7 @@
 
 
 <?php if ($action == 'new'): ?>
-
+  <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -29,14 +29,9 @@
                     <input value="<?= old_value('title') ?>" type="text" class="form-control text-center" id="title" name="title"
                       placeholder="Enter title" required>
                   </div>
-                  <div class="col-md-12 mx-auto text-center">
+                  <div class="col-md-12 mx-auto text-center w-75">
                     <label for="description" class="form-label">Announcement's Description</label>
-                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description')?></textarea>
-                  </div>
-                  <div class="col-md-12 mx-auto w-75 text-center">
-                    <label for="list_order" class="form-label">List Order</label>
-                    <input value="<?= old_value('list_order') ?>" type="number" class="form-control text-center" id="list_order"
-                      name="list_order" placeholder="Enter a number for list order" required>
+                    <textarea rows="8"name="description" class="form-control mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description')?></textarea>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
                     <label for="date" class="form-label">Date</label>
@@ -84,6 +79,25 @@
                   img.src = URL.createObjectURL(file);
                 }
               </script>
+                <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+                  <script src="<?=ROOT?>assets/main/summernote/summernote-lite.min.js"></script>
+                  <script>
+                  $('#summernote').summernote({
+                    placeholder: 'Enter Annnouncements',
+                    tabsize: 2,
+                    height: 300,
+                    width: 640,
+                    toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                    ]
+                  });
+                </script>
             </div>
           </div>
         </div>
@@ -93,7 +107,7 @@
 
 
 <?php elseif ($action == 'edit'): ?>
-
+  <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -121,14 +135,9 @@
                     <input value="<?= old_value('title',$row->title) ?>" type="text" class="form-control text-center" id="title" name="title"
                       placeholder="Enter title" required>
                   </div>
-                  <div class="col-md-12 mx-auto text-center">
+                  <div class="col-md-12 mx-auto text-center w-75">
                     <label for="description" class="form-label text-center">Description</label>
-                    <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description',$row->description)?></textarea>
-                  </div>
-                  <div class="col-md-12 mx-auto w-75 text-center">
-                    <label for="list_order" class="form-label">List Order</label>
-                    <input value="<?= old_value('list_order', $row->list_order) ?>" type="number" class="form-control text-center"" id="list_order"
-                        name="list_order" placeholder="Enter a number for list order" required>
+                    <textarea rows="8"name="description" class="form-control mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description" required><?=old_value('description',$row->description)?></textarea>
                   </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
                     <label for="date" class="form-label">Date</label>
@@ -177,6 +186,25 @@
                   img.src = URL.createObjectURL(file);
                 }
               </script>
+                 <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+                  <script src="<?=ROOT?>assets/main/summernote/summernote-lite.min.js"></script>
+                  <script>
+                  $('#summernote').summernote({
+                    placeholder: 'Enter Annnouncements',
+                    tabsize: 2,
+                    height: 300,
+                    width: 640,
+                    toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                    ]
+                  });
+                </script>
         </div>
       </div>
 
@@ -248,7 +276,6 @@
                     <th> Title</th>
                     <th> Description</th>
                     <th> Active/Inactive  </th>
-                    <th> Announcement Order </th>
                     <th> Date </th>
                     <th> Action</th>
                   </tr>
@@ -268,13 +295,14 @@
                           <?= esc(substr($row->title, 0,30)) . '...'?>
                         </td>
                         <td>
-                          <?= esc(substr($row->description, 0,30)) . '...'?>
+                          <?php 
+                                $des = strip_tags($row->description); 
+                                $des2 = str_replace("&nbsp;", "",$des);
+                                echo substr($des2, 0,50);
+                            ?>
                         </td>
                         <td>
                           <?= esc($row->disabled) ?>
-                        </td>
-                        <td>
-                          <?= esc($row->list_order) ?>
                         </td>
                         <td>
                           <?= get_date($row->date) ?>

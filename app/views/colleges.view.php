@@ -74,7 +74,7 @@
         </div>
         <!-- About End -->
 
-    <div class="ftco-section py-5 mt-5">
+    <div class="ftco-section py-5 mt-5 bg-light">
          <!-- Contact Start -->
          <div class="container-xxl py-5">
             <div class="container">
@@ -178,7 +178,7 @@
     <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Our Officers</h6>
+                    <h6 class="section-title text-center text-primary text-uppercase"> Officers</h6>
                     <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
                 </div>
                 <div class="row g-4 justify-content-center">
@@ -203,7 +203,45 @@
             </div>
     </div>
     <!-- Team End -->
-
+    
+<section class="ftco-section bg-light">
+	<div class="container-fluid px-4">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase"> Instructors</h6>
+            <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Instructors</span></h1>
+        </div>
+		<div class="row justify-content-center">
+			<?php if (!empty($teachers)): ?>
+				<?php foreach ($teachers as $teacher): ?>
+					<div class="col-md-6 col-lg-4 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
+							</div>
+							<div class="text pt-3 text-center">
+								<h3>
+									<?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
+								</h3>
+								<span class="position mb-2">
+									<?= esc($teacher->position) ?>
+								</span>
+								<div class="faded">
+									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+									<ul class="ftco-social text-center">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			<?php else: ?>
+				<div class="bg-danger p-5 mb-5 mx-auto text-center">
+					<h2 class="lead display-4">NO TEACHERS AVAILABLE</h2>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>
 <?php else: ?>
     <div class="container">
         <div class=" p-5 my-5 bg-danger">
@@ -215,4 +253,6 @@
         </div>
     </div>
 <?php endif; ?>
-    <?php include '../app/views/includes/footer.view.php'; ?>
+
+
+<?php include '../app/views/includes/footer.view.php'; ?>

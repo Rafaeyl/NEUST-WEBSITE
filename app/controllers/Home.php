@@ -100,24 +100,36 @@ class Home
 		$url = explode("/", $url);
 
 		$data['slug'] = $url[1] ?? 'home';
+
 		// News
 		$news = new Institution();
 
 		$news->table          = 'news';
-		$news->allowedColumns = [
+		$news->order_type    = 'desc';
+		$news->limit         = 4;
+		$sql                 = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE news.isArchived='no' order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
+		$data['news']        = $this->query($sql);
+		$data['news_footer'] = $this->query_row($sql);
 
-			'category_id',
-			'title',
-			'description',
-			'image',
-			'date',
-			'slug',
-		];
-		$news->order_type     = 'desc';
-		$news->limit          = 3;
-		$sql                  = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id  order by $news->order_column $news->order_type limit $news->limit offset $news->offset";
-		$data['news']         = $this->query($sql);
-		$data['news_footer']  = $this->query_row($sql);
+		// SldiwShow
+		$slideShow = new Institution();
+
+		$slideShow->table      = 'news';
+		$slideShow->order_type = 'desc';
+		$slideShow->limit      = 10;
+		$sql                   = "select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE news.isArchived='no' and news.isHeadline = 'Yes' order by $slideShow->order_column $slideShow->order_type limit $slideShow->limit offset $slideShow->offset";
+		$data['slideShow']     = $this->query($sql);
+
+		// News
+		$news = new Institution();
+
+
+		$sql_gallery  = "SELECT gallery_images.file_name from gallery join gallery_images on gallery_images.gallery_id = gallery.id where gallery.id = (SELECT id as p FROM `gallery` ORDER BY id desc limit 1)";
+		$data['gallery_home'] = $this->query($sql_gallery);
+
+		$sql_name  = "SELECT gallery.title from gallery join gallery_images on gallery_images.gallery_id = gallery.id where gallery.id = (SELECT id as p FROM `gallery` ORDER BY id desc limit 1) limit 1";
+		$data['gallery_name'] = $this->query($sql_name);
+
 		// Contact Form - Send Email
 		try {
 			if (isset($_POST['send'])) {
@@ -689,7 +701,24 @@ class Home
 				$data['SETTINGS'][$setting_row->setting] = $setting_row->value;
 			}
 		}
+		
+		// Calendar
+		$academic_calendar                 = new Institution();
+		$academic_calendar->table          = 'academic_calendar';
+		$academic_calendar->order_type     = 'asc';
+		$academic_calendar->order_column   = 'list_order';
+		$academic_calendar->allowedColumns = [
+			'title',
+			'date',
+		  	'type',
+			'list_order',
+		];
 
+		$sql                 = "select * FROM $academic_calendar->table WHERE type= 'general' order by $academic_calendar->order_column $academic_calendar->order_type ";
+		$data['general'] = $this->query($sql);
+
+		$sql1                = "select * FROM $academic_calendar->table WHERE type= 'holiday' order by $academic_calendar->order_column $academic_calendar->order_type ";
+		$data['holiday'] = $this->query($sql1);
 
 		$data['title'] = "Academic Calendar";
 		$this->view('home/academic_calendar', $data);

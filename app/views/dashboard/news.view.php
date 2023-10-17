@@ -31,13 +31,17 @@
                     <label for="title" class="form-label fw-bolder">Title</label>
                     <input value="<?= old_value('title') ?>" type="text" class="form-control text-center" id="title" name="title"
                       placeholder="Enter title">
-
                   </div>
-                  <div class="col-md-12 mx-auto text-center w-75">
+                  <div class="col-md-12 mx-auto text-center w-75 my-3">
                     <label for="description" class="form-label fw-bolder">Description</label>
-                    <textarea rows="8"name="description" class="form-control mx-auto " id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description')?></textarea>
+                    <textarea rows="8" name="description" class="form-control mx-auto " id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description')?></textarea>
                   </div>
-                  <div class="col-md-12 mx-auto w-75 text-center">
+                  <div class="col-md-12 mx-auto w-75 my-3 text-center">
+                    <label for="title" class="form-label fw-bolder">Author</label>
+                    <input value="<?= old_value('author') ?>" type="text" class="form-control text-center" id="author" name="author"
+                      placeholder="Enter author">
+                  </div>
+                  <div class="col-md-12 mx-auto w-75 my-3 text-center">
                       <label for="role" class="form-label fw-bolder">Category</label>
                       <select id="institution" class="form-select" aria-label="Default select example" name="category_id">
                         <?php if(!empty($categories)):?>
@@ -48,7 +52,28 @@
                           <option value="">No category Available</option>
                         <?php endif;?>
                       </select>
-                    </div> 
+                  </div> 
+                  <div class="row d-flex justify-content-center mx-auto my-3 text-center">
+                    <label for="role" class="form-label fw-bolder">Headline</label>
+                      <div class="col-lg-4 ">
+                        <div class="form-group row">
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isHeadline" id="isHeadline1"
+                                  value="Yes"<?=old_checked('isHeadline','Yes')?>> Yes </label>
+                              </div>
+                          </div>
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isHeadline" id="isHeadline2"
+                                  value="No" <?=old_checked('isHeadline','No')?>> No </label>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
                   </div>
@@ -79,7 +104,7 @@
         placeholder: 'News content',
         tabsize: 2,
         height: 300,
-        width: 640,
+        width: 730,
         toolbar: [
         // [groupName, [list of button]]
         ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -125,6 +150,11 @@
                     <label for="description" class="form-label fw-bolder text-center">Description</label>
                     <textarea rows="8"name="description" class="form-control mx-auto" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description',$row->description)?></textarea>
                   </div>
+                  <div class="col-md-12 mx-auto w-75 my-3 text-center">
+                    <label for="title" class="form-label fw-bolder">Author</label>
+                    <input value="<?= old_value('author',$row->author) ?>" type="text" class="form-control text-center" id="author" name="author"
+                      placeholder="Enter author">
+                  </div>
                   <div class="col-md-12 mx-auto w-75 text-center">
                       <label for="role" class="form-label fw-bolder">Category</label>
                       <select id="category_id" class="form-select" aria-label="Default select example" name="category_id">
@@ -137,6 +167,48 @@
                         <?php endif;?>
                       </select>
                     </div> 
+                    <div class="row d-flex justify-content-center mx-auto mt-5 text-center">
+                    <label for="role" class="form-label fw-bolder">Headline</label>
+                      <div class="col-lg-4 ">
+                        <div class="form-group row">
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isHeadline" id="isHeadline1"
+                                  value="Yes"<?=old_checked('isHeadline','Yes',$row->isHeadline)?>> Yes </label>
+                              </div>
+                          </div>
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isHeadline" id="isHeadline2"
+                                  value="No" <?=old_checked('isHeadline','no',$row->isHeadline)?>> No </label>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mx-auto my-3 text-center">
+                    <label for="role" class="form-label fw-bolder">Archived</label>
+                      <div class="col-lg-4 ">
+                        <div class="form-group row">
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isArchived" id="isArchived1"
+                                  value="yes"<?=old_checked('isArchived','yes',$row->isArchived)?>> Yes </label>
+                              </div>
+                          </div>
+                          <div class="col-sm-5">
+                              <div class="form-check">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="isArchived" id="isArchived2"
+                                  value="no" <?=old_checked('isArchived','no',$row->isArchived)?>> No </label>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
                   </div>
@@ -257,8 +329,11 @@
                             <th>#</th>
                             <th>Image</th>
                             <th>News title</th>
+                            <th>Author</th>
                             <th>Category</th>
                             <th>Date</th>
+                            <th>Headline</th>
+                            <th>Archived</th>
                             <th>Action</th>
                           <!-- <th> Action</th> -->
                         </tr>
@@ -277,8 +352,11 @@
                                  $query  = "select news_categories.name FROM news_categories JOIN news ON news.category_id = news_categories.id WHERE news.id = $row->id";
                                   $orgname = $this->query($query);
                                 ?>
-                                <td><?=$orgname[0]->name?></td>
+                                <td><?= esc($row->author) ?></td>
+                                <td><?= esc($orgname[0]->name)?></td>
                                 <td><?= get_date($row->date) ?></td>
+                                <td><?= esc($row->isHeadline) ?></td>
+                                <td><?= esc($row->isArchived) ?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">
                                     <a  href="<?=ROOT?>dashboard/news/edit/<?=$row->id?>">

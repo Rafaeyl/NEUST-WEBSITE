@@ -12,8 +12,12 @@
         $limit = 5;
         $offset = ($page-1)*$limit;
 
+        // Previous Page
+        $previous_page = $page-1;
+        // Next Page
+        $next_page = $page+1;
         
-        $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id ORDER BY date desc limit $offset, $limit");
+        $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id WHERE news.isArchived='no' ORDER BY date desc limit $offset, $limit");
 
     ?>
 
@@ -78,22 +82,45 @@
                         </center>';
                     } 
                     ?> 
-
                     <!-- Pagination Begin -->
+                
+                    <?php $pages = ceil($total_news/$limit);?>
+
+                    <?php if($total_news > $limit): ?>
+                        <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-md m-0">
+
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0" 
+                                <?php if($page > 1) { ?> href="<?=ROOT?>newsAndEvents?page=<?=$previous_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+                                </a>
+                            </li>
+
+
+                            <?php for ($i=1; $i <= $pages ; $i++) {?>
+                            <li class="page-item <?=($i == $page) ? $active="active":"";?>">
+                                <a href="<?=ROOT?>newsAndEvents?page=<?=$i?>" class="page-link"><?=$i  ?></a>
+                            </li>
+                            <?php }?>
+
+
+                            <li class="page-item <?= ($page >= $pages) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0 " 
+                                <?php if($page < $pages) { ?> href="<?=ROOT?>newsAndEvents?page=<?=$next_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="p-10">
+                        <strong>Page <?=$page ?> of  <?=$pages ?>  </strong>
+                    </div>
+                    <?php endif; ?>
+                <!-- Pagination End -->
                     
-                        <?php $pages = ceil($total_news/$limit);?>
-
-                        <?php if($total_news > $limit): ?>
-                            <ul class="pagination pt-2 pb-5">
-
-                                <?php for ($i=1; $i <= $pages ; $i++) {?>
-                                <li class="page-item <?=($i == $page) ? $active="active":"";?>">
-                                    <a href="<?=ROOT?>newsAndEvents?page=<?=$i?>" class="page-link"><?=$i  ?></a>
-                                </li>
-                                <?php }?>
-                            </ul>
-                        <?php endif; ?>
-                    <!-- Pagination End -->
+                  
+                
             </div>
             <div class="col-lg-4 sidebar ftco-animate">
                 <div class="sidebar-box ftco-animate">
@@ -156,20 +183,11 @@
 
                 <div class="sidebar-box ftco-animate">
                     <h3 class="title">Archives</h3>
-                    <ul class="categories">
-                        <?php 
-                            $query = "SELECT DATE_FORMAT(date, '%M %Y') AS 'article', DATE_FORMAT(date, '%m') AS 'm',DATE_FORMAT(date, '%Y') 
-                            AS 'y', COUNT(id) AS 'total' FROM `news` GROUP BY DATE_FORMAT(date, '%Y %M') LIMIT 5";
-                            $articles = mysqli_query($db, $query);
 
-                            while($row = mysqli_fetch_assoc($articles)){ ?>
-                                    <li><a href="#"><?=$row['article']?><span>(<?=$row['total']?>)</span></a></li>
-                                <?php
-                            }
-                        ?>
-                        
-
-                    </ul>
+                    <a href="<?=ROOT?>newsAndEvents" >
+                    <span class="fa-solid fa-arrow-right "></span> &nbsp;See archives
+                      
+                    </a>
                 </div>
 
 

@@ -56,16 +56,6 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="mdi mdi-menu"></span>
         </button>
-        <div class="search-field d-none d-md-block">
-          <form class="d-flex align-items-center h-100" action="#">
-            <div class="input-group">
-              <div class="input-group-prepend bg-transparent">
-                <i class="input-group-text border-0 mdi mdi-magnify"></i>
-              </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
-            </div>
-          </form>
-        </div>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
@@ -148,6 +138,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/academic_calendar">
+              <span class="menu-title">Academic Calendar</span>
+              <i class="mdi mdi-calendar menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/teachers">
               <span class="menu-title">Teachers</span>
               <i class="mdi mdi-account-multiple menu-icon"></i>
@@ -186,20 +182,11 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#album" aria-expanded="false"
-              aria-controls="album">
-              <span class="menu-title">School Gallery</span>
-              <i class="menu-arrow"></i>
+           <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT ?>galleryAdmin">
+              <span class="menu-title">Gallery</span>
               <i class="mdi mdi-folder-multiple-image menu-icon"></i>
             </a>
-            <div class="collapse" id="album">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/album">Album</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/gallery"> Gallery</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/settings">

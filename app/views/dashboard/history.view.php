@@ -243,7 +243,7 @@
                                   <img src="<?= get_image($row->image) ?>" style="width: 50px;height:50px;object-fit:cover; border-radius=100%;">
                                 </td>
                                 <td><?= esc($row->title) ?></td>
-                                <td><?= esc($row->description) ?></td>
+                                <td><?=substr($row->description, 0,50) . '...' ?></td>
                                 <td><?= esc($row->date) ?></td>
                                 <td><?= esc($row->list_order) ?></td>
                                 <td>

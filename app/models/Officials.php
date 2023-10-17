@@ -19,6 +19,7 @@ class Officials
 	public $allowedColumns = [
 
 		'image',
+		'institution_id',
 		'official_name',
 		'position',
 		'suffix',

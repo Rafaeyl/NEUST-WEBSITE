@@ -17,20 +17,27 @@
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="<?=ROOT?>assets/main/css/aos.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/announcement.css">
 
+    <link rel="stylesheet" href="<?=ROOT?>assets/main/css/aos.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/ionicons.min.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/flaticon.css">	
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/icomoon.css">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/style.css?t=<?= time();?>">
 	<link rel="stylesheet" href="<?=ROOT?>assets/main/css/custom.css?t=<?= time();?>">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/slider/style.css?t=<?= time();?>">
 	<script src="<?=ROOT?>assets/main/js/jquery.min.js"></script>
-  <script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
+  	<script src="<?=ROOT?>assets/main/js/jquery-migrate-3.0.1.min.js"></script>
 
-	 <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
+	<link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
 	<link href="<?=ROOT?>assets/main/fontawesome/css/all.css" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+
+	<!-- swiper -->
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/swiper.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/app.css">
+
   </head>
   <body>
 	  <div class="bg-top navbar-light">
@@ -97,11 +104,15 @@
 								<?php endif;?>
 							</div>
 						</div>
-						<!-- <li class="nav-item  <?=$slug == 'teachers' ? 'active' : ''?>"><a href="http://localhost/NEUST-PAPAYA/public/home/teachers" class="nav-link">Teachers</a></li> -->
-						<li class="nav-item  <?=$slug == 'faqs' ? 'active' : ''?>"><a href="<?=ROOT?>home/faqs#FAQs" class="nav-link ">FAQS</a></li>
 						<li class="nav-item  <?=$slug == 'admission' ? 'active' : ''?>"><a href="<?=ROOT?>home/admission#admission" class="nav-link ">Admission</a></li>
 					 	<li class="nav-item  <?=$slug == 'contact' ? 'active' : ''?>"><a href="<?=ROOT?>home/contact#contact" class="nav-link">Contact</a></li>
-						<li class="nav-item  <?=$slug == 'academic_calendar' ? 'active' : ''?>"><a href="<?=ROOT?>home/academic_calendar#academic_calendar" class="nav-link">Academic Calendar</a></li>
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Others</a>
+							<div class="dropdown-menu rounded-0 m-0">
+								<a href="<?=ROOT?>home/academic_calendar" class="dropdown-item ">Academic Calendar</a>
+								<a href="<?=ROOT?>home/faqs" class="dropdown-item">Frequently Asked Questions</a>
+							</div>
+						</div>
 				   </ul>
 				 </div>
 			 </nav>

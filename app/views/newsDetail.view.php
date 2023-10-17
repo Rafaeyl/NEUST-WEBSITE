@@ -32,7 +32,9 @@
             <div class="tag-widget post-tag-container  mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link bg-primary text-white"><?=$row['name'] ?? 'Uncategorized' ?></a>
+               
                 <span class="float-right fw-bolder text-primary"><?=get_date($row['date'] )?></span>
+                <span class="float-right fw-bolder text-primary"><?=$row['author'] ?>, &nbsp;</span>
               </div>
             </div>
             </div>
@@ -96,14 +98,13 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3 class="title">Archives</h3>
-              <ul class="categories">
-                <li><a href="#">December 2018 <span>(30)</span></a></li>
-                <li><a href="#">Novemmber 2018 <span>(20)</span></a></li>
-                <li><a href="#">September 2018 <span>(6)</span></a></li>
-                <li><a href="#">August 2018 <span>(8)</span></a></li>
-              </ul>
-            </div>
+                    <h3 class="title">Archives</h3>
+
+                    <a href="<?=ROOT?>newsAndEvents" >
+                    <span class="fa-solid fa-arrow-right "></span> &nbsp;See archives
+                      
+                    </a>
+                </div>
 
 
             <div class="sidebar-box ftco-animate">

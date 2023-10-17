@@ -42,11 +42,6 @@
                   <div class="d-grid gap-2">
                     <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
                   </div>
-
-                  <div class="mt-4 text-center">
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div>
-                  
                 </form>
               </div>
             </div>

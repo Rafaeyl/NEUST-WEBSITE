@@ -13,9 +13,8 @@
             </div>
         </div>
     </div>
-
 </section>
-<div class="container-fluid tite">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 ">
             <div class="page-content">
@@ -23,16 +22,15 @@
                     <div class="row ">
 
                         <!-- Sidebar Start -->
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
 
-                            <!-- Recent Post Start -->
                             <div class="mb-2 wow slideInUp" data-wow-delay="0.1s">
                                 <div class="section-title-gallery section-title-gallery-sm position-relative pb-3 mb-4">
                                     <h3 class="mb-0">Recent Albums</h3>
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_1.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -40,7 +38,7 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_2.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -48,7 +46,7 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_3.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -56,7 +54,7 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_4.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -64,22 +62,20 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_5.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
                                     </a>
                                 </div>
                             </div>
-                            <!-- Recent Post End -->
-                            <!-- Archive Start -->
                             <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
                                 <div class="section-title-gallery section-title-gallery-sm position-relative pb-3 mb-4">
                                     <h3 class="mb-0">Archives</h3>
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_1.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -87,7 +83,7 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_2.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -95,7 +91,7 @@
                                 </div>
                                 <div class="d-flex rounded overflow-hidden mb-3">
                                     <img class="img-fluid" src="<?= ROOT ?>/assets/main/images/image_3.jpg"
-                                        style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                                        style="width: 75px; height: 75px; object-fit: cover;" alt="">
                                     <a href=""
                                         class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Lorem ipsum
                                         dolor sit amet adipis elit
@@ -109,80 +105,33 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Archive End -->
-                        </div>
-                        <div class="col-lg-8 wow slideInUp" data-wow-delay="0.1s">
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-6">
-                                    <button class="item" data-modal="true" data-gallery="Food"
-                                        aria-label="Open Food Image Gallery">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_1.jpg" alt="">
-                                        <h4 class="text-center">CS-GO<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </button>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <button class="item" data-modal="true" data-gallery="Mountains"
-                                        aria-label="Open Mountains Image Gallery">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_2.jpg" alt="">
-                                        <h4 class="text-center">PubG<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </button>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <button class="item" data-modal="true" data-gallery="Plants"
-                                        aria-label="Open Plants Image Gallery">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_3.jpg" alt="">
-                                        <h4 class="text-center">Dota2<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </button>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_4.jpg" alt="">
-                                        <h4 class="text-center">CS-GO<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_5.jpg" alt="">
-                                        <h4 class="text-center">Warface<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_1.jpg" alt="">
-                                        <h4 class="text-center">Warcraft<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_2.jpg" alt="">
-                                        <h4 class="text-center">Warcraft<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_3.jpg" alt="">
-                                        <h4 class="text-center">Warcraft<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="item">
-                                        <img src="<?= ROOT ?>/assets/main/images/image_4.jpg" alt="">
-                                        <h4 class="text-center">Warcraft<br></h4>
-                                        <span class="info"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                                    </div>
-                                </div>
+                        </div> -->
+                        <div class="col-lg-12 wow slideInUp" data-wow-delay="0.1s">
+                            <div class="row d-flex justify-content-center">
+                                <?php if (!empty($albums)): ?>
+                                    <?php foreach ($albums as $album): ?>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="item">
+
+                                                <a href="<?= ROOT ?>gallery/<?= $album->idg ?>">
+                                                    <img src="
+                                                <?php if (!empty($album->file_name)) { ?>
+                                                    <?= ROOT . 'uploads/' . $album->file_name; ?>" <?php } ?> alt="">
+                                                </a>
+                                                <a href="<?= ROOT ?>gallery/<?= $album->idg ?>">
+                                                    <h4 class="text-center"><?= $album->title ?><br></h4>
+                                                </a>
+                                                <span class="info"><i class="fa-regular fa-calendar-days"></i>
+                                                    <?= get_date($album->modified) ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 wow slideInUp d-flex justify-content-center" data-wow-delay="0.1s">
                                 <nav aria-label="Page navigation">
-                                    <ul class="pagination pagination-lg m-0">
+                                    <ul class="pagination pagination-md m-0">
                                         <li class="page-item disabled">
                                             <a class="page-link rounded-0" href="#" aria-label="Previous">
                                                 <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
@@ -201,81 +150,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <button onclick="test()">test</button>
-                <!-- <div class="gaming-library  mb-5 bg-light p-3">
-                    <div class="col-lg-12">
-                        <div class="heading-section">
-                            <h4><em>Your Gaming</em> Library</h4>
-                        </div>
-                        <div class="item">
-                            <ul>
-                                <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                                <li>
-                                    <h4>Dota 2</h4><span>Sandbox</span>
-                                </li>
-                                <li>
-                                    <h4>Date Added</h4><span>24/08/2036</span>
-                                </li>
-                                <li>
-                                    <h4>Hours Played</h4><span>634 H 22 Mins</span>
-                                </li>
-                                <li>
-                                    <h4>Currently</h4><span>Downloaded</span>
-                                </li>
-                                <li>
-                                    <div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="item">
-                            <ul>
-                                <li><img src="assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
-                                <li>
-                                    <h4>Fortnite</h4><span>Sandbox</span>
-                                </li>
-                                <li>
-                                    <h4>Date Added</h4><span>22/06/2036</span>
-                                </li>
-                                <li>
-                                    <h4>Hours Played</h4><span>740 H 52 Mins</span>
-                                </li>
-                                <li>
-                                    <h4>Currently</h4><span>Downloaded</span>
-                                </li>
-                                <li>
-                                    <div class="main-border-button"><a href="#">Donwload</a></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="item last-item">
-                            <ul>
-                                <li><img src="assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
-                                <li>
-                                    <h4>CS-GO</h4><span>Sandbox</span>
-                                </li>
-                                <li>
-                                    <h4>Date Added</h4><span>21/04/2036</span>
-                                </li>
-                                <li>
-                                    <h4>Hours Played</h4><span>892 H 14 Mins</span>
-                                </li>
-                                <li>
-                                    <h4>Currently</h4><span>Downloaded</span>
-                                </li>
-                                <li>
-                                    <div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="main-button">
-                            <a href="profile.html">View Your Library</a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -290,19 +165,5 @@
         speed: 600,
     })
 </script>
-<script>
-    async function test() {
-        const data = await fetch('../app/views/others/get-album.php');
-        const res = await data.json();
-        const album = res.data;
-        const galleryItem = {
-            name: album.album_name,
-            images: [...JSON.parse(album.images_info)]
-        }
 
-        console.log( JSON.stringify(galleryItem));
-        return JSON.stringify(galleryItem);
-    }
-
-</script>
 <?php include '../app/views/includes/footer.view.php'; ?>

@@ -6,14 +6,14 @@
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h1>Instructors</h1>
+        <h1>  Instructors</h1>
       </div>
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h2 class="mb-4 text-center">Add new Instructor</h2>
-              <form method="post" enctype="multipart/form-data">
+              <h2 class="mb-4 text-center">ADD an Instructor</h2>
+                <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
                   <div class="col-md-12 text-center mb-5">
                     <label class="mb-3 fw-bolder lead"> Image</label><br>
@@ -27,40 +27,52 @@
                   <div class="col-md-6 text-center">
                     <label for="name" class="form-label">Name</label>
                     <input value="<?= old_value('name') ?>" type="name" class="form-control text-center" id="name" name="name"
-                      placeholder="Juan Dela Cruz">
+                      placeholder="Juan Dela Cruz" autocomplete="off" required>
                       <div><small class="text-danger"> <?= $teachers->getError('name') ?></small></div>
-
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="suffixes" class="form-label"> Academic Suffixes</label>
                     <input value="<?= old_value('suffixes') ?>" type="text" class="form-control text-center" id="suffixes"
-                      name="suffixes" placeholder="LPT,MIT">
+                      name="suffixes" placeholder="LPT,MIT" required>
                       <div><small class="text-danger"> <?= $teachers->getError('suffixes') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="position" class="form-label">Position</label>
                     <input value="<?= old_value('position') ?>" type="text" class="form-control text-center" id="position"
-                      name="position" placeholder="Academic Teacher">
+                      name="position" placeholder="Academic Teacher" required>
                       <div><small class="text-danger"> <?= $teachers->getError('position') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
-                    <label for="list_order" class="form-label">List Order</label>
-                    <input value="<?= old_value('list_order') ?>" type="number" class="form-control text-center" id="list_order"
-                      name="list_order" placeholder="Teacher order">
-                      <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
+                      <label for="list_order" class="form-label">List Order</label>
+                      <input value="<?= old_value('list_order') ?>" type="number" class="form-control text-center" id="list_order"
+                        name="list_order" placeholder="Teacher Order">
+                        <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
+                    </div>
+                  <div class="col-lg-4 mx-auto mb-3 text-center">
+                  <label for="role" class="form-label">College</label>
+                    <select id="institution_id" class="form-select" aria-label="Default select example" name="institution_id">
+                      <?php if(!empty($colleges)):?>
+                            <?php foreach($colleges as $college):?>
+                                <option <?=old_select('institution_id',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
+                            <?php endforeach;?>
+                        <?php else: ?>
+                          <option value="empty">No College Available</option>
+                        <?php endif;?>
+                    </select>
                   </div>
-                  <div class="col-6">
-                    <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
+                    </div>
+                    <div class="col-6">
+                        <a href="<?=ROOT?>dashboard/teachers" class="btn btn-gradient-secondary float-end btn-lg my-4">
+                            BACK
+                        </a>
+                    </div>
                   </div>
-                  <div class="col-6">
-                      <a href="<?=ROOT?>dashboard/teachers" class="btn btn-gradient-secondary float-end btn-lg my-4">
-                          BACK
-                      </a>
-                  </div>
-
                 </div>
 
-              </form>
+                </form>
               <script>
                 function display_image(file, e) {
                   let img = e.currentTarget.parentNode.querySelector("img");
@@ -99,36 +111,49 @@
                   <div class="col-md-6 text-center">
                     <label for="name" class="form-label">Name</label>
                     <input value="<?= old_value('name',$row->name) ?>" type="name" class="form-control text-center" id="name" name="name"
-                      placeholder="Juan Dela Cruz">
+                      placeholder="Juan Dela Cruz" autocomplete="off" required>
                       <div><small class="text-danger"> <?= $teachers->getError('name') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="suffixes" class="form-label"> Academic Suffixes</label>
                     <input value="<?= old_value('suffixes',$row->suffixes) ?>" type="text" class="form-control text-center" id="suffixes"
-                      name="suffixes" placeholder="LPT,MIT">
+                      name="suffixes" placeholder="LPT,MIT" required>
                       <div><small class="text-danger"> <?= $teachers->getError('suffixes') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="position" class="form-label">Position</label>
                     <input value="<?= old_value('position',$row->position) ?>" type="text" class="form-control text-center" id="position"
-                      name="position" placeholder="Academic Teacher">
+                      name="position" placeholder="Academic Teacher" required>
                       <div><small class="text-danger"> <?= $teachers->getError('position') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
-                    <label for="list_order" class="form-label">List Order</label>
-                    <input value="<?= old_value('list_order',$row->suffixes) ?>" type="number" class="form-control text-center" id="list_order"
-                      name="list_order" placeholder="Teacher Order">
-                      <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
+                      <label for="list_order" class="form-label">List Order</label>
+                      <input value="<?= old_value('list_order',$row->list_order) ?>" type="number" class="form-control text-center" id="list_order"
+                        name="list_order" placeholder="Teacher Order">
+                        <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
+                    </div>
+                  <div class="col-lg-4 mx-auto mb-3 text-center">
+                  <label for="role" class="form-label">College</label>
+                    <select id="institution_id" class="form-select" aria-label="Default select example" name="institution_id">
+                      <?php if(!empty($colleges)):?>
+                            <?php foreach($colleges as $college):?>
+                                <option <?=old_select('institution_id',$college->id,$row->institution_id)?> value="<?=$college->id?>"><?=$college->name?></option>
+                            <?php endforeach;?>
+                        <?php else: ?>
+                          <option value="empty">No College Available</option>
+                        <?php endif;?>
+                    </select>
                   </div>
-                  <div class="col-6">
-                    <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
+                    </div>
+                    <div class="col-6">
+                        <a href="<?=ROOT?>dashboard/teachers" class="btn btn-gradient-secondary float-end btn-lg my-4">
+                            BACK
+                        </a>
+                    </div>
                   </div>
-                  <div class="col-6">
-                      <a href="<?=ROOT?>dashboard/teachers" class="btn btn-gradient-secondary float-end btn-lg my-4">
-                          BACK
-                      </a>
-                  </div>
-
                 </div>
 
                 </form>
@@ -180,11 +205,11 @@
                     
                     <div class="col-md-6">
                       <label class="mt-4">Name</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->name)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=old_value('institution_id',$row->name)?>" disabled>
                     </div>
                     <div class="col-md-6">
                       <label class="mt-4">Position</label>
-                      <input class="form-control mt-3 text-center" value="<?=old_value('institution',$row->position)?>" disabled>
+                      <input class="form-control mt-3 text-center" value="<?=old_value('institution_id',$row->position)?>" disabled>
                     </div>
                   </div>
                 
@@ -222,8 +247,6 @@
               <div class="card">
                 <div class="card-body">
                   <div style="overflow-x:auto;">
-
-
                     <table class="table table-striped table-bordered" id="userTable">
                       <thead class="bg-gradient-dark">
                         <tr  class="text-white">
@@ -232,9 +255,9 @@
                           <th> Name</th>
                           <th> Academic Suffixes </th>
                           <th> Position</th>
+                          <th> College</th>
                           <th> List Order</th>
                           <th> Action </th>
-                          <!-- <th> Action</th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -250,6 +273,11 @@
                                 <td><?= esc($row->name) ?></td>
                                 <td><?= esc($row->suffixes) ?></td>
                                 <td><?= esc($row->position) ?></td>
+                                <?php
+                                $query  = "select institutions.name FROM institutions JOIN teachers ON teachers.institution_id = institutions.id WHERE teachers.id = $row->id";
+                                $orgname = $this->query($query);
+                                ?>
+                                <td><?=$orgname[0]->name?></td>
                                 <td><?= esc($row->list_order) ?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">

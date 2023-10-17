@@ -21,8 +21,12 @@
     $limit = 5;
     $offset = ($page-1)*$limit;
 
+      // Previous Page
+      $previous_page = $page-1;
+      // Next Page
+      $next_page = $page+1;
   
-    $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug' ORDER BY date desc limit $offset, $limit");
+    $query = $db->query("select news.*, news_categories.name from news join news_categories on news.category_id = news_categories.id where news_categories.slug = '$slug' and isArchived='no' ORDER BY date desc limit $offset, $limit");
 
 ?>
 
@@ -41,7 +45,7 @@
       </div>
     </section>
 
-    <section class="ftco-section bg-light">
+    <section class="ftco-section">
         <div class="container">
             <div class="row">
             <div class="col-lg-8 ftco-animate">
@@ -98,17 +102,37 @@
                     <?php $pages = ceil($total_news/$limit);?>
 
                     <?php if($total_news > $limit): ?>
-                        <ul class="pagination pt-2 pb-5">
+                        <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-md m-0">
+
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0" 
+                                <?php if($page > 1) { ?> href="<?=ROOT?>category/<?=$slug?>?page=<?=$previous_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+                                </a>
+                            </li>
+
 
                             <?php for ($i=1; $i <= $pages ; $i++) {?>
                             <li class="page-item <?=($i == $page) ? $active="active":"";?>">
                                 <a href="<?=ROOT?>category/<?=$slug?>?page=<?=$i?>" class="page-link"><?=$i  ?></a>
                             </li>
                             <?php }?>
+
+
+                            <li class="page-item <?= ($page >= $pages) ? 'disabled' : ''?>">
+                                <a class="page-link rounded-0 " 
+                                <?php if($page < $pages) { ?> href="<?=ROOT?>category/<?=$slug?>?page=<?=$next_page?>" <?php } else{ ?> href='' <?php }?> aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </li>
                         </ul>
+                    </nav>
+                    <div class="p-10">
+                        <strong>Page <?=$page ?> of  <?=$pages ?>  </strong>
+                    </div>
                     <?php endif; ?>
-                    <!-- Pagination End -->
-               
+                <!-- Pagination End -->
                    
                    
                 </div>
@@ -141,7 +165,7 @@
                         <?php endforeach; ?>
                         <?php else: ?>
                         <center>
-                            <h1 class="bg-danger py-3">NO CATEGORIES FOUND</h1>
+                            <h3 class="bg-danger py-3">NO CATEGORIES FOUND</h3>
                         </center>
                         <?php endif; ?>
 
@@ -164,19 +188,18 @@
                             </div>  
                         <?php  endforeach; ?>
                     <?php else: ?>
-                        <center><h1 class="bg-danger py-3">NO CATEGORIES FOUND</h1></center>
+                        <center><h3 class="bg-danger py-3 text-white">NO RECENT NEWS FOUND IN THIS CATEGORY</h3></center>
                     <?php endif;?> 
                     </div>
 
                     <div class="sidebar-box ftco-animate">
+                    <h3 class="title">Archives</h3>
 
-                        <h3 class="title">Archives</h3>
-                        <ul class="categories">
-                            
-                            <li><a href="#">December 2018 <span>(30)</span></a></li>
-                        </ul>
-
-                    </div>
+                    <a href="<?=ROOT?>newsAndEvents" >
+                    <span class="fa-solid fa-arrow-right "></span> &nbsp;See archives
+                      
+                    </a>
+                </div>
 
 
                     <div class="sidebar-box ftco-animate">

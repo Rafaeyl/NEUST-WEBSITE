@@ -1302,17 +1302,22 @@ class Dashboard
 
 		$data['title'] = "Teachers";
 		$data['action'] = $action;
-		$data['teachers'] = new Officials();
+		$data['teachers'] = new Institution();
 		
 		$data['teachers']->table = 'teachers';
+		$data['teachers']->order_type = 'asc';
 		$data['teachers']->allowedColumns = [
 			
 			'image',
+			'institution_id',
 		    'name',
 			'suffixes',
 		  	'position',
 			'list_order',
 	   ];
+
+	   $query = "SELECT * FROM institutions AS a WHERE institution='college' AND disabled = 'active'";
+	   $data['colleges'] = $this->query($query);
 
 		if ($action == 'new') {
 
@@ -1844,7 +1849,7 @@ class Dashboard
 			'disabled',
 		];
 		
-		$adminNewsCategories->order_type = 'asc';
+		$adminNewsCategories->order_type = 'desc';
 		$adminNewsCategories->limit = 10;
 		$data['categories'] = $adminNewsCategories->findAll();
 
@@ -1852,6 +1857,7 @@ class Dashboard
 		$data['news'] = new Institution();
 		
 		$data['news']->table = 'news';
+		$data['news']->order_type = 'desc';
 		$data['news']->allowedColumns = [
 			
 			'category_id',
@@ -1859,8 +1865,14 @@ class Dashboard
 			'description',
 		  	'image',
 			'date',
+			'author',
 			'slug',
+			'isHeadline',
+			'isArchived',
 	   ];
+
+	   // all table
+		$data['rows'] = $data['news']->findAll();
 
 		if ($action == 'new') {
 
@@ -1948,9 +1960,6 @@ class Dashboard
 				redirect('dashboard/news');
 			}
 		}
-
-		// all table
-		$data['rows'] = $data['news']->findAll();
 
 		$data['errors'] = $data['news']->errors;
 
@@ -2059,6 +2068,7 @@ class Dashboard
 		    'album_name',
 			'image',
 		  	'date_created',
+			'slug'
 	   ];
 
 		if($action == 'new')
@@ -2072,6 +2082,16 @@ class Dashboard
 					mkdir($folder, 0777, true);
 				}
 
+				$slug = str_to_url($_POST['album_name']);
+				
+				$query = "select id from news where slug = :slug limit 1";
+				$slug_row = $this->query($query, ['slug'=>$slug]);
+		
+				if($slug_row)
+				{
+					$slug .= rand(1000,9999);
+				}
+
 				if($album->validatee($_FILES, $_POST))
 				{
 					$destination = $folder . time() . $_FILES['image']['name'];
@@ -2081,7 +2101,7 @@ class Dashboard
 					$image_class->resize($destination);
 
 					$_POST['image'] = $destination;
-
+					$_POST['slug']  = $slug;
 					$album->insert($_POST);
 
 					redirect('dashboard/album');
@@ -2154,7 +2174,6 @@ class Dashboard
 			$this->view('access-denied');
 		}
 	}
-
 	public function gallery($action = null, $id = null)
 	{
 		$ses = new Session;
@@ -2163,9 +2182,23 @@ class Dashboard
 			redirect('login');
 		}
 
-		$data['title'] = "News Categories";
+		$data['title'] = "Gallery";
 		$data['action'] = $action;
 
+		// Album
+		$album = new Institution();
+
+		$album->table = 'album';
+		$album->allowedColumns = [
+			
+			'album_name',
+			'image',
+		  	'date_created',
+		];
+		$album->order_type = 'desc';
+		$data['albums'] = $album->findAll();
+
+		// Gallery
 		$gallery = new Institution();
 		$gallery->table = 'gallery';
 		$gallery->allowedColumns = [
@@ -2179,7 +2212,6 @@ class Dashboard
 		{
 			if($_SERVER['REQUEST_METHOD'] == "POST")
 			{
-				
 				$folder = "uploads/";
 				if(!file_exists($folder))
 				{
@@ -2257,7 +2289,7 @@ class Dashboard
 		$query = "select * from $gallery->table";
 		$data['rows'] = $this->query($query);
 
-		$data['$gallery'] = $gallery;
+		$data['gallery'] = $gallery;
 
 		
 		if( $ses->user('institute') == 'Admin')
@@ -2267,6 +2299,89 @@ class Dashboard
 		{
 			$this->view('access-denied');
 		}
+	}
+
+	public function academic_calendar($action = null, $id = null)
+	{
+
+		$ses = new Session;
+		if (!$ses->is_logged_in()) {
+
+			redirect('login');
+		}
+
+		$data['title'] = "News Categories";
+		$data['action'] = $action;
+
+		$academic_calendar = new Institution();
+		$academic_calendar->table = 'academic_calendar';
+		$academic_calendar->allowedColumns = [
+		    'title',
+			'date',
+		  	'type',
+			'list_order',
+	   ];
+
+		if($action == 'new')
+		{
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				
+				
+				if($academic_calendar->validatee($_FILES, $_POST))
+				{
+					$academic_calendar->insert($_POST);
+
+					redirect('dashboard/academic_calendar');
+				}
+			}
+		}else
+		if($action == 'edit')
+		{
+
+			$data['row'] = $academic_calendar->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+
+				if($academic_calendar->validatee($_POST, $id))
+				{
+ 
+					$academic_calendar->update($id, $_POST);
+
+					redirect('dashboard/academic_calendar');
+				}
+			}
+		}else
+		if($action == 'delete')
+		{
+			$data['row'] = $academic_calendar->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				$academic_calendar->delete($id);
+
+				redirect('dashboard/academic_calendar');
+				
+			}
+		}
+
+		$data['errors'] = $academic_calendar->errors;
+
+		$query = "select * from $academic_calendar->table";
+		$data['rows'] = $this->query($query);
+
+		$data['academic_calendar'] = $academic_calendar;
+
+		
+		if( $ses->user('institute') == 'Admin')
+		{
+			$this->view('dashboard/academic_calendar', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
 	}
 }
 

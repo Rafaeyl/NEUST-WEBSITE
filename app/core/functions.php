@@ -82,7 +82,14 @@ function get_img($filename = '')
 
 	return ROOT . '/assets/images/noimage.png';
 }
+function get_gallery($filename = '')
+{
 
+	if(file_exists($filename))
+		return ROOT . '/uploads'.$filename;
+
+	return ROOT . '/assets/images/noimage.png';
+}
 /** returns pagination links **/
 function get_pagination_vars():array
 {

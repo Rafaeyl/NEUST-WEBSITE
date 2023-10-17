@@ -50,6 +50,11 @@ class SchoolAlbum
 			}
 		}
 
+		// ALBUM
+
+		$sql = "SELECT P.id as idg, title, modified, file_name FROM `gallery` AS P LEFT JOIN gallery_images AS I ON (I.gallery_id = P.id AND I.id = (SELECT MAX(id) FROM gallery_images WHERE gallery_id=P.id))";
+		$data['albums']  = $this->query($sql);
+
 		$data['title'] = "School Album";
 			
         $this->view('schoolAlbum', $data);
