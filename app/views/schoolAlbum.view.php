@@ -129,7 +129,7 @@
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </div>
-                            <div class="col-12 wow slideInUp d-flex justify-content-center" data-wow-delay="0.1s">
+                            <!-- <div class="col-12 wow slideInUp d-flex justify-content-center" data-wow-delay="0.1s">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination pagination-md m-0">
                                         <li class="page-item disabled">
@@ -147,7 +147,7 @@
                                         </li>
                                     </ul>
                                 </nav>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -192,15 +192,6 @@
                     <?php endif;?> 
                     </div>
 
-                    <div class="sidebar-box ftco-animate">
-                    <h3 class="title">Archives</h3>
-
-                    <a href="<?=ROOT?>newsAndEvents" >
-                    <span class="fa-solid fa-arrow-right "></span> &nbsp;See archives
-                      
-                    </a>
-                </div>
-
 
                     <div class="sidebar-box ftco-animate">
                     <p><a href="<?=ROOT?>newsAndEvents" class="more">More News and Events

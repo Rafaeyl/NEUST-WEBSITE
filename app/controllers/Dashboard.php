@@ -94,6 +94,14 @@ class Dashboard
 
 					$_POST['image'] = $destination;
 
+					$email = $_POST['email'];
+					$password =$_POST['password'];
+					//send email here
+					$data['user']->send_mail($email, 'NEUST OFF CAMPUS WEBSITE USER REGISTRATION', 
+					"Proceed to the NEUST Papaya Off Campus using the login credentials below: ". "<br>".
+					"Email: " . $email . "<br>". "Password: " . $password
+					);
+
 					$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 					$_POST['date_created'] = date("Y-m-d H:i:s");
 					$_POST['date_updated'] = date("Y-m-d H:i:s");
@@ -105,6 +113,8 @@ class Dashboard
 					$_POST['institute'] = $institute[0]->institution;
 
 					$data['user']->insert($_POST);
+
+				
 					redirect('dashboard/user');
 				}
 			}
@@ -1313,6 +1323,7 @@ class Dashboard
 		    'name',
 			'suffixes',
 		  	'position',
+			'isFullTime',
 			'list_order',
 	   ];
 

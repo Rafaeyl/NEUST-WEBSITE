@@ -77,7 +77,7 @@ class AnnouncementDetails
 			$sql = "select * FROM announcements WHERE slug = '$slug'";
 			$data['row']  = $this->query_row($sql);
 			
-			$sql = "select * FROM announcements WHERE slug <> '$slug'";
+			$sql = "select * FROM announcements WHERE slug <> '$slug' LIMIT 20";
 			$data['announce']  = $this->query($sql);
 
             $this->view('announcementDetails', $data);

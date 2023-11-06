@@ -15,7 +15,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="<?=ROOT?>assets/dashboard/css/style2.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/dashboard/css/style.css?t=<?= time();?>">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="<?= ROOT ?>assets/dashboard/image-school/logo.ico" />
   </head>
@@ -41,6 +41,9 @@
 
                   <div class="d-grid gap-2">
                     <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-center align-items-center">
+                    <a href="<?=ROOT?>forgot" class="auth-link text-black">Forgot password?</a>
                   </div>
                 </form>
               </div>

@@ -21,7 +21,7 @@ if(isset($_POST['dataSubmit'])){
     // Get submitted input data 
     $title = $_POST['title']; 
     $description = $_POST['description']; 
-    $status_input = $_POST['status']; 
+    // $status_input = $_POST['status']; 
     $image_files = $_FILES['image_files']; 
     $id    = $_POST['id']; 
      
@@ -29,7 +29,7 @@ if(isset($_POST['dataSubmit'])){
     $proData = array( 
         'title'  => $title, 
         'description'  => $description, 
-        'status'  => $status_input 
+        // 'status'  => $status_input 
     ); 
      
     // Specify ID query string 
@@ -80,11 +80,23 @@ if(isset($_POST['dataSubmit'])){
                                 'file_name' => $fileName  
                             );  
                             $insertImage = $db->insert_image($imgData); 
+                                            
+                            $statusType = 'success'; 
+                            $statusMsg = 'Image/Images added Sucessfully!'.$errorMsg_img; 
+                            $sessData['postData'] = ''; 
+                            
+                            // Set redirect url 
+                            $redirectURL = 'http://localhost/NEUST-PAPAYA/public/galleryAdmin/index.php'; 
                         }else{  
                             $errorUpload .= $image_files['name'][$key].' | ';  
                         }  
                     }else{  
+                        $statusType = 'danger'; 
+                        $statusMsg = 'Only files of this type are allowed: jpg, jpeg, png, svg!'.$errorMsg_img; 
                         $errorUploadType .= $image_files['name'][$key].' | ';  
+                          // Set redirect url 
+                          $idd = $_POST['id'];
+                          $redirectURL = ROOT.  "galleryAdmin/addEdit?id=$idd"; 
                     }  
                 }  
                  
@@ -95,12 +107,6 @@ if(isset($_POST['dataSubmit'])){
                 $errorMsg_img = !empty($errorMsg)?'<span>'.$errorMsg.'</span>':''; 
             } 
  
-            $statusType = 'success'; 
-            $statusMsg = 'Product data has been submitted successfully!'.$errorMsg_img; 
-            $sessData['postData'] = ''; 
-             
-            // Set redirect url 
-            $redirectURL = 'http://localhost/NEUST-PAPAYA/public/galleryAdmin/index.php'; 
         }else{ 
             $statusMsg = 'Something went wrong, please try again!'; 
             // Set redirect url 
@@ -167,7 +173,7 @@ if(isset($_POST['dataSubmit'])){
         // Remove physical files from the server 
         if(!empty($prevData['images'])){ 
             foreach($prevData['images'] as $row){ 
-                @unlink($uploadDir.$row['file_name']); 
+                unlink($uploadDir.$row['file_name']); 
             } 
         } 
          

@@ -13,7 +13,6 @@
           <div class="card">
             <div class="card-body">
               <h2 class="mb-4">Add Contact Info</h2>
-              <p class="text-danger">Make sure to click and watch this <a href="https://youtu.be/sT2ZbN3etTk" target="_blank" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
               <?php if(!empty($row)):?>
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
@@ -22,11 +21,6 @@
                     <label for="email" class="form-label">Email</label>
                     <input value="<?= old_value('email',$row->email) ?>" type="email" class="form-control" id="email" name="email"
                       placeholder="Enter School's Email Address" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="password" class="form-label">Gmail App Password</label>
-                    <input value="<?= old_value('password',$row->password) ?>" type="text" class="form-control" id="password"
-                      name="password" placeholder="Enter your Gmail App Password" required>
                   </div>
                   <div class="col-md-6">
                     <label for="phone" class="form-label mt-3">Phone Number</label>
@@ -86,7 +80,6 @@
 
                       <tr><th>Facebook:</th><td><?=$row->facebook_link?></td></tr>
                       <tr><th>Email</th><td><?=$row->email?></td></tr>
-                      <tr><th>Gmail App Password</th><td><?=$row->password?></td></tr>
                       <tr><th>Phone</th><td><?=$row->phone?></td></tr>
                       <tr><th>Address</th><td><?=$row->address?></td></tr>
                       <tr><th>Action</th>

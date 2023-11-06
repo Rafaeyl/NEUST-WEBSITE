@@ -16,24 +16,25 @@
     <div class="container">
       <section class="my-5" id="">
         <div class="post-box-lg border">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="row align-items-center ml-1">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 bg-light p-5">
                     <div>
-                        <h2 class="text-center"><?= $row['title']; ?></h2>
+                        <h4 class="text-justify"><?= $row['title']; ?></h4>
                         <hr class="bg-primary">
                         <p><?= $row['description']; ?></p>
                         <div class="tag-widget post-tag-container">
                             <div class="tagcloud">
-                                <a href="#" class="tag-cloud-link bg-primary text-white"><?=$row['name'] ?? 'Uncategorized' ?></a>
                                 <span class="float-right fw-bolder"><?=get_date($row['date'] )?></span>
                             </div>
                         </div>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
+
+                <hr>
                 
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
-                        <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 300px; object-fit: contain;">
+                        <img src="<?=get_image($row['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 280px; object-fit: cover;">
                     </div><!-- end media -->
                 </div><!-- end col -->
             </div>
@@ -52,7 +53,7 @@
             <?php if(!empty($announce)):?>
                 <?php foreach($announce as $ann):?>
                     <div class="col-md-6 col-lg-4 ftco-animate my-2">
-                    <div class="post-box">
+                    <div class="post-box border">
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>"><img src="<?=get_image($ann->image)?>" alt="" class="post-img"></a>
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>" class="post-title"><?=$ann->title?></a>
                         <span class="post-date text-primary"><?=get_date($ann->date)?></span>

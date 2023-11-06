@@ -42,13 +42,7 @@
                       name="position" placeholder="Academic Teacher" required>
                       <div><small class="text-danger"> <?= $teachers->getError('position') ?></small></div>
                   </div>
-                  <div class="col-md-6 text-center">
-                      <label for="list_order" class="form-label">List Order</label>
-                      <input value="<?= old_value('list_order') ?>" type="number" class="form-control text-center" id="list_order"
-                        name="list_order" placeholder="Teacher Order">
-                        <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
-                    </div>
-                  <div class="col-lg-4 mx-auto mb-3 text-center">
+                  <div class="col-lg-6 mx-auto mb-3 text-center">
                   <label for="role" class="form-label">College</label>
                     <select id="institution_id" class="form-select" aria-label="Default select example" name="institution_id">
                       <?php if(!empty($colleges)):?>
@@ -58,6 +52,13 @@
                         <?php else: ?>
                           <option value="empty">No College Available</option>
                         <?php endif;?>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 mx-auto text-center">
+                    <label for="isFullTime" class="form-label">Designation</label>
+                    <select id="isFullTime" class="form-select" aria-label="Default select example" name="isFullTime">
+                      <option <?=old_select('isFullTime',"fulltime")?> value="fulltime" class="text-center">Full Time</option>
+                      <option <?=old_select('isFullTime',"text")?> value="parttime" class="text-center">Part Time</option>
                     </select>
                   </div>
                   <div class="row">
@@ -126,13 +127,7 @@
                       name="position" placeholder="Academic Teacher" required>
                       <div><small class="text-danger"> <?= $teachers->getError('position') ?></small></div>
                   </div>
-                  <div class="col-md-6 text-center">
-                      <label for="list_order" class="form-label">List Order</label>
-                      <input value="<?= old_value('list_order',$row->list_order) ?>" type="number" class="form-control text-center" id="list_order"
-                        name="list_order" placeholder="Teacher Order">
-                        <div><small class="text-danger"> <?= $teachers->getError('list_order') ?></small></div>
-                    </div>
-                  <div class="col-lg-4 mx-auto mb-3 text-center">
+                  <div class="col-lg-6 mx-auto mb-3 text-center">
                   <label for="role" class="form-label">College</label>
                     <select id="institution_id" class="form-select" aria-label="Default select example" name="institution_id">
                       <?php if(!empty($colleges)):?>
@@ -142,6 +137,13 @@
                         <?php else: ?>
                           <option value="empty">No College Available</option>
                         <?php endif;?>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 mx-auto text-center">
+                    <label for="isFullTime" class="form-label">Designation</label>
+                    <select id="isFullTime" class="form-select" aria-label="Default select example" name="isFullTime">
+                      <option <?=old_select('isFullTime','fulltime',$row->isFullTime)?> value="fulltime" class="text-center">Full Time</option>
+                      <option <?=old_select('isFullTime','parttime',$row->isFullTime)?> value="parttime" class="text-center">Part Time</option>
                     </select>
                   </div>
                   <div class="row">
@@ -254,9 +256,8 @@
                           <th> Image </th>
                           <th> Name</th>
                           <th> Academic Suffixes </th>
-                          <th> Position</th>
+                          <th> Part Time or Full Time</th>
                           <th> College</th>
-                          <th> List Order</th>
                           <th> Action </th>
                         </tr>
                       </thead>
@@ -272,13 +273,12 @@
                                 </td>
                                 <td><?= esc($row->name) ?></td>
                                 <td><?= esc($row->suffixes) ?></td>
-                                <td><?= esc($row->position) ?></td>
+                                <td><?= esc($row->isFullTime) ?></td>
                                 <?php
-                                $query  = "select institutions.name FROM institutions JOIN teachers ON teachers.institution_id = institutions.id WHERE teachers.id = $row->id";
+                                $query  = "select institutions.acronym FROM institutions JOIN teachers ON teachers.institution_id = institutions.id WHERE teachers.id = $row->id";
                                 $orgname = $this->query($query);
                                 ?>
-                                <td><?=$orgname[0]->name?></td>
-                                <td><?= esc($row->list_order) ?></td>
+                                <td><?=$orgname[0]->acronym?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">
                                     <a  href="<?=ROOT?>dashboard/teachers/edit/<?=$row->id?>">

@@ -261,7 +261,7 @@
     <?php else: ?>
       <?php $ses = new \Core\Session;  ?>
       <!-- partial -->
-      <div class="main-panel">
+      <div class="main-panel" id="organization_info">
         <div class="content-wrapper">
           <div class="page-header">
 
@@ -333,7 +333,7 @@
                     </div>
                   <!-- Organization Representative View -->
                   <?php elseif($ses->user('institute') == 'organization'):?>
-                      <table class="table table-bordered table-striped" >
+                      <table class="table table-bordered table-striped" id="userTable">
                         <thead class="bg-gradient-dark">
                           <tr class="text-white text-center" >
                             <th> Logo </th>
@@ -367,10 +367,6 @@
                                   </td>
                                 </tr>
                             <?php endforeach;?>
-                          <?php else:?>
-                          <tr>
-                              <h1 class="alert alert-danger text-center">No results found</h1>
-                          </tr>
                           <?php endif;?>
                           
                         </tbody>

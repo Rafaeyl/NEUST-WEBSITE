@@ -26,8 +26,8 @@
             <div class="container">
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+                        <h6 class="text-primary">About Us</h6>
                         <h2 class="mb-4"><span>About</span> Our Organization</h2>
-                        <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
                     </div>
                 </div><!-- end title -->
             
@@ -53,14 +53,75 @@
             </div><!-- end container -->
         </section> 
     
-    
+      <!-- Officers -->
+      <section class="ftco-section">
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+                <h6 class="text-primary">Officers</h6>
+                    <h2 class="mb-4"><span> Officers Of <?=esc($organizationInfo['name'])?></span></h2>
+                </div>
+            </div><!-- end title -->
+            
+            <div class="row text-center g-4 justify-content-center mt-5">
+                <?php if(!empty($organizationOfficials)):?>
+                    <?php foreach($organizationOfficials as $official): ?>
+                        <div class="col-lg-3 col-sm-4 wow fadeInUp">
+                            <div class="team-member">
+                                <img src="<?= get_image($official->image) ?>" alt="">
+                                <div style="min-height: 130px;">
+                                    <h5 class="my-3"><?=$official->official_name?></h5>
+                                    <p><?=$official->position?></p>
+                                </div>
+                            </div>
+                        </div>  
+                    <?php endforeach;?>
+                <?php else: ?>
+                    <p class="bg-danger mx-auto text-center text-white p-5">No Officers Available to this Organization.</p>
+                <?php endif;?>
+            </div>
+        </div>
+        <div id="important" class="important">
+   
+   <div class="important_bg">
+       <div class="container">
+       <div class="row">
+           <?php if(!empty($organizationAbout)):?>
+               <div class="col col-xs-12">
+               <div class="important_box">
+                   <h3 data-toggle="counter-up"><?= $organizationAbout['students'];?></h3>
+                   <span>Members</span>
+               </div>
+               </div>
+               <div class="col col-xs-12">
+               <div class="important_box">
+                   <h3 data-toggle="counter-up"><?= $organizationAbout['activities'];?></h3>
+                   <span>Activities</span>
+               </div>
+               </div>
+               <div class="col col-xs-12">
+               <div class="important_box">
+                   <h3 data-toggle="counter-up"><?= $organizationAbout['events'];?></h3>
+                   <span>Events</span>
+               </div>
+               </div>
+           <?php else: ?>
+               <p class="bg-danger mx-auto text-center text-white p-5">No Information Available to this Organization.</p>
+           <?php endif;?>
+       </div>
+       </div>
+   </div>
+</div>
+
+    </section>
       <!-- Contact Start -->
    <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="section-title row text-center mb-5">
+               
                 <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+                <h6 class="text-primary">Contact</h6>
                     <h2 class="mb-4"><span>Contact Us</span></h2>
-                    <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
                 </div>
             </div><!-- end title -->
             <?php
@@ -163,68 +224,8 @@
     </div>
     <!-- Contact End -->
 
- <div id="important" class="important">
-   
-    <div class="important_bg">
-        <div class="container">
-        <div class="row">
-            <?php if(!empty($organizationAbout)):?>
-                <div class="col col-xs-12">
-                <div class="important_box">
-                    <h3 data-toggle="counter-up"><?= $organizationAbout['students'];?></h3>
-                    <span>Members</span>
-                </div>
-                </div>
-                <div class="col col-xs-12">
-                <div class="important_box">
-                    <h3 data-toggle="counter-up"><?= $organizationAbout['activities'];?></h3>
-                    <span>Activities</span>
-                </div>
-                </div>
-                <div class="col col-xs-12">
-                <div class="important_box">
-                    <h3 data-toggle="counter-up"><?= $organizationAbout['events'];?></h3>
-                    <span>Events</span>
-                </div>
-                </div>
-            <?php else: ?>
-                <p class="bg-danger mx-auto text-center text-white p-5">No Information Available to this Organization.</p>
-            <?php endif;?>
-        </div>
-        </div>
-    </div>
-</div>
 
-    <!-- Officers -->
-    <section class="ftco-section bg-light">
-        <div class="container">
-            <div class="section-title row text-center">
-                <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
-                    <h2 class="mb-4"><span> Officers Of <?=esc($organizationInfo['name'])?></span></h2>
-                    <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
-                </div>
-            </div><!-- end title -->
-            
-            <div class="row text-center g-4 justify-content-center mt-5">
-                <?php if(!empty($organizationOfficials)):?>
-                    <?php foreach($organizationOfficials as $official): ?>
-                        <div class="col-lg-3 col-sm-4 wow fadeInUp">
-                            <div class="team-member">
-                                <img src="<?= get_image($official->image) ?>" alt="">
-                                <div style="min-height: 130px;">
-                                    <h5 class="my-3"><?=$official->official_name?></h5>
-                                    <p><?=$official->position?></p>
-                                </div>
-                            </div>
-                        </div>  
-                    <?php endforeach;?>
-                <?php else: ?>
-                    <p class="bg-danger mx-auto text-center text-white p-5">No Officers Available to this Organization.</p>
-                <?php endif;?>
-            </div>
-        </div>
-     
-    </section>
+  
     
 <?php else: ?>
     <div class="container">

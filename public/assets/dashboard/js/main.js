@@ -3,7 +3,8 @@
 
 
 $(document).ready(function () {
-    let table =  $('#userTable').DataTable();
+
+     $('#userTable').DataTable();
     
     
 });

@@ -547,9 +547,13 @@
   font-weight: 300;
   z-index: 0;
 }
+#FAQs .subheadings{
+  font-size: clamp(0.75rem, 0.5156rem + 0.75vw, 0.9375rem);
+}
+
 
 .myaccordion .card-header .heading h3 {
-  font-size: 16px;
+  font-size: clamp(0.75rem, 0.5156rem + 0.75vw, 0.9375rem);
   margin-bottom: 0;
   text-align: left;
 }
@@ -574,13 +578,31 @@
   box-shadow: 0px 7px 24px -19px rgba(0, 0, 0, 0.32);
 }
 
-.myaccordion .btn .icon {
-  width: 60px;
-  height: 60px;
-  z-index: 0;
-  background: #fd7e14;
-}
 
+@media (min-width: 200px) {
+  .myaccordion .btn .icon {
+    width: 45px;
+    height: 60px;
+    z-index: 0;
+    background: #fd7e14;
+  }
+}
+@media (min-width: 500px) {
+  .myaccordion .btn .icon {
+    width: 40px;
+    height: 60px;
+    z-index: 0;
+    background: #fd7e14;
+  }
+}
+@media (min-width: 992px) {
+  .myaccordion .btn .icon {
+    width: 60px;
+    height: 60px;
+    z-index: 0;
+    background: #fd7e14;
+  }
+}
 .myaccordion .btn .icon i {
   font-size: 20px;
   color: #fff;
@@ -1329,6 +1351,10 @@ transform: translateY(5px);
 .calendar_title h1{
   font-weight: 700;
   margin-bottom: 20px;
+  font-size: clamp(0.9375rem, 0.4911rem + 3.5714vw, 2.5rem);
+}
+.calendar_title h5{
+  font-size: clamp(0.75rem, 0.6071rem + 1.1429vw, 1.25rem);
 }
 
 .calendar_title h2{
@@ -1366,7 +1392,7 @@ transform: translateY(5px);
   color: white;
 }
 
-.explore_link .fa-solid {
+/* .explore_link .fa-solid {
   font-size: 10px;
   margin-right: 10px;
   border: 2px solid white;
@@ -1380,5 +1406,10 @@ transform: translateY(5px);
 
 .explore_link span:hover{
   color: #fd7e14;
-}
+} */
 
+/* admission */
+
+.admission-title{
+  color:blue;
+}

@@ -1,26 +1,26 @@
 <footer class="ftco-footer ftco-bg-dark ftco-section" style="margin-top:auto">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 text-primary">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="fa-solid fa-location-dot mr-2"> </span><span class="text"> Brgy. Conception, General Tinio, Nueva Ecija</span></li>
-	                <li><span class="fa-solid fa-phone mr-2"></span><span class="text"><?= $school_contact[0]->phone?></span></li>
-	                <li><span class="fa-solid fa-envelope mr-2"></span><span class="text"><?= $school_contact[0]->email?></span></li>
+	                <li><span class="fa-solid fa-phone mr-2"></span><a href="tel:+<?= $school_contact[0]->phone?>" class="text"><?= $school_contact[0]->phone?></a></li>
+	                <li><span class="fa-solid fa-envelope mr-2"></span><a href="mailto:<?= $school_contact[0]->email?>" class="text"><?= $school_contact[0]->email?></a></li>
 	              </ul>
 	            </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3">
+          <!-- <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61544.24564958052!2d120.96213983005357!3d15.402711909364873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339724981f72b52f%3A0xaab029753d9a2287!2sNueva%20Ecija%20University%20of%20Science%20and%20Technology%20-%20Papaya!5e0!3m2!1sen!2sph!4v1680485889693!5m2!1sen!2sph" 
             frameborder="0" style="border:0; max-height:250px;  min-height:200px;" allowfullscreen="" aria-hidden="false"
             tabindex="0" id="map"></iframe>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
+          </div> -->
+          <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5 ml-md-4">
               <h2 class="ftco-heading-2 text-primary">Links</h2>
               <ul class="list-unstyled">
@@ -33,7 +33,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 text-primary mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
@@ -69,7 +69,7 @@
   <script src="<?=ROOT?>assets/main/js/jquery.waypoints.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/jquery.stellar.min.js"></script>
   <script src="<?=ROOT?>assets/main/js/owl.carousel.min.js"></script>
-  <script src="<?=ROOT?>assets/main/slider/script.js"></script>
+  <script src="<?=ROOT?>assets/main/slider/script1.js?t=<?= time();?>"></script>
 
   <script src="<?=ROOT?>assets/main/swiperjs-slider/js/swiper.js"></script>
   <script src="<?=ROOT?>assets/main/swiperjs-slider/js/app.js"></script>

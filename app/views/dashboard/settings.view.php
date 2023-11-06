@@ -203,11 +203,11 @@
         <div class="page-header">
             <h1>
                 Settings &nbsp;
-                <a href="<?= ROOT ?>dashboard/settings/new" class="mb-4">
+                <!-- <a href="<?= ROOT ?>dashboard/settings/new" class="mb-4">
                     <button type="button" class="btn btn-gradient-primary btn-icon-text">
                     Add <i class="mdi mdi-account-plus btn-icon-append"></i>
                     </button>
-                </a>
+                </a> -->
             </h1>
         </div>
       <div class="row">

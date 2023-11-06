@@ -13813,7 +13813,8 @@ dl {
   line-height: 1.5; }
 
 .auth form .auth-link {
-  font-size: 0.875rem; }
+  font-size: 0.875rem; 
+}
   .auth form .auth-link:hover {
     color: initial; }
 

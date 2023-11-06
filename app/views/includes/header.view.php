@@ -40,17 +40,18 @@
 
   </head>
   <body>
+
 	  <div class="bg-top navbar-light">
 		<div class="data-info bg-darken">
 			<div class="container-lg mx-3 p-2">
 				<div class="row">
 					<div class="col-6 d-none d-md-block">
-						<span href="" class="text-white mr-4"><i class="fa-solid fa-phone mr-2"></i> <?= $school_contact[0]->phone?></span> 
-						<span href="" class="text-white "><i class="fa-solid fa-envelope"></i> <?= $school_contact[0]->email?></span> 
+						<a href="tel:+<?= $school_contact[0]->phone?>" class="text-white mr-4"><i class="fa-solid fa-phone mr-2"></i> <?= $school_contact[0]->phone?></a> 
+						<a href="mailto:<?= $school_contact[0]->email?>" class="text-white "><i class="fa-solid fa-envelope"></i> <?= $school_contact[0]->email?></a> 
 					</div>
 					<div class="col-md-6  col-sm-12 d-flex justify-content-end text-right">
-						<a href="https://119.93.173.77/enroll/" class="portal mr-4"><i class="fa-solid fa-pen"></i> Enrollment Portal</a> 
-						<a href="http://119.93.173.77:81/admission/" class="portal"><i class="fa-solid fa-building-columns"></i> Admmission Portal</a>
+						<a href="https://119.93.173.77/enroll/" class="portal mr-4" target="_blank"target="_blank"><i class="fa-solid fa-pen"></i> Enrollment Portal</a> 
+						<a href="http://119.93.173.77:81/admission/" class="portal" target="_blank"><i class="fa-solid fa-building-columns"></i> Admission Portal</a>
 					</div>
 				</div>
 			</div>
@@ -66,8 +67,8 @@
 		  </div>
 		  <div class="container-xxl bg-dark">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-darken ftco-navbar-light justify-content-end " id="ftco-navbar">
-				<button class="navbar-toggler bg-dark text-white text-center p-2" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				   <span class="oi oi-menu"></span>
+				<button class="navbar-toggler  text-white text-center p-2" style="background-color:#f1f1f1;"type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				   <span class="fa-solid fa-bars text-dark"></span>
 				 </button>
 				 <div class="collapse navbar-collapse " id="ftco-nav">
 				   <ul class="navbar-nav mx-auto">
@@ -78,6 +79,7 @@
 								<a href="<?=ROOT?>home/history#history" class="dropdown-item ">History</a>
 								<a href="<?=ROOT?>home/mission#missionAndVision" class="dropdown-item">Mission and Vision</a>
 								<a href="<?=ROOT?>home/march#neustMarch" class="dropdown-item">NEUST March</a>
+								<a href="<?=ROOT?>home/teachers#teachers" class="dropdown-item">Teachers</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">

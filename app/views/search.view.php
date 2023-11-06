@@ -206,15 +206,6 @@
                     <?php endif;?> 
                     </div>
 
-                    <div class="sidebar-box ftco-animate">
-                    <h3 class="title">Archives</h3>
-                    <ul class="categories">
-                        <li><a href="#">December 2018 <span>(30)</span></a></li>
-                        <li><a href="#">Novemmber 2018 <span>(20)</span></a></li>
-                        <li><a href="#">September 2018 <span>(6)</span></a></li>
-                        <li><a href="#">August 2018 <span>(8)</span></a></li>
-                    </ul>
-                    </div>
 
 
                     <div class="sidebar-box ftco-animate">

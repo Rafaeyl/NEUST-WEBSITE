@@ -98,11 +98,15 @@ class InstitutionsInfo
 			$this->errors['phone'] = "Phone number is not valid";
 		}
 
-		if($data['institution'] == 'empty' && !empty($data['institution']))
+		if(isset($data['institution']))
 		{
-			$this->errors['institution'] = "Add new organization to continue";
+			if($data['institution'] == 'empty' && !empty($data['institution']))
+			{
+				$this->errors['institution'] = "Add new organization/college to continue";
+			}
+	
 		}
-
+		
 		if(empty($this->errors))
 		{
 			return true;

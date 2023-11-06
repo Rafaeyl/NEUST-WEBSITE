@@ -102,10 +102,10 @@
                 <span class="font-weight-bold mb-2"><?= $ses->user('first_name') ?></span>
                 <?php
                   $id = $ses->user('id');
-                  $query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+                  $query  = "select institutions.acronym FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
                   $orgname = $this->query($query);
                   ?>
-                <span class="text-secondary text-small"><?=$orgname[0]->name?></span>
+                <span class="text-secondary text-small"><?=$orgname[0]->acronym?></span>
               </div>
               <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
@@ -251,7 +251,7 @@
             </span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_info">
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_info#organization_info">
               <span class="menu-title">Organization's Info</span>
               <i class="mdi mdi-information menu-icon"></i>
             </a>

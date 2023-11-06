@@ -21,12 +21,14 @@
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
 
-                  <div class="col-md-12 text-center mb-5">
-                      <label class="form-label">Choose Image </label><br>
-                    
-                      <input  type="file" name="image" class="crop_image form-control mx-auto w-50" id="upload_image" accept="image/*">
+                <div class="col-md-12 text-center mb-5">
+                    <label class="mb-3 fw-bolder lead"> Image</label><br>
+                    <label>Click to change Image</label><br>
+                    <label>
+                      <input onchange="display_image(this.files[0], event)" type="file" name="image" class="d-none" accept="image/*">
+                      <img src="<?= get_image() ?>" style="width: 150px;height:150px;object-fit: cover;cursor: pointer;">
                       <div><small class="text-danger"> <?= $user->getError('image') ?></small></div>
-                    
+                    </label>
                   </div>
                   <div class="col-md-3">
                     <label for="userid" class="form-label">School ID</label>
@@ -79,7 +81,7 @@
                   </div>
                   <div class="col-md-4">
                     <label for="email" class="form-label">Email</label>
-                    <input value="<?= old_value('email') ?>" type="email" class="form-control" id="email" name="email"
+                    <input value="<?= old_value('email') ?>" type="text" class="form-control" id="email" name="email"
                       placeholder="Juan@gmail.com">
                     <div><small class="text-danger"> <?= $user->getError('email') ?></small></div>
                   </div>
@@ -160,6 +162,13 @@
                 </div>
             </div>             -->
         </div>
+            <script>
+                function display_image(file, e) {
+                  let img = e.currentTarget.parentNode.querySelector("img");
+
+                  img.src = URL.createObjectURL(file);
+                }
+              </script>
               <script src="<?= ROOT ?>assets/dashboard/js/cropper.js"></script>
               <script src="<?= ROOT ?>assets/dashboard/js/jscropper-ajax.js"></script>
             </div>
@@ -433,10 +442,10 @@
                                         <td><?= esc($row->phone) ?></td>
                                         <td><?= esc($row->address) ?></td>
                                         <?php
-                                          $query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $row->id";
+                                          $query  = "select institutions.acronym FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $row->id";
                                           $orgname = $this->query($query);
                                           ?>
-                                          <td><?=$orgname[0]->name?></td>
+                                          <td><?=$orgname[0]->acronym?></td>
                                         <td>
                                           <button type="button" class="btn btn-inverse-info btn-icon">
                                             <a  href="<?=ROOT?>dashboard/user/edit/<?=$row->id?>">

@@ -1,6 +1,7 @@
 <?= $this-> view('includes/header', $data); ?>
+
 	<!-- Announcements -->
-	<div class="container-xxl announcement">
+	<!-- <div class="container-xxl announcement">
 		<div class="announcement-container">
 			<img src="<?=ROOT?>/assets/images/image-school/announcement1.png" class="title" alt="annnouncement">
 			<p class="announce">ANNOUNCEMENT</p>
@@ -20,7 +21,21 @@
 				</ul>
 			</div>
     	</div>
+	</div> -->
+	
+	<!-- <section class="bg-light">
+	<div class="container bg-light py-3">
+		<div class="row">
+			<div class="col-2 bg-primary">
+				<h5>Announcements</h5>
+			</div>
+			<div class="col-10 bg-darken">
+				lskdfnlksdfn
+			</div>
+		</div>
 	</div>
+	</section> -->
+	
 
   <!-- SLIDER START -->
 	<section class="home">
@@ -76,7 +91,11 @@
 					</div>
 				</div>
 				<div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-					<h2 class="mb-4"><?=$about_school[0]->title?></h2>
+					<p class="mb-4" style="font-size: clamp(1.5625rem, 1.3839rem + 1.4286vw, 2.1875rem);
+						margin-bottom: 0.5rem;
+						font-weight: 500;
+						line-height: 1.2;" 
+  					><?=$about_school[0]->title?></p>
 					<p><?=$about_school[0]->description?></p>
 				</div>
 			</div>
@@ -127,9 +146,9 @@
 	
 	<section class="bg-light">
 		<div class="container-fluid ">
-			<div class="row d-flex justify-content-center ">
+			<div class="row  ">
 				<div class="col-12 ">
-					<div class="row">
+					<div class="row d-flex justify-content-center">
 						<?php if(!empty($news)):?>
 							<?php foreach($news as $row):?>
 								<div class="col-md-3 ftco-animate my-2">
@@ -261,7 +280,7 @@
             <?php if(!empty($announcements)):?>
                 <?php foreach($announcements as $ann):?>
                     <div class="col-md-6 col-lg-4 ftco-animate my-2">
-                    <div class="post-box">
+                    <div class="post-box border">
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>"><img src="<?=get_image($ann->image)?>" alt="" class="post-img"></a>
                         <a href="<?=ROOT?>announcementDetails/<?=$ann->slug?>" class="post-title"><?=$ann->title?></a>
                         <span class="post-date text-primary"><?=get_date($ann->date)?></span>

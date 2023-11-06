@@ -225,8 +225,6 @@ class Home
 		// Contact Form - Send Email
 
 		try {
-
-
 			if (isset($_POST['send'])) {
 				$name    = htmlentities($_POST["name"]);
 				$email   = htmlentities($_POST["email"]);
@@ -238,8 +236,8 @@ class Home
 				$mail->Host     = "smtp.gmail.com";
 				$mail->SMTPAuth = true;
 
-				$school_email   = $school_contact[0]->email;
-				$email_password = $school_contact[0]->password;
+				$school_email   ="papayaoffc@gmail.com";
+				$email_password = "ixhn koab sbxo bovq";
 
 				$mail->Username = $school_email;
 				$mail->Password = $email_password;
@@ -247,12 +245,13 @@ class Home
 				$mail->Port       = 465;
 				$mail->SMTPSecure = 'ssl';
 				$mail->isHTML(true);
-				$mail->setFrom($email, $name);
-				$mail->addAddress("villanuevarafaeljr129@gmail.com");
+				$mail->setFrom("papayaoffc@gmail.com", "NEUST Papaya Off Campus");
+				$mail->addAddress($email, "Visitor");
 
-				$mail->Subject = ("$email ($subject)");
+				$mail->Subject = $subject;
 				$mail->Body    = $message;
 
+				$mail->MsgHTML($message);
 				if ($mail->send()) {
 					$_SESSION['status'] = "Message Sent!";
 				}
@@ -320,8 +319,14 @@ class Home
 			'position',
 			'list_order',
 		];
-		$teachers->order_column   = 'list_order';
-		$data['teachers']         = $teachers->findAll();
+		$teachers->order_column   = 'name';
+		$teachers->order_type = 'asc';
+
+		$full_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'fulltime' ORDER BY name ASC";
+		$data['full_time'] = $this->query($full_time);
+
+		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' ORDER BY name ASC";
+		$data['part_time'] = $this->query($part_time);
 
 		// url
 		$url = $_GET['url'] ?? 'home';

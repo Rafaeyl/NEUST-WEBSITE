@@ -19,16 +19,16 @@
     </section>
     <!-- Page Header End -->
     <section class="ftco-section bg-light" id="FAQs">
-        <div class="container">
-        <div class="row justify-content-center mb-5 pb-2">
+        <div class="container bg-white p-5" style="border-radius:20px">
+        <div class="row justify-content-center mb-5 ">
 					<div class="col-md-8 text-center heading-section ftco-animate">
 						<h2 class="mb-4 text-primary">Frequently Asked Questions</h2>
-						<p>Have questions? Look no further. Our Frequently Asked Questions (FAQ) make it easy for you to find answers to your most pressing inquiries into the School of Education. 
+						<p class="subheadings">Have questions? Look no further. Our Frequently Asked Questions (FAQ) make it easy for you to find answers to your most pressing inquiries into the School of Education. 
                             If you can't find your answer here, please feel free to <a href="<?=ROOT?>home/contact#contact">contact us</a>. </p>
 					</div>
         		</div>	
             <div class="row justify-content-center ">
-                <div class="col-md-10 col-lg-9  p-3">
+                <div class="col-md-10 col-lg-10  p-3">
                     <div id="accordion" class="myaccordion w-100">
                     <?php if(!empty($faqs)): $num = 0;?>
                         <?php foreach($faqs as $row): $ber = $num++;?>

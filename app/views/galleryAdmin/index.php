@@ -73,7 +73,7 @@ if(!empty($sessData['status']['msg'])){
                       <td>
                           <?php  
                           $description = strip_tags($row['description']); 
-                          echo (strlen($description)>140)?substr($description, 0, 140).'...':$description; 
+                          echo (strlen($description)>140)?substr($description, 0, 50).'...':$description; 
                           ?>
                       </td>
                       <td><?php echo $row['created']; ?></td>

@@ -338,7 +338,7 @@
                    <!-- Organization Representative View -->
                   <?php elseif($ses->user('institute') == 'organization'):?>
 
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered" id="userTable">
                         <thead class="bg-gradient-dark">
                           <tr class="text-white text-center">
                           <th> Image </th>
@@ -378,10 +378,6 @@
                                   </td>
                                 </tr>
                             <?php endforeach;?>
-                          <?php else:?>
-                          <tr>
-                              <h1 class="alert alert-danger text-center">No results found. Plead Add Information </h1>
-                          </tr>
                           <?php endif;?>
                           
                         </tbody>

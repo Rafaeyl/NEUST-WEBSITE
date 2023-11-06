@@ -59,11 +59,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Explore More</a>
+                        <!-- <a class="btn btn-primary py-3 px-5 mt-2" href="">Explore More</a> -->
                     </div>
                     <div class="col-lg-6 mt-3">
                         <div class="row g-3">
-                            <img src="<?=get_img($collegeAbout['image'])?>" style="width: 100%; height: 500px; object-fit:cover;" alt="" class="img-fluid img-rounded">
+                            <img src="<?=get_img($collegeAbout['image'])?>" style="width: 100%; height: 500px; object-fit:contain;" alt="" class="img-fluid img-rounded">
                         </div>
                     </div>
                 <?php else: ?>
@@ -74,6 +74,86 @@
         </div>
         <!-- About End -->
 
+        
+    <!-- Officiers Start -->
+    <div class="container-xxl py-5 bg-light">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase"> Officers</h6>
+                    <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
+                </div>
+                <div class="row g-4 justify-content-center">
+                <?php if(!empty($collegeOfficials)):?>
+                    <?php foreach($collegeOfficials as $official): ?>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp mt-3" data-wow-delay="0.1s">
+                            <div class="rounded shadow overflow-hidden">
+                                <div class="position-relative">
+                                    <img class="img-fluid w-100" style="min-height: 250px; max-height: 250px; background-size: cover;" src="<?= get_image($official->image) ?>" alt="">
+                                </div>
+                                <div class="text-center p-4 mt-3"  style="height:150px">
+                                    <h5 class="fw-bold mb-0"><?=$official->official_name?></h5>
+                                    <small><?=$official->position?></small>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach;?>
+                <?php else: ?>
+                    <p class="bg-danger mx-auto text-center text-white p-5">No Officers Available to this Organization.</p>
+                <?php endif;?>
+                </div>
+            </div>
+    </div>
+    <!-- Team End -->
+    
+<section class="ftco-section">
+	<div class="container-fluid px-4">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase"> Instructors</h6>
+            <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Instructors</span></h1>
+        </div>
+		<div class="row justify-content-center">
+			<?php if (!empty($teachers)): ?>
+				<?php foreach ($teachers as $teacher): ?>
+					<div class="col-md-6 col-lg-4 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
+							</div>
+							<div class="text p-3 text-center bg-white">
+								<h3>
+									<?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
+								</h3>
+								<span class="position mb-2">
+									<?= esc($teacher->position) ?>
+								</span>
+								<!-- <div class="faded">
+									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+									<ul class="ftco-social text-center">
+									</ul>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			<?php else: ?>
+				<div class="bg-danger p-5 mb-5 mx-auto text-center">
+					<h2 class="lead display-4">NO TEACHERS AVAILABLE</h2>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>
+<?php else: ?>
+    <div class="container">
+        <div class=" p-5 my-5 bg-danger">
+            <h2 class="lead text-center text-white">
+                The page you requested may have been moved to a new location or the College does not have any information yet.
+                Go back to the <a href="<?= ROOT ?>" class="text-dark">HOME PAGE </a>.
+            </h2>
+
+        </div>
+    </div>
+<?php endif; ?>
     <div class="ftco-section py-5 mt-5 bg-light">
          <!-- Contact Start -->
          <div class="container-xxl py-5">
@@ -118,6 +198,8 @@
                             <div class="col-md-4">
                                 <h6 class="section-title text-start text-primary text-uppercase"><i class="fa fa-envelope-open text-tertiary me-2"></i> &nbsp; Phone</h6>
                                 <p> <?=$collegeInfo['phone']?></p>
+                                <p> <a href="tel:+<?=esc($collegeInfo['email'])?>"  class="text-dark"><?=esc($collegeInfo['email'])?></a></p>
+
                             </div>
                             <div class="col-md-4">
                                 <h6 class="section-title text-start text-primary text-uppercase"><i class="fa fa-envelope-open text-tertiary me-2"></i> &nbsp;Facebook</h6>
@@ -174,85 +256,6 @@
         <!-- Contact End -->
     </div>
 
-    <!-- Officiers Start -->
-    <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase"> Officers</h6>
-                    <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
-                </div>
-                <div class="row g-4 justify-content-center">
-                <?php if(!empty($collegeOfficials)):?>
-                    <?php foreach($collegeOfficials as $official): ?>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp mt-3" data-wow-delay="0.1s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid w-100" style="min-height: 250px; max-height: 250px; background-size: cover;" src="<?= get_image($official->image) ?>" alt="">
-                                </div>
-                                <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0"><?=$official->official_name?></h5>
-                                    <small><?=$official->position?></small>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach;?>
-                <?php else: ?>
-                    <p class="bg-danger mx-auto text-center text-white p-5">No Officers Available to this Organization.</p>
-                <?php endif;?>
-                </div>
-            </div>
-    </div>
-    <!-- Team End -->
-    
-<section class="ftco-section bg-light">
-	<div class="container-fluid px-4">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title text-center text-primary text-uppercase"> Instructors</h6>
-            <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Instructors</span></h1>
-        </div>
-		<div class="row justify-content-center">
-			<?php if (!empty($teachers)): ?>
-				<?php foreach ($teachers as $teacher): ?>
-					<div class="col-md-6 col-lg-4 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
-							</div>
-							<div class="text pt-3 text-center">
-								<h3>
-									<?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
-								</h3>
-								<span class="position mb-2">
-									<?= esc($teacher->position) ?>
-								</span>
-								<div class="faded">
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social text-center">
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				<?php endforeach; ?>
-			<?php else: ?>
-				<div class="bg-danger p-5 mb-5 mx-auto text-center">
-					<h2 class="lead display-4">NO TEACHERS AVAILABLE</h2>
-				</div>
-			<?php endif; ?>
-		</div>
-	</div>
-</section>
-<?php else: ?>
-    <div class="container">
-        <div class=" p-5 my-5 bg-danger">
-            <h2 class="lead text-center text-white">
-                The page you requested may have been moved to a new location or the College does not have any information yet.
-                Go back to the <a href="<?= ROOT ?>" class="text-dark">HOME PAGE </a>.
-            </h2>
-
-        </div>
-    </div>
-<?php endif; ?>
 
 
 <?php include '../app/views/includes/footer.view.php'; ?>

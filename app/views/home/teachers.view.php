@@ -15,35 +15,79 @@
 	</div>
 </section>
 
-<section class="ftco-section bg-light">
-	<div class="container-fluid px-4">
-		<div class="row">
-			<?php if (!empty($teachers)): ?>
-				<?php foreach ($teachers as $teacher): ?>
-					<div class="col-md-6 col-lg-4 ftco-animate">
+<section class="ftco-section bg-light" id="teachers">
+	<div class="container-fluid px-4 ">
+		<div class="row justify-content-center mb-5 pb-2">
+			<div class="col-md-8 text-center heading-section ftco-animate">
+				<h2 class="mb-4 ">Full Time <span class="text-primary">Teachers</span></h2>
+				<p>Below are the full time teachers in the campus.</p>
+			</div>
+		</div>	
+		<div class="row justify-content-center">
+			<?php if (!empty($full_time)): ?>
+				<?php foreach ($full_time as $teacher): ?>
+					<div class="col-md-4 col-lg-3 ftco-animate">
 						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
+							<div class="img-wrap d-flex">
 								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
 							</div>
-							<div class="text pt-3 text-center">
-								<h3>
-									<?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
-								</h3>
-								<span class="position mb-2">
+							<div class="text p-3 text-center bg-white align-items-center " style="height:150px">
+								<h5>
+									<?= esc($teacher->name) . "," . ' ' .esc($teacher->suffixes) ?>
+								</h5>
+								<p class="position mb-2">
 									<?= esc($teacher->position) ?>
-								</span>
-								<div class="faded">
+								</p>
+								<!-- <div class="faded">
 									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
 									<ul class="ftco-social text-center">
 									</ul>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
 				<?php endforeach; ?>
 			<?php else: ?>
 				<div class="bg-danger p-5 mb-5 mx-auto text-center">
-					<h2 class="lead display-4">NO TEACHERS AVAILABLE</h2>
+					<h2 class="lead display-4">NO PART TIME TEACHERS AVAILABLE</h2>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+	<div class="container-fluid px-4 ">
+		<div class="row justify-content-center my-5 pb-2">
+			<div class="col-md-8 text-center heading-section ftco-animate">
+				<h2 class="mb-4 ">Part Time <span class="text-primary">Teachers</span></h2>
+				<p>Below are the Part Time teachers in the campus.</p>
+			</div>
+		</div>	
+		<div class="row justify-content-center">
+			<?php if (!empty($part_time)): ?>
+				<?php foreach ($part_time as $teacher): ?>
+					<div class="col-md-4 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex">
+								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
+							</div>
+							<div class="text p-3 text-center bg-white align-items-center " style="height:150px">
+								<h5>
+									<?= esc($teacher->name) . "," . ' ' .esc($teacher->suffixes) ?>
+								</h5>
+								<p class="position mb-2">
+									<?= esc($teacher->position) ?>
+								</p>
+								<!-- <div class="faded">
+									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+									<ul class="ftco-social text-center">
+									</ul>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			<?php else: ?>
+				<div class="bg-danger p-5 mb-5 mx-auto text-center">
+					<h2 class="lead display-4">NO PART TIME TEACHERS AVAILABLE</h2>
 				</div>
 			<?php endif; ?>
 		</div>

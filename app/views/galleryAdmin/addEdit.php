@@ -47,7 +47,7 @@ $actionLabel = !empty($_GET['id'])?'Edit':'Add';
       <div class="page-header">
         <h1>Gallery</h1>
       </div>
-      <div class="row justify-content-center">
+      <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">

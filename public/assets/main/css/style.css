@@ -460,7 +460,9 @@ h6,
   line-height: 1.2;
 }
 
-
+.fw-bolder{
+  font-weight: 500;
+}
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -12541,8 +12543,11 @@ h5,
   background: #fafafa !important;
 }
 
-.bg-darken {
+/* .bg-darken {
   background: #0d1128 !important;
+} */
+.bg-darken {
+  background: #170C64 !important;
 }
 
 .bg-white {

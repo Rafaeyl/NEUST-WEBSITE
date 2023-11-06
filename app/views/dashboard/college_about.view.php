@@ -283,11 +283,11 @@
                           <th> # </th>
                           <th> Image </th>
                           <th> Name</th>
-                          <th> description</th>
+                          <th> Description</th>
                           <th> Members</th>
                           <th> Activities</th>
                           <th> Events</th>
-                          <th> college </th>
+                          <th> College </th>
                           <th> Action </th>
                           <!-- <th> Action</th> -->
                         </tr>

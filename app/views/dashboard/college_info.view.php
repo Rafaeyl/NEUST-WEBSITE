@@ -172,7 +172,7 @@
                       <label for="phone" class="form-label">Phone Number</label>
                       <input value="<?= old_value('phone',$row->phone) ?>" type="number" class="form-control" id="phone"
                         name="phone" placeholder="09056073442" >
-                      
+                        <div><small class="text-danger"> <?= $collegeInfo->getError('phone') ?></small></div>
                     </div>
                     <div class="col-md-6">
                       <label for="fb_link" class="form-label">Facebook Link</label>

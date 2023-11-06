@@ -12,12 +12,12 @@
       </div>
     </section>
 
-    <section class="container" id="neustMarch">
-        <div class="d-flex aligns-items-center justify-content-center text-center mx-auto my-5">
-            <div class="card march-card">
+    <section class="container " id="neustMarch" >
+        <div class="d-flex aligns-items-center justify-content-center text-center mx-auto my-5" >
+            <div class="card march-card " style="border-style: solid; border-color:#fd7e14;">
                 
-                <div class="card-body">
-                    <h1 class="card-title">NEUST MARCH</h1>
+                <div class="card-body" >
+                    <h1 class="card-title "  >NEUST MARCH</h1>
                     <p class="card-text">
                     Way back in the days gone by <br>
                     Our School was just a simple one <br>

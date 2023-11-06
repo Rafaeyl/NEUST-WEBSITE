@@ -28,5 +28,7 @@ class Login
 
 		$this->view('login', $data);
 	}
+	
+
 
 }
