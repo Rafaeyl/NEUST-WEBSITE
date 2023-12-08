@@ -3,7 +3,7 @@
         <div class="row mb-5">
           <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2 text-primary">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2 text-prime">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="fa-solid fa-location-dot mr-2"> </span><span class="text"> Brgy. Conception, General Tinio, Nueva Ecija</span></li>
@@ -22,7 +22,7 @@
           </div> -->
           <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5 ml-md-4">
-              <h2 class="ftco-heading-2 text-primary">Links</h2>
+              <h2 class="ftco-heading-2 text-prime">Links</h2>
               <ul class="list-unstyled">
                 <li><a href="<?=ROOT?>/home/"><span class="fa-solid fa-arrow-right  mr-2"></span>Home</a></li>
                 <li><a href="<?=ROOT?>/home/history"><span class="fa-solid fa-arrow-right  mr-2"></span>History</a></li>
@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2 text-primary mb-0">Connect With Us</h2>
+            	<h2 class="ftco-heading-2 text-prime mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                 <li class="ftco-animate"><a href="https://www.facebook.com/NEUSTPAPAYA/"><span class="fab fa-facebook-f"></span></a></li>
                 <li class="ftco-animate"><a href="mailto:<?= $school_contact[0]->email?>"><span class="fa-solid fa-envelope"></span></a></li>

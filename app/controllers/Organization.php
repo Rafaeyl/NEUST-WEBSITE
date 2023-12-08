@@ -86,9 +86,11 @@ class Organization
 			$sql                       = "select about.*, institutions.name, institutions.slug from about join institutions on about.institution = institutions.id where institutions.slug = '$slug' limit 1";
 			$data['organizationAbout'] = $this->query_row($sql);
 
-			$sql                           = "select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' order by officials.list_order";
+			$sql                           = "select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' and officials.isOfficial = 'Official' order by officials.list_order";
 			$data['organizationOfficials'] = $this->query($sql);
 
+			$sql                           = "select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' and officials.isOfficial = 'Member' order by officials.list_order";
+			$data['organizationMember'] = $this->query($sql);
 			// Contact form - send email - php mailer
 
 			try {

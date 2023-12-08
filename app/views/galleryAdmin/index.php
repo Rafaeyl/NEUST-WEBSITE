@@ -48,7 +48,6 @@ if(!empty($sessData['status']['msg'])){
                     <th>#</th>
                     <th>Image</th>
                     <th>Title</th>
-                    <th>Description</th>
                     <th>Created</th>
                     <th>Action</th>
                   </tr>
@@ -70,12 +69,6 @@ if(!empty($sessData['status']['msg'])){
                           <?php } ?>
                       </td>
                       <td><?php echo $row['title']; ?></td>
-                      <td>
-                          <?php  
-                          $description = strip_tags($row['description']); 
-                          echo (strlen($description)>140)?substr($description, 0, 50).'...':$description; 
-                          ?>
-                      </td>
                       <td><?php echo $row['created']; ?></td>
                       <td>
                           <a href="<?= ROOT?>galleryAdmin/details?id=<?php echo $row['id']; ?>" class="btn btn-inverse-success  p-3"><i class="mdi mdi-eye"></i></a>

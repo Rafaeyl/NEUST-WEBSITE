@@ -26,7 +26,7 @@
                   </div>
                   <div class="col-md-6 text-center">
                     <label for="name" class="form-label">Name</label>
-                    <input value="<?= old_value('name') ?>" type="text" class="form-control text-center" id="official_name" name="official_name"
+                    <input value="<?= old_value('official_name') ?>" type="text" class="form-control text-center" id="official_name" name="official_name"
                       placeholder="Juan Dela Cruz">
                       <div><small class="text-danger"> <?= $OrganizationOfficials->getError('official_name') ?></small></div>
 
@@ -66,17 +66,25 @@
                           </select>
                       <?php endif;?>  
                     </div> 
-                  <div class="col-6">
-                    <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
-                  </div>
-                  <div class="col-6">
-                      <a href="<?=ROOT?>dashboard/organization_officials" class="btn btn-gradient-secondary float-end btn-lg my-4">
-                          BACK
-                      </a>
-                  </div>
-
+                    <div class="col-md-12 text-center mx-auto w-50">
+                      <label for="role" class="form-label">Member/Officials</label>
+                          <select id="isOfficial" class="form-select" aria-label="Default select example" name="isOfficial">
+                              
+                              <option  value="Official">Official</option>
+                              <option  value="Member">Member</option>
+                          </select>
+                    </div> 
+                    <div class="row">
+                      <div class="col-6">
+                      <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
+                      </div>
+                      <div class="col-6">
+                          <a href="<?=ROOT?>dashboard/organization_officials" class="btn btn-gradient-secondary float-end btn-lg my-4">
+                              BACK
+                          </a>
+                      </div>
+                    </div>
                 </div>
-
               </form>
               <script>
                 function display_image(file, e) {
@@ -139,7 +147,7 @@
                           <select id="institution" class="form-select" aria-label="Default select example" name="institution">
                               <?php if(!empty($organizations)):?>
                                     <?php foreach($organizations as $organization):?>
-                                        <option <?=old_select('institution',$organization->id)?> value="<?=$organization->id?>"><?=$organization->name?></option>
+                                        <option <?=old_select('institution',$organization->id, $row->institution)?> value="<?=$organization->id?>"><?=$organization->name?></option>
                                     <?php endforeach;?>
                                 <?php else: ?>
                                   <option value="">No organization Available</option>
@@ -156,15 +164,26 @@
                           </select>
                       <?php endif;?>  
                     </div> 
-                  <div class="col-6">
-                    <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
-                  </div>
-                  <div class="col-6">
-                      <a href="<?=ROOT?>dashboard/organization_officials" class="btn btn-gradient-secondary float-end btn-lg my-4">
-                          BACK
-                      </a>
-                  </div>
+                    <div class="col-md-12 text-center mx-auto w-50">
+                      <label for="role" class="form-label">Member/Officials</label>
+                          <select id="isOfficial" class="form-select" aria-label="Default select example" name="isOfficial">
+          
+                              <option  value="Official" <?=old_select('isOfficial','Official', $row->isOfficial)?>>Official</option>
+                              <option  value="Member" <?=old_select('isOfficial','Member', $row->isOfficial)?>>Member</option>
+                          </select>
+                    </div> 
 
+                    <div class="row">
+                      <div class="col-6">
+                      <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
+                      </div>
+                      <div class="col-6">
+                          <a href="<?=ROOT?>dashboard/organization_officials" class="btn btn-gradient-secondary float-end btn-lg my-4">
+                              BACK
+                          </a>
+                      </div>
+                    </div>
+  
                 </div>
 
                 </form>

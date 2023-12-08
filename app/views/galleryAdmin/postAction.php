@@ -40,30 +40,21 @@ if(isset($_POST['dataSubmit'])){
     if(empty($title)){ 
         $error .= 'Please enter title.<br>'; 
     } 
-     
+
+    // $fileNames = array_filter($image_files['name']);
+    // if(empty($fileNames)){ 
+    //     $error .= 'Please enter IMAGES.<br>'; 
+    // }
     // If the data is not empty 
     if(empty($error)){ 
+        
         if(!empty($id)){ 
-            // Update data in the database 
             $condition = array('id' => $id); 
             $update = $db->update($proData, $condition); 
-             
-            if($update){ 
-                $product_id = $id; 
-            } 
-        }else{ 
-            // Insert data in the database 
-            $insert = $db->insert($proData); 
-             
-            if($insert){ 
-                $product_id = $insert; 
-            } 
-        } 
- 
-        if(!empty($product_id)){ 
-            // Upload images 
             $fileNames = array_filter($image_files['name']);  
             if(!empty($fileNames)){  
+                // Update data in the database 
+              
                 foreach($image_files['name'] as $key=>$val){  
                     // File upload path  
                     $fileName = time().'_'.basename($image_files['name'][$key]);  
@@ -76,7 +67,7 @@ if(isset($_POST['dataSubmit'])){
                         if(move_uploaded_file($image_files["tmp_name"][$key], $targetFilePath)){  
                             // Insert image in the database 
                             $imgData = array(  
-                                'gallery_id' => $product_id,  
+                                'gallery_id' => $id,  
                                 'file_name' => $fileName  
                             );  
                             $insertImage = $db->insert_image($imgData); 
@@ -106,14 +97,118 @@ if(isset($_POST['dataSubmit'])){
                 $errorMsg = !empty($errorUpload) ? '<br>'.$errorUpload.'<br>'.$errorUploadType : (!empty($errorUploadType) ? '<br>'.$errorUploadType : '' ); 
                 $errorMsg_img = !empty($errorMsg)?'<span>'.$errorMsg.'</span>':''; 
             } 
- 
         }else{ 
-            $statusMsg = 'Something went wrong, please try again!'; 
-            // Set redirect url 
-            $redirectURL .= $idStr; 
+            $fileNames = array_filter($image_files['name']);  
+            if(!empty($fileNames)){  
+                // Update data in the database 
+                $insert = $db->insert($proData); 
+                foreach($image_files['name'] as $key=>$val){  
+                    // File upload path  
+                    $fileName = time().'_'.basename($image_files['name'][$key]);  
+                    $targetFilePath = $uploadDir . $fileName;  
+                     
+                    // Check whether file type is valid  
+                    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);  
+                    if(in_array($fileType, $allowTypes)){  
+                        // Upload file to the server 
+                        if(move_uploaded_file($image_files["tmp_name"][$key], $targetFilePath)){  
+                            // Insert image in the database 
+                            $imgData = array(  
+                                'gallery_id' => $insert,  
+                                'file_name' => $fileName  
+                            );  
+                            $insertImage = $db->insert_image($imgData); 
+                                            
+                            $statusType = 'success'; 
+                            $statusMsg = 'Image/Images added Sucessfully!'.$errorMsg_img; 
+                            $sessData['postData'] = ''; 
+                            
+                            // Set redirect url 
+                            $redirectURL = 'http://localhost/NEUST-PAPAYA/public/galleryAdmin/index.php'; 
+                        }else{  
+                            $errorUpload .= $image_files['name'][$key].' | ';  
+                        }  
+                    }
+                    else{  
+                        $statusType = 'danger'; 
+                        $statusMsg = 'Only files of this type are allowed: jpg, jpeg, png, svg!'.$errorMsg_img; 
+                        $errorUploadType .= $image_files['name'][$key].' | ';  
+                        $statusMsg .= '<br> Please try again!';
+                    }  
+                }  
+                 
+                // File upload error message 
+                $errorUpload = !empty($errorUpload)?'File upload error: '.trim($errorUpload, ' | '):'';  
+                $errorUploadType = !empty($errorUploadType)?'File type error: '.trim($errorUploadType, ' | '):'';  
+                $errorMsg = !empty($errorUpload) ? '<br>'.$errorUpload.'<br>'.$errorUploadType : (!empty($errorUploadType) ? '<br>'.$errorUploadType : '' ); 
+                $errorMsg_img = !empty($errorMsg)?'<span>'.$errorMsg.'</span>':''; 
+            }else{
+                $statusType = 'danger'; 
+                $statusMsg = 'Image required!'; 
+                // Set redirect url 
+                $idd = $_POST['id'];
+                $redirectURL = ROOT.  "galleryAdmin/addEdit?id=$idd"; 
+            } 
         } 
+ 
+        // if(!empty($product_id)){ 
+        //     // Upload images 
+            // $fileNames = array_filter($image_files['name']);  
+            // if(!empty($fileNames)){  
+            //     foreach($image_files['name'] as $key=>$val){  
+            //         // File upload path  
+            //         $fileName = time().'_'.basename($image_files['name'][$key]);  
+            //         $targetFilePath = $uploadDir . $fileName;  
+                     
+            //         // Check whether file type is valid  
+            //         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);  
+            //         if(in_array($fileType, $allowTypes)){  
+            //             // Upload file to the server 
+            //             if(move_uploaded_file($image_files["tmp_name"][$key], $targetFilePath)){  
+            //                 // Insert image in the database 
+            //                 $imgData = array(  
+            //                     'gallery_id' => $product_id,  
+            //                     'file_name' => $fileName  
+            //                 );  
+            //                 $insertImage = $db->insert_image($imgData); 
+                                            
+            //                 $statusType = 'success'; 
+            //                 $statusMsg = 'Image/Images added Sucessfully!'.$errorMsg_img; 
+            //                 $sessData['postData'] = ''; 
+                            
+            //                 // Set redirect url 
+            //                 $redirectURL = 'http://localhost/NEUST-PAPAYA/public/galleryAdmin/index.php'; 
+            //             }else{  
+            //                 $errorUpload .= $image_files['name'][$key].' | ';  
+            //             }  
+            //         }else{  
+            //             $statusType = 'danger'; 
+            //             $statusMsg = 'Only files of this type are allowed: jpg, jpeg, png, svg!'.$errorMsg_img; 
+            //             $errorUploadType .= $image_files['name'][$key].' | ';  
+            //               // Set redirect url 
+            //               $idd = $_POST['id'];
+            //               $redirectURL = ROOT.  "galleryAdmin/addEdit?id=$idd"; 
+            //         }  
+            //     }  
+                 
+            //     // File upload error message 
+            //     $errorUpload = !empty($errorUpload)?'File upload error: '.trim($errorUpload, ' | '):'';  
+            //     $errorUploadType = !empty($errorUploadType)?'File type error: '.trim($errorUploadType, ' | '):'';  
+            //     $errorMsg = !empty($errorUpload) ? '<br>'.$errorUpload.'<br>'.$errorUploadType : (!empty($errorUploadType) ? '<br>'.$errorUploadType : '' ); 
+            //     $errorMsg_img = !empty($errorMsg)?'<span>'.$errorMsg.'</span>':''; 
+            // } 
+
+ 
+        // }else{ 
+        //     $statusMsg = 'Something went wrong, please try again!'; 
+        //     // Set redirect url 
+        //     $redirectURL .= $idStr; 
+        // } 
     }else{ 
         $statusMsg = 'Please fill all the required fields:<br>'.trim($error, '<br>'); 
+         // Set redirect url 
+         $idd = $_POST['id'];
+         $redirectURL = ROOT.  "galleryAdmin/addEdit?id=$idd"; 
     } 
      
     // Status message 

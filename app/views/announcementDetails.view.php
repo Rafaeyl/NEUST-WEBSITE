@@ -19,7 +19,7 @@
             <div class="row align-items-center ml-1">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 bg-light p-5">
                     <div>
-                        <h4 class="text-justify"><?= $row['title']; ?></h4>
+                        <h4 ><?= $row['title']; ?></h4>
                         <hr class="bg-primary">
                         <p><?= $row['description']; ?></p>
                         <div class="tag-widget post-tag-container">
@@ -49,7 +49,7 @@
         </div><!-- end title -->
         <div class="post container mb-5">
         <!-- Post 1 -->
-        <div class="row justify-content-center  ">
+        <div class="row ">
             <?php if(!empty($announce)):?>
                 <?php foreach($announce as $ann):?>
                     <div class="col-md-6 col-lg-4 ftco-animate my-2">

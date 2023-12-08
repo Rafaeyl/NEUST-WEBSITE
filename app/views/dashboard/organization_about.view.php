@@ -2,6 +2,8 @@
 
 
 <?php if ($action == 'new'): ?>
+
+  <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
   <?php $ses = new \Core\Session;  ?>
   <div class="main-panel">
     <div class="content-wrapper">
@@ -24,13 +26,13 @@
                       <div><small class="text-danger"> <?= $OrganizationAbout->getError('image') ?></small></div>
                     </label>
                   </div>
-                  <div class="col-md-6 text-center mb-3">
+                  <div class="col-md-12 text-center mb-3">
                     <label for="title" class="form-label ">Title</label>
                     <input value="<?= old_value('title') ?>" type="text" class="form-control text-center  mx-auto w-75" id="title" name="title"
                       placeholder="Welcome to College of Nursing">
                       <div><small class="text-danger"> <?= $OrganizationAbout->getError('title') ?></small></div>
                   </div>
-                  <div class="col-md-6 text-center mb-3">
+                  <div class="col-md-12 text-center mb-3 mx-auto  w-75">
                     <label for="description" class="form-label  ">Description</label>
                     <textarea rows="4"name="description" class="form-control text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description')?></textarea>
                     
@@ -92,6 +94,25 @@
                 </div>
 
               </form>
+              <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+            <script src="<?= ROOT ?>assets/main/summernote/summernote-lite.min.js"></script>
+            <script>
+              $('#summernote').summernote({
+                placeholder: 'Enter Annnouncements',
+                tabsize: 2,
+                height: 300,
+                width: 640,
+                toolbar: [
+                  // [groupName, [list of button]]
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['font', ['strikethrough', 'superscript', 'subscript']],
+                  ['fontsize', ['fontsize']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['height', ['height']]
+                ]
+              });
+            </script>
               <script>
                 function display_image(file, e) {
                   let img = e.currentTarget.parentNode.querySelector("img");
@@ -105,6 +126,8 @@
       </div>
 
     <?php elseif ($action == 'edit'):?>
+      <link rel="stylesheet" type="text/css" href="<?=ROOT?>assets/main/summernote/summernote-lite.min.css">
+
       <?php $ses = new \Core\Session;  ?>
         <div class="main-panel">
     <div class="content-wrapper">
@@ -134,7 +157,7 @@
                       placeholder="Welcome to College of Nursing">
                       <div><small class="text-danger"> <?= $OrganizationAbout->getError('title') ?></small></div>
                   </div>
-                  <div class="col-md-12 text-center">
+                  <div class="col-md-12 text-center mb-3 mx-auto  w-75">
                     <label for="description" class="form-label">Description</label>
                     <textarea rows="7"name="description" class="form-control mb-3 text-center mx-auto w-75" id="summernote" type="content"  placeholder="Enter Description"><?=old_value('description',$row->description)?></textarea>
                     
@@ -179,6 +202,25 @@
                 </div>
 
               </form>
+              <script src="<?= ROOT ?>assets/dashboard/js/jquery3.js" type="text/javascript"></script>
+            <script src="<?= ROOT ?>assets/main/summernote/summernote-lite.min.js"></script>
+            <script>
+              $('#summernote').summernote({
+                placeholder: 'Enter Annnouncements',
+                tabsize: 2,
+                height: 300,
+                width: 640,
+                toolbar: [
+                  // [groupName, [list of button]]
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['font', ['strikethrough', 'superscript', 'subscript']],
+                  ['fontsize', ['fontsize']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['height', ['height']]
+                ]
+              });
+            </script>
               <?php else:?>
                 <div class="alert alert-danger text-center">Record not found!</div>
                 <div class="mb-5"> <a href="<?=ROOT?>dashboard/organization_about" class="btn  btn-gradient-secondary float-end btn-lg me-2">  BACK </a>  </div>

@@ -107,47 +107,37 @@
                             </div>
                         </div> -->
                         <div class="col-lg-12 wow slideInUp" data-wow-delay="0.1s">
-                            <div class="row d-flex justify-content-center">
+                            <div class="row justify-content-center">
                                 <?php if (!empty($albums)): ?>
                                     <?php foreach ($albums as $album): ?>
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="item">
+                                        <div class="col-lg-4 mt-3">
 
-                                                <a href="<?= ROOT ?>gallery/<?= $album->idg ?>">
-                                                    <img src="
-                                                <?php if (!empty($album->file_name)) { ?>
-                                                    <?= ROOT . 'uploads/' . $album->file_name; ?>" <?php } ?> alt="">
-                                                </a>
-                                                <a href="<?= ROOT ?>gallery/<?= $album->idg ?>">
-                                                    <h4 class="text-center"><?= $album->title ?><br></h4>
-                                                </a>
-                                                <span class="info"><i class="fa-regular fa-calendar-days"></i>
-                                                    <?= get_date($album->modified) ?>
-                                                </span>
-                                            </div>
+                                            <a href="<?= ROOT ?>gallery/<?= $album->idg ?>">
+                                                <div class="album-card card">
+                                                    <div class="card-body album-images">
+                                                        <img src="<?php if (!empty($album->file_name)) { ?>
+                                                            <?= ROOT . 'uploads/' . $album->file_name; ?>" <?php } ?> class="img-fluid w-100"
+                                                            alt="Album-Image">
+                                                    </div>
+                                                    <div class="card-footer text-center">
+                                                        <h5 class="heading">
+                                                            <?= $album->title ?>
+                                                        </h5>
+                                                        <span class="text-dark">
+                                                            <?= get_date($album->modified) ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+
                                         </div>
                                     <?php endforeach; ?>
+                                <?php else: ?>
+                                    <center>
+                                        <h1 class="text-danger">NO AlBUMS FOUND</h1>
+                                    </center>
                                 <?php endif; ?>
                             </div>
-                            <!-- <div class="col-12 wow slideInUp d-flex justify-content-center" data-wow-delay="0.1s">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination pagination-md m-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link rounded-0" href="#" aria-label="Previous">
-                                                <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link rounded-0" href="#" aria-label="Next">
-                                                <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -157,13 +147,5 @@
 </div>
 
 
-<script type="module">
-    <?php ?>
-    import initGallery from "<?= ROOT ?>assets/main/js/galleryApp.js";
-
-    initGallery('../app/views/others/galleriess.json', {
-        speed: 600,
-    })
-</script>
 
 <?php include '../app/views/includes/footer.view.php'; ?>

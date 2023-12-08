@@ -5,8 +5,8 @@
 <?php if($news_slug != 'not slug'): ?>
 
     <?php if(!empty($organizationInfo)):?>
-        <section class="hero-wrap hero-wrap-2" style="background-image: url('<?=get_img($organizationInfo['cover_photo'])?>');">
-            <div class="overlay"></div>
+        <section class="hero-wrap-ins hero-wrap-2" style="background-image: url('<?=get_img($organizationInfo['cover_photo'])?>');">
+            <!-- <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
@@ -14,7 +14,7 @@
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home &nbsp; <i class="fa-solid fa-arrow-right"></i></a></span> <span>Organization </span></p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
     <?php else: ?>
         <p class="bg-danger mx-auto text-center text-white p-5">No Information Available to this Organization.</p>
@@ -27,15 +27,15 @@
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
                         <h6 class="text-primary">About Us</h6>
-                        <h2 class="mb-4"><span>About</span> Our Organization</h2>
+                        <h2 class="mb-4 "><span>About</span> Our Organization</h2>
                     </div>
                 </div><!-- end title -->
             
-                <div class="row align-items-center mt-5">
+                <div class="row align-items-center mt-5 ">
                 <?php if(!empty($organizationAbout)):?>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
                         <div>
-                            <h2 class="text-center"><?= $organizationAbout['title']; ?></h2>
+                            <h2 class="text-center text-primary"><?= $organizationAbout['title']; ?></h2>
                             <p><?= $organizationAbout['description']; ?></p>
         
                         </div><!-- end messagebox -->
@@ -43,7 +43,7 @@
                     
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="post-media wow fadeIn">
-                            <img src="<?=get_img($organizationAbout['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 300px; object-fit:contain;">
+                            <img src="<?=get_img($organizationAbout['image'])?>" alt="" class="img-fluid img-rounded" style="width: 100%; height: 500px; object-fit:contain;">
                         </div><!-- end media -->
                     </div><!-- end col -->
                 <?php else: ?>
@@ -54,11 +54,10 @@
         </section> 
     
       <!-- Officers -->
-      <section class="ftco-section">
-        <div class="container">
+        <div class="container-fluid">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
-                <h6 class="text-primary">Officers</h6>
+                <h6 class="text-primary mt-5">Officers</h6>
                     <h2 class="mb-4"><span> Officers Of <?=esc($organizationInfo['name'])?></span></h2>
                 </div>
             </div><!-- end title -->
@@ -66,12 +65,12 @@
             <div class="row text-center g-4 justify-content-center mt-5">
                 <?php if(!empty($organizationOfficials)):?>
                     <?php foreach($organizationOfficials as $official): ?>
-                        <div class="col-lg-3 col-sm-4 wow fadeInUp">
+                        <div class="col-lg-3 col-md-4 wow fadeInUp bg-primeLight m-2 py-3">
                             <div class="team-member">
                                 <img src="<?= get_image($official->image) ?>" alt="">
-                                <div style="min-height: 130px;">
-                                    <h5 class="my-3"><?=$official->official_name?></h5>
-                                    <p><?=$official->position?></p>
+                                <div style="min-height: 100px;">
+                                    <h5 class="mt-3"><?=$official->official_name?></h5>
+                                    <p class="text-primary"><?=$official->position?></p>
                                 </div>
                             </div>
                         </div>  
@@ -82,8 +81,53 @@
             </div>
         </div>
         <div id="important" class="important">
+
+        
+      <!-- Members -->
+      <?php 
+                        
+        $db = new mysqli('localhost', 'root', '', 'neust'); 
+
+        $query = $db->query("select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' and isOfficial = 'Member';");
+         $tite =$query->num_rows ;       
+        if($query->num_rows > 0):
+    ?>
+
+      <div class="  p-5">
+      <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+              
+                <h6 class="text-primary">Members</h6>
+                    <h2 class="mb-4"><span> Members Of <?=esc($organizationInfo['name'])?></span></h2>
+                </div>
+            </div><!-- end title -->
+            
+            <div class="row text-center g-4 justify-content-center mt-5">
+                <?php if(!empty($organizationMember)):?>
+                    <?php foreach($organizationMember as $member): ?>
+                        <div class="col-lg-3 col-sm-4 wow fadeInUp bg-primeLight m-2 py-3">
+                            <div class="team-member">
+                                <img src="<?= get_image($member->image) ?>" alt="">
+                                <div style="min-height: 130px;">
+                                    <h5 class="my-3"><?=$member->official_name?></h5>
+                                    <p class="text-primary"><?=$member->position?></p>
+                                </div>
+                            </div>
+                        </div>  
+                    <?php endforeach;?>
+                <?php else: ?>
+                    <p class="bg-danger mx-auto text-center text-white p-5">No Members Available to this Organization.</p>
+                <?php endif;?>
+            </div>
+        </div>
+      </div>
+
+      <?php endif; ?>
+    
+        <!-- <div id="important" class="important">
    
-   <div class="important_bg">
+   <div class="important_bg ">
        <div class="container">
        <div class="row">
            <?php if(!empty($organizationAbout)):?>
@@ -111,9 +155,8 @@
        </div>
        </div>
    </div>
-</div>
+</div> -->
 
-    </section>
       <!-- Contact Start -->
    <div class="container-fluid py-5">
         <div class="container py-5">
@@ -151,7 +194,7 @@
       ?>
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-3" style="height: 450px;">
+                    <div class="bg-primeLight d-flex flex-column justify-content-center px-3" style="height: 450px;">
                     <?php if(!empty($organizationInfo)):?>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="d-none d-md-block">

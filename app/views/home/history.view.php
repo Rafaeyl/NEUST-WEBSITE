@@ -202,6 +202,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
+          
             <h1 class="mb-2 bread">History</h1>
             <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa-solid fa-arrow-right"></i></a></span> <span>History <i class="fa-solid fa-arrow-right"></i></span></p>
           </div>
@@ -214,6 +215,7 @@
             <div class="container">
                 <div class="row justify-content-center mb-5 pb-2">
 					<div class="col-md-8 text-center heading-section ftco-animate">
+                        <h6 class="text-primary">History</h6>
 						<h2 class="mb-4"><span>Our</span> History</h2>
 					</div>
         		</div>	
@@ -226,7 +228,7 @@
                                     <div class="timeline-image"><img class="rounded-circle img-fluid img" src="<?=get_image($row->image)?>" alt="..." style="object-fit: cover;" /></div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4><?=esc($row->date)?></h4>
+                                            <h4 class="text-primary"><?=esc($row->date)?></h4>
                                             <h4 class="subheading"><?=esc($row->title)?></h4>
                                         </div>
                                         <div class="timeline-body"><p class="text-muted"><?=esc($row->description)?></p></div>
@@ -237,7 +239,7 @@
                                     <div class="timeline-image"><img class="rounded-circle img-fluid img" src="<?=get_image($row->image)?>" alt="..." style="object-fit: cover;"  /></div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4><?=esc($row->date)?></h4>
+                                            <h4 class="text-primary"><?=esc($row->date)?></h4>
                                             <h4 class="subheading"><?=esc($row->title)?></h4>
                                         </div>
                                         <div class="timeline-body"><p class="text-muted"><?=esc($row->description)?></p></div>

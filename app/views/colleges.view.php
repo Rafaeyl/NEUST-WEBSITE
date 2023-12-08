@@ -5,8 +5,8 @@
 <?php if($news_slug != 'not slug'): ?>
 
     <?php if(!empty($collegeInfo)):?>
-        <section class="hero-wrap hero-wrap-2" style="background-image: url('<?=get_img($collegeInfo['cover_photo'])?>');">
-            <div class="overlay"></div>
+        <section class="hero-wrap-ins hero-wrap-2" style="background-image: url('<?=get_img($collegeInfo['cover_photo'])?>');">
+            <!-- <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
@@ -14,7 +14,7 @@
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home &nbsp; <i class="fa-solid fa-arrow-right"></i></a></span> <span>Colleges</span></p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
     <?php else: ?>
         <p class="bg-danger mx-auto text-center text-white p-5">No Information Available to this Organization.</p>
@@ -33,7 +33,7 @@
                         <div class="row g-3 pb-4">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
+                                    <div class="border rounded text-center p-4 bg-primeLight">
                                         <i class="fa fa-hotel fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up"><?= $collegeAbout['students']; ?></h2>
                                         <p class="mb-0">Students</p>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
+                                    <div class="border rounded text-center p-4 bg-primeLight">
                                         <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up"><?= $collegeAbout['activities']; ?></h2>
                                         <p class="mb-0">Activities</p>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
                                 <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
+                                    <div class="border rounded text-center p-4 bg-primeLight">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up"><?= $collegeAbout['events']; ?></h2>
                                         <p class="mb-0">Events</p>
@@ -76,41 +76,42 @@
 
         
     <!-- Officiers Start -->
-    <div class="container-xxl py-5 bg-light">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase"> Officers</h6>
-                    <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
+
+    <!-- Team End -->
+          <!-- Officers -->
+          <div class="container-fluid">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+                <h6 class="text-primary mt-5">Officers</h6>
+                <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Officers</span></h1>
                 </div>
-                <div class="row g-4 justify-content-center">
+            </div><!-- end title -->
+            
+            <div class="row text-center g-4 justify-content-center mt-5">
                 <?php if(!empty($collegeOfficials)):?>
                     <?php foreach($collegeOfficials as $official): ?>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp mt-3" data-wow-delay="0.1s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid w-100" style="min-height: 250px; max-height: 250px; background-size: cover;" src="<?= get_image($official->image) ?>" alt="">
-                                </div>
-                                <div class="text-center p-4 mt-3"  style="height:150px">
-                                    <h5 class="fw-bold mb-0"><?=$official->official_name?></h5>
-                                    <small><?=$official->position?></small>
+                        <div class="col-lg-3 col-md-2 wow fadeInUp bg-primeLight m-2 py-3">
+                            <div class="team-member">
+                                <img src="<?= get_image($official->image) ?>" alt="">
+                                <div style="min-height: 100px;">
+                                    <h6 class="mt-3"><?=$official->official_name?></h6>
+                                    <p class="text-primary"><?=$official->position?></p>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     <?php endforeach;?>
                 <?php else: ?>
                     <p class="bg-danger mx-auto text-center text-white p-5">No Officers Available to this Organization.</p>
                 <?php endif;?>
-                </div>
             </div>
-    </div>
-    <!-- Team End -->
-    
+        </div>
 <section class="ftco-section">
 	<div class="container-fluid px-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="section-title text-center text-primary text-uppercase"> Instructors</h6>
             <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Instructors</span></h1>
         </div>
+        
 		<div class="row justify-content-center">
 			<?php if (!empty($teachers)): ?>
 				<?php foreach ($teachers as $teacher): ?>
@@ -119,7 +120,7 @@
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
 							</div>
-							<div class="text p-3 text-center bg-white">
+							<div class="text p-3 text-center bg-primeLight">
 								<h3>
 									<?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
 								</h3>
@@ -197,8 +198,8 @@
                             </div>
                             <div class="col-md-4">
                                 <h6 class="section-title text-start text-primary text-uppercase"><i class="fa fa-envelope-open text-tertiary me-2"></i> &nbsp; Phone</h6>
-                                <p> <?=$collegeInfo['phone']?></p>
-                                <p> <a href="tel:+<?=esc($collegeInfo['email'])?>"  class="text-dark"><?=esc($collegeInfo['email'])?></a></p>
+                                <!-- <p> <?=$collegeInfo['phone']?></p> -->
+                                <p> <a href="tel:+<?=esc($collegeInfo['phone'])?>"  class="text-dark"><?=esc($collegeInfo['phone'])?></a></p>
 
                             </div>
                             <div class="col-md-4">
@@ -212,7 +213,7 @@
                     </div>
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
                         <iframe class="position-relative rounded w-100 h-100"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61544.24564958052!2d120.96213983005357!3d15.402711909364873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339724981f72b52f%3A0xaab029753d9a2287!2sNueva%20Ecija%20University%20of%20Science%20and%20Technology%20-%20Papaya!5e0!3m2!1sen!2sph!4v1680485889693!5m2!1sen!2sph"
                             frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
                             tabindex="0"></iframe>
                     </div>

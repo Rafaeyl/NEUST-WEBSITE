@@ -123,7 +123,7 @@ class User
 
 
 
-		if (!$id || isset($id)) {
+		if ( isset($id)) {
 			//edit mode
 			if ($this->first(['email' => $data['email']], ['id' => $data[$id]])) {
 				$this->errors['email'] = ucfirst('email') . " is already taken!";

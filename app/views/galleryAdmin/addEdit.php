@@ -62,7 +62,7 @@ $actionLabel = !empty($_GET['id'])?'Edit':'Add';
                         <div class="row mx-auto w-75">
                             <div class="col-md-12 mb-3">
                                 <label class="form-label text-center">Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Enter title" value="<?php echo !empty($proData['title'])?$proData['title']:''; ?>" required>
+                                <input type="text" name="title" class="form-control" placeholder="Enter title" value="<?php echo !empty($proData['title'])?$proData['title']:''; ?>" >
                             </div>
                         </div>
                         <div class="row mx-auto w-75 ">
@@ -70,17 +70,19 @@ $actionLabel = !empty($_GET['id'])?'Edit':'Add';
                                 <label class="form-label text-center">Description</label>
                                 <textarea name="description" class="form-control" placeholder="Enter description here..."><?php echo !empty($proData['description'])?$proData['description']:''; ?></textarea>
                             </div>
+                            <col-md-12>
+                            <label class="form-label text-center">Images</label>
+                            <input type="file" name="image_files[]" class="form-control " accept="image/*" multiple >
+                            </col-md-12>
                         </div>
                         <div class="row mx-auto w-75 ">
                         <div class="col-md-12 mb-3">
-                            <label class="form-label text-center">Images</label>
-                            <input type="file" name="image_files[]" class="form-control " accept="image/*" multiple >
                             
                             <?php if(!empty($proData['images'])){ ?>
                                 <div class="row justify-content-center text-center">
                                 <?php foreach($proData['images'] as $imageRow){ ?>
                                     <div class="img-bx col-md-2" id="imgbx_<?php echo $imageRow['id']; ?>">
-                                        <img src="<?= ROOT. 'uploads/'.$imageRow['file_name']; ?>" width="120"  class="mt-3 mb-2"/> 
+                                        <img src="<?= ROOT. 'uploads/'.$imageRow['file_name']; ?>" width="120" height="100" class="mt-3 mb-2"/> 
                                         <a href="javascript:void(0);" class="text-danger text-center text-decoration-none" onclick="deleteImage(<?php echo $imageRow['id']; ?>)">Delete</a>
                                     </div>
                                 <?php } ?>

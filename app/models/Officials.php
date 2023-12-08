@@ -24,6 +24,7 @@ class Officials
 		'position',
 		'suffix',
 		'institution',
+		'isOfficial',
 		'list_order',
 	];
 

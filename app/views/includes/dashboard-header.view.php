@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
-  <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/style2.css">
+  <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/style.css">
   <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/datatable.css">
   
   <!-- End layout styles -->
@@ -111,7 +111,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT ?>dashboard/dashhome">
+            <a class="nav-link active" href="<?= ROOT ?>dashboard/dashhome">
               <span class="menu-title">Dashboard</span>
               <i class="mdi mdi-home menu-icon"></i>
             </a>

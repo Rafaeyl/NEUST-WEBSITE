@@ -73,7 +73,7 @@ class Colleges
         $slug = $data['slug'];
 
 		// Teachers Start
-		$query = "select teachers.*, institutions.name FROM teachers JOIN institutions ON teachers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
+		$query = "select teachers.* FROM teachers JOIN institutions ON teachers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
 	   	$data['teachers'] = $this->query($query);
 		// Teachers end
 

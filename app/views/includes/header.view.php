@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/x-icon" href="<?= ROOT ?>/favicon.png" />
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="<?=ROOT?>assets/main/css/googleapis.css" rel="stylesheet">
 
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/main/css/animate.css">
@@ -35,8 +35,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
 
 	<!-- swiper -->
-	<link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/swiper.css">
-    <link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/app.css">
+	<link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/swiper.css?t=<?= time();?>">
+    <link rel="stylesheet" href="<?=ROOT?>assets/main/swiperjs-slider/css/app.css?t=<?= time();?>">
 
   </head>
   <body>
