@@ -1324,6 +1324,7 @@ class Dashboard
 			'suffixes',
 		  	'position',
 			'isFullTime',
+			'isDeptHead',
 			'list_order',
 	   ];
 
@@ -1414,6 +1415,140 @@ class Dashboard
 		if( $ses->user('institute') == 'Admin')
 		{
 			$this->view('dashboard/teachers', $data);
+		}else
+		{
+			$this->view('access-denied');
+		}
+		
+	}
+
+	public function organization_advisers($action = null, $id = null)
+	{
+		
+		$ses = new Session;
+		$data['ses'] = new Session;
+		if (!$ses->is_logged_in()) {
+
+			redirect('login');
+		}
+
+		$data['title'] = "Advisers";
+		$data['action'] = $action;
+		$data['organization_advisers'] = new Institution();
+		
+		$data['organization_advisers']->table = 'advisers';
+		$data['organization_advisers']->order_type = 'asc';
+		$data['organization_advisers']->allowedColumns = [
+			
+			'image',
+			'institution_id',
+		    'adviser_name',
+		  	'position',
+			'list_order',
+	   ];
+
+	   $query = "SELECT * FROM institutions WHERE institution='organization' AND disabled = 'active'";
+	   $data['organizations'] = $this->query($query);
+
+		if ($action == 'new') {
+
+			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+				$folder = "uploads/";
+				if(!file_exists($folder))
+				{
+					mkdir($folder, 0777, true);
+				}
+
+				if ($data['organization_advisers']->validatee($_FILES, $_POST)) {
+
+					$destination = $folder . time() . $_FILES['image']['name'];
+					move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+					$image_class = new Image();
+					$image_class->resize($destination);
+
+					$_POST['image'] = $destination;
+
+					$data['organization_advisers']->insert($_POST);
+					redirect('dashboard/organization_advisers');
+				}
+			}
+		}else
+		if($action == 'edit')
+		{
+			$data['row'] = $data['organization_advisers']->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+				$folder = "uploads/";
+				if(!file_exists($folder))
+				{
+					mkdir($folder, 0777, true);
+				}
+
+				if($data['organization_advisers']->validatee($_FILES, $_POST, $id))
+				{
+					if(!empty($_FILES['image']['name']))
+					{
+						$destination = $folder . time() . $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+						
+						$image_class = new Image();
+						$image_class->resize($destination);
+
+						$_POST['image'] = $destination;
+
+						if(file_exists($data['row']->image))
+							unlink($data['row']->image);
+					}
+					
+					$data['organization_advisers']->update($id, $_POST);
+
+					redirect('dashboard/organization_advisers');
+				}
+			}
+		}else
+		if($action == 'delete')
+		{
+
+			$data['row'] = $data['organization_advisers']->first(['id'=>$id]);
+
+			if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+ 
+				$data['organization_advisers']->delete($id);
+
+				if(file_exists($data['row']->image))
+					unlink($data['row']->image);
+					
+				redirect('dashboard/organization_advisers');
+			}
+		}
+
+		$id = $ses->user('id');
+		$query  = "select institutions.name FROM institutions JOIN users ON users.role = institutions.id WHERE users.id = $id";
+		$orgname = $this->query($query);
+		$role = $orgname[0]->name;
+
+		// all table
+		$insitution = $ses->user('institute');
+		if($insitution == 'Admin')
+		{
+			$query = "select advisers.*, institutions.name FROM advisers JOIN institutions ON advisers.institution_id = institutions.id WHERE institutions.institution = 'organization' AND institutions.disabled = 'Active'";
+		}
+		if($insitution == 'organization')
+		{
+			$query = "select advisers.*, institutions.name FROM advisers JOIN institutions ON advisers.institution_id = institutions.id WHERE institutions.name = '$role'" ;
+		}
+
+		$data['rows'] = $this->query($query);
+
+		$data['errors'] = $data['organization_advisers']->errors;
+
+		if( $ses->user('institute') == 'Admin' || $ses->user('institute') == 'organization')
+		{
+			$this->view('dashboard/organization_advisers', $data);
 		}else
 		{
 			$this->view('access-denied');

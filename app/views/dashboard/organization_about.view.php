@@ -324,7 +324,7 @@
                 <?php if($ses->user('institute') == 'Admin'):?>
                   <div style="overflow-x:auto;">
                     <table class="table table-bordered table-striped" id="userTable">
-                      <thead class="bg-gradient-dark">
+                      <thead class="bg-darken">
                         <tr  class="text-white text-center">
                           <th> # </th>
                           <th> Image </th>
@@ -379,9 +379,9 @@
                   </div>
                    <!-- Organization Representative View -->
                   <?php elseif($ses->user('institute') == 'organization'):?>
-
-                    <table class="table table-bordered" id="userTable">
-                        <thead class="bg-gradient-dark">
+                    <div style="overflow-x:auto;">
+                    <table class="table table-bordered" >
+                        <thead class="bg-darken">
                           <tr class="text-white text-center">
                           <th> Image </th>
                           <th> Title</th>
@@ -389,7 +389,6 @@
                           <th> Members</th>
                           <th> Activities</th>
                           <th> Events</th>
-                          <th> Organization </th>
                           <th> Action </th>
                             <!-- <th> Action</th> -->
                           </tr>
@@ -406,11 +405,6 @@
                                   <td><?= esc($row->students) ?></td>
                                   <td><?= esc($row->activities) ?></td>
                                   <td><?= esc($row->events) ?></td>
-                                  <?php
-                                  $query  = "select institutions.name FROM institutions JOIN about ON about.institution = institutions.id WHERE about.id = $row->id";
-                                    $orgname = $this->query($query);
-                                  ?>
-                                  <td><?=$orgname[0]->name?></td>
                                   <td>  
                                     <button type="button" class="btn btn-inverse-info btn-icon">
                                       <a  href="<?=ROOT?>dashboard/organization_about/edit/<?=$row->id?>">
@@ -424,6 +418,7 @@
                           
                         </tbody>
                       </table>
+                      </div>
                   <?php endif;?>
                 </div>
               </div>

@@ -117,7 +117,7 @@
 				<div class="img img-video d-flex align-items-center"
 					style="background-image: url(<?= ROOT ?>/assets/images/image-school/school-1.jpg);">
 					<div class="video justify-content-center">
-						<a href="https://www.youtube.com/watch?v=lON_VoGHhUs"
+						<a href="https://www.youtube.com/watch?v=zdAntvPS4Xk"
 							class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
 							<span class="fa-solid fa-play"></span>
 						</a>

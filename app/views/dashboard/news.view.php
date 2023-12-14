@@ -324,7 +324,7 @@
                   <div style="overflow-x:auto;">
 
                     <table class="table table-striped table-bordered" id="userTable">
-                      <thead  class="bg-gradient-dark">
+                      <thead  class="bg-darken">
                         <tr class="text-white">
                             <th>#</th>
                             <th>Image</th>

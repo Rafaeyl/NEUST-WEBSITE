@@ -9,13 +9,13 @@ use \Model\Settings;
 use \Model\Officials;
 use Model\Database;
 
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
 
 //Load Composer's autoloader
-require ROOT . '/assets/PHPMailer/src/Exception.php';
-require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
-require ROOT . '/assets/PHPMailer/src/SMTP.php';
+// require ROOT . '/assets/PHPMailer/src/Exception.php';
+// require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
+// require ROOT . '/assets/PHPMailer/src/SMTP.php';
 
 defined('ROOTPATH') or exit('Access Denied!');
 
@@ -322,11 +322,14 @@ class Home
 		$teachers->order_column   = 'name';
 		$teachers->order_type = 'asc';
 
-		$full_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'fulltime' ORDER BY name ASC";
+		$full_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'fulltime' AND isDeptHead = 'No' ORDER BY name ASC";
 		$data['full_time'] = $this->query($full_time);
 
-		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' ORDER BY name ASC";
+		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' AND isDeptHead = 'No' ORDER BY name ASC";
 		$data['part_time'] = $this->query($part_time);
+
+		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' AND isDeptHead = 'Yes' ORDER BY name ASC";
+		$data['dept_head'] = $this->query($part_time);
 
 		// url
 		$url = $_GET['url'] ?? 'home';

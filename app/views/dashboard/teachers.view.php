@@ -33,7 +33,7 @@
                   <div class="col-md-6 text-center">
                     <label for="suffixes" class="form-label"> Academic Suffixes</label>
                     <input value="<?= old_value('suffixes') ?>" type="text" class="form-control text-center" id="suffixes"
-                      name="suffixes" placeholder="LPT,MIT" required>
+                      name="suffixes" placeholder="LPT,MIT">
                       <div><small class="text-danger"> <?= $teachers->getError('suffixes') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
@@ -45,6 +45,7 @@
                   <div class="col-lg-6 mx-auto mb-3 text-center">
                   <label for="role" class="form-label">College</label>
                     <select id="institution_id" class="form-select" aria-label="Default select example" name="institution_id">
+
                       <?php if(!empty($colleges)):?>
                             <?php foreach($colleges as $college):?>
                                 <option <?=old_select('institution_id',$college->id)?> value="<?=$college->id?>"><?=$college->name?></option>
@@ -54,11 +55,18 @@
                         <?php endif;?>
                     </select>
                   </div>
-                  <div class="col-lg-6 mx-auto text-center">
+                  <div class="col-lg-6 text-center">
                     <label for="isFullTime" class="form-label">Designation</label>
                     <select id="isFullTime" class="form-select" aria-label="Default select example" name="isFullTime">
                       <option <?=old_select('isFullTime',"fulltime")?> value="fulltime" class="text-center">Full Time</option>
-                      <option <?=old_select('isFullTime',"text")?> value="parttime" class="text-center">Part Time</option>
+                      <option <?=old_select('isFullTime',"parttime")?> value="parttime" class="text-center">Part Time</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 text-center">
+                    <label for="isDeptHead" class="form-label">Depeartment Head</label>
+                    <select id="isDeptHead" class="form-select" aria-label="Default select example" name="isDeptHead">
+                    <option <?=old_select('isDeptHead',"No")?> value="No" class="text-center">No</option>
+                      <option <?=old_select('isDeptHead',"Yes")?> value="Yes" class="text-center">Yes</option>
                     </select>
                   </div>
                   <div class="row">
@@ -118,7 +126,7 @@
                   <div class="col-md-6 text-center">
                     <label for="suffixes" class="form-label"> Academic Suffixes</label>
                     <input value="<?= old_value('suffixes',$row->suffixes) ?>" type="text" class="form-control text-center" id="suffixes"
-                      name="suffixes" placeholder="LPT,MIT" required>
+                      name="suffixes" placeholder="LPT,MIT">
                       <div><small class="text-danger"> <?= $teachers->getError('suffixes') ?></small></div>
                   </div>
                   <div class="col-md-6 text-center">
@@ -139,11 +147,18 @@
                         <?php endif;?>
                     </select>
                   </div>
-                  <div class="col-lg-6 mx-auto text-center">
+                  <div class="col-lg-6  text-center">
                     <label for="isFullTime" class="form-label">Designation</label>
                     <select id="isFullTime" class="form-select" aria-label="Default select example" name="isFullTime">
                       <option <?=old_select('isFullTime','fulltime',$row->isFullTime)?> value="fulltime" class="text-center">Full Time</option>
                       <option <?=old_select('isFullTime','parttime',$row->isFullTime)?> value="parttime" class="text-center">Part Time</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 text-center">
+                    <label for="isDeptHead" class="form-label">Depeartment Head</label>
+                    <select id="isDeptHead" class="form-select" aria-label="Default select example" name="isDeptHead">
+                    <option <?=old_select('isDeptHead',"No",$row->isDeptHead)?> value="No" class="text-center">No</option>
+                      <option <?=old_select('isDeptHead',"Yes",$row->isDeptHead)?> value="Yes" class="text-center">Yes</option>
                     </select>
                   </div>
                   <div class="row">
@@ -250,7 +265,7 @@
                 <div class="card-body">
                   <div style="overflow-x:auto;">
                     <table class="table table-striped table-bordered" id="userTable">
-                      <thead class="bg-gradient-dark">
+                      <thead class="bg-darken">
                         <tr  class="text-white">
                           <th> # </th>
                           <th> Image </th>

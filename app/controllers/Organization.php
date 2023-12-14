@@ -91,8 +91,14 @@ class Organization
 
 			$sql                           = "select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' and officials.isOfficial = 'Member' order by officials.list_order";
 			$data['organizationMember'] = $this->query($sql);
-			// Contact form - send email - php mailer
 
+			// Teachers Start
+			$query = "select advisers.* FROM advisers JOIN institutions ON advisers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
+			$data['advisers'] = $this->query($query);
+			// Teachers end
+
+
+			// Contact form - send email - php mailer
 			try {
 				if (isset($_POST['send'])) {
 					$name    = htmlentities($_POST["name"]);
@@ -105,16 +111,16 @@ class Organization
 					$mail->Host     = "smtp.gmail.com";
 					$mail->SMTPAuth = true;
 
-					$mail->Username = $organizationInfo['email'];
-					$mail->Password = $organizationInfo['password'];
+					$mail->Username = "papayaoffc@gmail.com";
+					$mail->Password = "ixhn koab sbxo bovq";
 
 					$mail->Port       = 465;
 					$mail->SMTPSecure = 'ssl';
 					$mail->isHTML(true);
 					$mail->setFrom($email, $name);
-					$mail->addAddress("villanuevarafaeljr129@gmail.com");
+					$mail->addAddress($organizationInfo['email'],$organizationInfo['name']);
 
-					$mail->Subject = ("$email ($subject)");
+					$mail->Subject = ("subject ($email)");
 					$mail->Body    = $message;
 
 					if ($mail->send()) {

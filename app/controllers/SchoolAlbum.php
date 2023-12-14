@@ -56,6 +56,12 @@ class SchoolAlbum
 		$data['albums']  = $this->query($sql);
 
 		$data['title'] = "School Album";
+
+			
+	    // Pagination
+		$page_query = "SELECT COUNT(ID) AS news_gallery FROM gallery";
+		$query =  $this->query($page_query);
+		$data['total_gallery'] = $query[0]->news_gallery;
 			
         $this->view('schoolAlbum', $data);
 	

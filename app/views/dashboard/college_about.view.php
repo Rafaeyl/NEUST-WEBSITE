@@ -320,7 +320,7 @@
                 <?php if($ses->user('institute') == 'Admin'):?>
                   <div style="overflow-x:auto;">
                     <table class="table table-striped table-bordered" id="userTable">
-                      <thead class="bg-gradient-dark">
+                      <thead class="bg-darken">
                         <tr class="text-white">
                           <th> # </th>
                           <th> Image </th>
@@ -376,7 +376,7 @@
                   <?php elseif($ses->user('institute') == 'college'):?>
                     <div style="overflow-x:auto;">
                     <table class="table table-bordered" >
-                        <thead class="bg-gradient-dark">
+                        <thead class="bg-darken">
                           <tr class="text-white text-center">
                           <th> Image </th>
                           <th> Title</th>
@@ -384,7 +384,6 @@
                           <th> Members</th>
                           <th> Activities</th>
                           <th> Events</th>
-                          <th> College </th>
                           <th> Action </th>
                             <!-- <th> Action</th> -->
                           </tr>
@@ -401,11 +400,6 @@
                                   <td><?= esc($row->students) ?></td>
                                   <td><?= esc($row->activities) ?></td>
                                   <td><?= esc($row->events) ?></td>
-                                  <?php
-                                  $query  = "select institutions.name FROM institutions JOIN about ON about.institution = institutions.id WHERE about.id = $row->id";
-                                    $orgname = $this->query($query);
-                                  ?>
-                                  <td><?=$orgname[0]->name?></td>
                                   <td>  
                                     <button type="button" class="btn btn-inverse-info btn-icon">
                                       <a  href="<?=ROOT?>dashboard/college_about/edit/<?=$row->id?>">

@@ -40,7 +40,7 @@
                   <div><small class="text-danger"><?=$user->getError('password')?></small></div>
 
                   <div class="d-grid gap-2">
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
+                    <button class="btn btn-block bg-darken text-white btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
                   </div>
                   <div class="mt-3 d-flex justify-content-center align-items-center">
                     <a href="<?=ROOT?>forgot" class="auth-link text-black">Forgot password?</a>

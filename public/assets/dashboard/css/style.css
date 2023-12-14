@@ -11233,6 +11233,11 @@ fieldset:disabled .btn {
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-darken {
+  background:#051042!important;
+}
+
+
 .bg-black {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
@@ -19488,14 +19493,17 @@ dl li {
   background: #ffffff;
 }
 .sidebar .nav .nav-item.active > .nav-link .menu-title {
-  color: #b66dff;
+  /* color: #b66dff; */
+  color:#001F5F ;
   font-family: "ubuntu-medium", sans-serif;
 }
 .sidebar .nav .nav-item.active > .nav-link i {
-  color: #b66dff;
+  /* color: #b66dff; */
+  color:#001F5F;
 }
 .sidebar .nav .nav-item:hover {
   background: #fcfcfc;
+  color:#001F5F;
 }
 .sidebar .nav .nav-item.nav-profile .nav-link {
   height: auto;

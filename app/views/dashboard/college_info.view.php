@@ -13,7 +13,6 @@
           <div class="card">
             <div class="card-body">
               <h2 class="mb-4">Add College's Info</h2>
-              <p class="text-danger">Make sure to click and watch this <a  href="https://youtu.be/sT2ZbN3etTk" target="_blank" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
               <form method="post" enctype="multipart/form-data">
                 <div class="row g-3 my-3 mx-auto">
                   <div class="row">
@@ -62,29 +61,25 @@
                     </label>
                   </div>
                   <p class="card-description">Contact Info</p>
-                  <div class="col-md-6">
+                  <div class="col-md-6 text-center">
                     <label for="email" class="form-label">Email</label>
-                    <input value="<?= old_value('email') ?>" type="email" class="form-control" id="email" name="email"
+                    <input value="<?= old_value('email') ?>" type="email" class="form-control text-center" id="email" name="email"
                       placeholder="e.g. COE@gmail.com">
                   </div>
-                  <div class="col-md-6">
-                    <label for="password" class="form-label">Gmail App Password</label>
-                    <input value="<?= old_value('password') ?>" type="text" class="form-control" id="password"
-                      name="password" placeholder="Enter your Gmail App Password" required>
-                  </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 text-center">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input value="<?= old_value('phone') ?>" type="number" class="form-control" id="phone"
+                    <input value="<?= old_value('phone') ?>" type="number" class="form-control text-center" id="phone"
                       name="phone" placeholder="09056073442">
                     
                       <div><small class="text-danger"> <?= $collegeInfo->getError('phone') ?></small></div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center w-50 mx-auto mt-5">
                     <label for="fb_link" class="form-label">Facebook Link</label>
-                    <input value="<?= old_value('fb_link') ?>" type="text" class="form-control" id="fb_link"
+                    <input value="<?= old_value('fb_link') ?>" type="text" class="form-control text-center" id="fb_link"
                       name="fb_link" placeholder="https://www.facebook.com/profile.php?id=100044873051995&mibextid=ZbWKwL">
                   </div>
 
+                  <div class="row">
                   <div class="col-6">
                     <button class="btn btn-gradient-primary btn-lg my-4">ADD</button>
                   </div>
@@ -93,6 +88,8 @@
                           BACK
                       </a>
                   </div>
+                  </div>
+               
 
                 </div>
 
@@ -120,7 +117,6 @@
           <div class="card">
             <div class="card-body">
               <h2 class="mb-4">Update College's Info</h2>
-              <p class="text-danger">Make sure to click and watch this <a href="" class="text-danger fw-bolder">video</a> on how to add a <span class="fw-bolder"> Gmail app password.</span></p>
 
               <?php if(!empty($row)):?>
                 <form method="post" enctype="multipart/form-data">
@@ -158,28 +154,24 @@
                       </label>
                     </div>
                     <p class="card-description">Contact Info</p>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-center">
                       <label for="email" class="form-label">Email</label>
-                      <input value="<?= old_value('email', $row->email) ?>" type="email" class="form-control" id="email" name="email"
+                      <input value="<?= old_value('email', $row->email) ?>" type="email" class="form-control text-center" id="email" name="email"
                         placeholder="e.g. COE@gmail.com">
                     </div>
-                    <div class="col-md-6">
-                    <label for="password" class="form-label">Gmail App Password</label>
-                    <input value="<?= old_value('password',$row->password) ?>" type="text" class="form-control" id="password"
-                      name="password" placeholder="Enter your Gmail App Password" required>
-                    </div>
-                    <div class="col-md-6 ">
+                    <div class="col-md-6 text-center ">
                       <label for="phone" class="form-label">Phone Number</label>
-                      <input value="<?= old_value('phone',$row->phone) ?>" type="number" class="form-control" id="phone"
+                      <input value="<?= old_value('phone',$row->phone) ?>" type="number" class="form-control text-center" id="phone"
                         name="phone" placeholder="09056073442" >
                         <div><small class="text-danger"> <?= $collegeInfo->getError('phone') ?></small></div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12 text-center w-50 mx-auto mt-5">
                       <label for="fb_link" class="form-label">Facebook Link</label>
-                      <input value="<?= old_value('fb_link',$row->fb_link) ?>" type="text" class="form-control" id="fb_link"
+                      <input value="<?= old_value('fb_link',$row->fb_link) ?>" type="text" class="form-control text-center" id="fb_link"
                         name="fb_link" placeholder="https://www.facebook.com/profile.php?id=100044873051995&mibextid=ZbWKwL">
                     </div>
 
+                    <div class="row">
                     <div class="col-6">
                       <button class="btn btn-gradient-primary btn-lg my-4">UPDATE</button>
                     </div>
@@ -188,6 +180,8 @@
                             BACK
                         </a>
                     </div>
+                    </div>
+                 
 
                   </div>
 
@@ -279,7 +273,7 @@
                 <?php if($ses->user('institute') == 'Admin'):?>
                   <div style="overflow-x:auto;">
                     <table class="table table-striped table-bordered" id="userTable">
-                      <thead class="bg-gradient-dark">
+                      <thead class="bg-darken">
                         <tr class="text-white">
                           <th> # </th>
                           <th> Logo </th>
@@ -320,14 +314,14 @@
                     </table>
                   </div>
                   <?php elseif($ses->user('institute') == 'college'):?>
+                    <div style="overflow-x:auto;">
                     <table class="table table-bordered table-striped" >
-                        <thead class="bg-gradient-dark">
+                        <thead class="bg-darken">
                           <tr class="text-white text-center" >
                             <th> Logo </th>
                             <th> Cover Photo</th>
                             <th> Email</th>
                             <th> Phone </th>
-                            <th> College </th>
                             <th> Action </th>
                             <!-- <th> Action</th> -->
                           </tr>
@@ -344,7 +338,6 @@
                                   </td>
                                   <td><?= esc($row->email) ?></td>
                                   <td><?= esc($row->phone) ?></td>
-                                  <td><?= esc($row->name) ?></td>
                                   <td>  
                                     <button type="button" class="btn btn-inverse-info btn-icon">
                                       <a  href="<?=ROOT?>dashboard/college_info/edit/<?=$row->id?>">
@@ -362,6 +355,7 @@
                           
                         </tbody>
                       </table>
+                      </div>
                   <?php endif;?>
 
                 </div>

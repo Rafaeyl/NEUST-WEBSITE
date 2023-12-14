@@ -260,13 +260,12 @@
 
 
                     <table class="table table-striped table-bordered" id="userTable">
-                      <thead  class="bg-gradient-dark">
+                      <thead  class="bg-darken">
                         <tr class="text-white">
                           <th> # </th>
                           <th> Image </th>
                           <th> Name</th>
                           <th> Position</th>
-                          <th> College </th>
                           <th> List Order</th>
                           <th> Action </th>
                         </tr>
@@ -282,7 +281,6 @@
                                 </td>
                                 <td><?= esc($row->official_name) ?></td>
                                 <td><?= esc($row->position) ?></td>
-                                <td><?=$row->name?></td>
                                 <td><?= esc($row->list_order) ?></td>
                                 <td>
                                   <button type="button" class="btn btn-inverse-info btn-icon">

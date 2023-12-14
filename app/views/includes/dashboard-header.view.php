@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
-  <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/style.css">
+  <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/style.css?t=<?= time();?>">
   <link rel="stylesheet" href="<?= ROOT ?>assets/dashboard/css/datatable.css">
   
   <!-- End layout styles -->
@@ -222,6 +222,7 @@
                     Info</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_about">Organization's About Us</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">Organization's Official</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?= ROOT ?>dashboard/organization_advisers">Organization's Advisers</a></li>
               </ul>
             </div>
           </li>
@@ -265,6 +266,13 @@
           <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/organization_officials">
               <span class="menu-title">Organization's Official</span>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">             
+
+            <a class="nav-link" href="<?= ROOT ?>dashboard/organization_advisers">
+              <span class="menu-title">Organization's Advisers</span>
               <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
           </li>

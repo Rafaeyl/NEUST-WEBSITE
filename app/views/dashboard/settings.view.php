@@ -215,8 +215,8 @@
           <div class="card">
             <div class="card-body">
 
-              <table class="table table-striped text-center">
-                <thead>
+              <table class="table table-striped text-center table-bordered">
+                <thead class="bg-darken text-white  ">
                     <th>#</th>
                     <th>Setting</th>
                     <th>Type</th>

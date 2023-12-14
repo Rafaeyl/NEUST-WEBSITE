@@ -13,7 +13,7 @@
                 <div class="row">
                       <?php $row =  $rows[0]->disabled;?>
                       <?php if($row == 'Active'): ?>
-                        <div class="col-md-12 justify-content-center bg-gradient-primary p-5">
+                        <div class="col-md-12 justify-content-center bg-darken p-5">
                           <h3 class="text-white fw-bolder text-center">WELCOME TO NEUST PAPAYA CAMPUS WEBSITE DASHBOARD!</h3>
                         </div>   
                         

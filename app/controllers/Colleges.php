@@ -72,10 +72,7 @@ class Colleges
         $data['slug'] = $url[1] ?? 'home';
         $slug = $data['slug'];
 
-		// Teachers Start
-		$query = "select teachers.* FROM teachers JOIN institutions ON teachers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
-	   	$data['teachers'] = $this->query($query);
-		// Teachers end
+		
 
 	
         
@@ -95,6 +92,11 @@ class Colleges
 			$sql = "select officials.*, institutions.slug from officials join institutions on officials.institution = institutions.id where institutions.slug = '$slug' order by officials.list_order";
             $data['collegeOfficials']  = $this->query($sql);
 
+			// Teachers Start
+			$query = "select teachers.* FROM teachers JOIN institutions ON teachers.institution_id = institutions.id WHERE institutions.slug = '$slug'";
+			$data['teachers'] = $this->query($query);
+			// Teachers end
+
 			// Contact form - send email - php mailer
 			try{
 				if (isset($_POST['send'])) {
@@ -108,16 +110,16 @@ class Colleges
 					$mail->Host = "smtp.gmail.com";
 					$mail->SMTPAuth = true;
 
-					$mail->Username = $collegeInfo['email'];
-					$mail->Password = $collegeInfo['password'];
+					$mail->Username = "papayaoffc@gmail.com";
+					$mail->Password = "ixhn koab sbxo bovq";
 
 					$mail->Port = 465;
 					$mail->SMTPSecure = 'ssl';
 					$mail->isHTML(true);
 					$mail->setFrom($email, $name);
-					$mail->addAddress($collegeInfo['email']);
+					$mail->addAddress($collegeInfo['email'],$collegeInfo['name']);
 
-					$mail->Subject = ("$email ($subject)");
+					$mail->Subject = ("$subject ($email)");
 					$mail->Body = $message;
 
 					if($mail->send())

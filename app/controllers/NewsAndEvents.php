@@ -90,7 +90,6 @@ class NewsAndEvents
 		$data['total_news'] = $query[0]->news_total;
 	   	
 
-
 		$this->view('newsAndEvents', $data);
 		
 	   

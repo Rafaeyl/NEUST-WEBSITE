@@ -41,6 +41,21 @@ if(isset($_POST['dataSubmit'])){
         $error .= 'Please enter title.<br>'; 
     } 
 
+    foreach($image_files['name'] as $key=>$val){  
+        // File upload path  
+        $fileName = time().'_'.basename($image_files['name'][$key]);  
+        $targetFilePath = $uploadDir . $fileName;  
+         
+        if($image_files['name'][$key]){
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);  
+            if(!in_array($fileType, $allowTypes)){  
+                // Upload file to the server 
+                $error .= 'Only files of this type are allowed: jpg, jpeg, png, svg!';
+            }
+            
+        }
+    } 
+
     // $fileNames = array_filter($image_files['name']);
     // if(empty($fileNames)){ 
     //     $error .= 'Please enter IMAGES.<br>'; 
@@ -62,7 +77,6 @@ if(isset($_POST['dataSubmit'])){
                      
                     // Check whether file type is valid  
                     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);  
-                    if(in_array($fileType, $allowTypes)){  
                         // Upload file to the server 
                         if(move_uploaded_file($image_files["tmp_name"][$key], $targetFilePath)){  
                             // Insert image in the database 
@@ -81,14 +95,6 @@ if(isset($_POST['dataSubmit'])){
                         }else{  
                             $errorUpload .= $image_files['name'][$key].' | ';  
                         }  
-                    }else{  
-                        $statusType = 'danger'; 
-                        $statusMsg = 'Only files of this type are allowed: jpg, jpeg, png, svg!'.$errorMsg_img; 
-                        $errorUploadType .= $image_files['name'][$key].' | ';  
-                          // Set redirect url 
-                          $idd = $_POST['id'];
-                          $redirectURL = ROOT.  "galleryAdmin/addEdit?id=$idd"; 
-                    }  
                 }  
                  
                 // File upload error message 
@@ -109,7 +115,6 @@ if(isset($_POST['dataSubmit'])){
                      
                     // Check whether file type is valid  
                     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);  
-                    if(in_array($fileType, $allowTypes)){  
                         // Upload file to the server 
                         if(move_uploaded_file($image_files["tmp_name"][$key], $targetFilePath)){  
                             // Insert image in the database 
@@ -128,13 +133,7 @@ if(isset($_POST['dataSubmit'])){
                         }else{  
                             $errorUpload .= $image_files['name'][$key].' | ';  
                         }  
-                    }
-                    else{  
-                        $statusType = 'danger'; 
-                        $statusMsg = 'Only files of this type are allowed: jpg, jpeg, png, svg!'.$errorMsg_img; 
-                        $errorUploadType .= $image_files['name'][$key].' | ';  
-                        $statusMsg .= '<br> Please try again!';
-                    }  
+                   
                 }  
                  
                 // File upload error message 

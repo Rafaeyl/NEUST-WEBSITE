@@ -79,7 +79,7 @@
 								<a href="<?=ROOT?>home/history#history" class="dropdown-item ">History</a>
 								<a href="<?=ROOT?>home/mission#missionAndVision" class="dropdown-item">Mission and Vision</a>
 								<a href="<?=ROOT?>home/march#neustMarch" class="dropdown-item">NEUST March</a>
-								<a href="<?=ROOT?>home/teachers#teachers" class="dropdown-item">Teachers</a>
+								<a href="<?=ROOT?>home/teachers#teachers" class="dropdown-item">Faculty</a>
 							</div>
 						</div>
 						<div class="nav-item dropdown">

@@ -156,7 +156,48 @@
        </div>
    </div>
 </div> -->
-
+<section class="ftco-section bg-light">
+	<div class="container-fluid px-4">
+        <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2  text-center heading-section ftco-animate">
+              
+                <h6 class="text-primary">Advisers</h6>
+                    <h2 class="mb-4">Meet Our Advisers</h2>
+                </div>
+        </div><!-- end title -->
+        
+		<div class="row justify-content-center">
+			<?php if (!empty($advisers)): ?>
+				<?php foreach ($advisers as $adviser): ?>
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(<?= get_image($adviser->image) ?>);"></div>
+							</div>
+							<div class="text p-3 text-center bg-primeLight">
+								<h3>
+									<?= esc($adviser->adviser_name)?>
+								</h3>
+								<span class="position mb-2">
+									<?= esc($adviser->position) ?>
+								</span>
+								<!-- <div class="faded">
+									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+									<ul class="ftco-social text-center">
+									</ul>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			<?php else: ?>
+				<div class="bg-danger p-5 mb-5 mx-auto text-center">
+					<h2 class="lead display-5">NO ADVISERS AVAILABLE</h2>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>
       <!-- Contact Start -->
    <div class="container-fluid py-5">
         <div class="container py-5">
