@@ -131,39 +131,39 @@ class Home
 		$data['gallery_name'] = $this->query($sql_name);
 
 		// Contact Form - Send Email
-		try {
-			if (isset($_POST['send'])) {
-				$name    = htmlentities($_POST["name"]);
-				$email   = htmlentities($_POST["email"]);
-				$subject = htmlentities($_POST["subject"]);
-				$message = htmlentities($_POST["message"]);
+		// try {
+		// 	if (isset($_POST['send'])) {
+		// 		$name    = htmlentities($_POST["name"]);
+		// 		$email   = htmlentities($_POST["email"]);
+		// 		$subject = htmlentities($_POST["subject"]);
+		// 		$message = htmlentities($_POST["message"]);
 
-				$mail = new PHPMailer(true);
-				$mail->isSMTP();
-				$mail->Host     = "smtp.gmail.com";
-				$mail->SMTPAuth = true;
+		// 		$mail = new PHPMailer(true);
+		// 		$mail->isSMTP();
+		// 		$mail->Host     = "smtp.gmail.com";
+		// 		$mail->SMTPAuth = true;
 
-				$mail->Username = $contact_school['email'];
-				$mail->Password = $contact_school['password'];
+		// 		$mail->Username = $contact_school['email'];
+		// 		$mail->Password = $contact_school['password'];
 
-				$mail->Port       = 465;
-				$mail->SMTPSecure = 'ssl';
-				$mail->isHTML(true);
-				$mail->setFrom($email, $name);
-				$mail->addAddress($contact_school['email']);
+		// 		$mail->Port       = 465;
+		// 		$mail->SMTPSecure = 'ssl';
+		// 		$mail->isHTML(true);
+		// 		$mail->setFrom($email, $name);
+		// 		$mail->addAddress($contact_school['email']);
 
-				$mail->Subject = ("$email ($subject)");
-				$mail->Body    = $message;
+		// 		$mail->Subject = ("$email ($subject)");
+		// 		$mail->Body    = $message;
 
-				if ($mail->send()) {
-					$_SESSION['status'] = "Message Sent!";
-				}
-			}
-		} catch (Exception $e) {
-			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-			echo $e->getMessage(); //Boring error messages from anything else!
-		}
+		// 		if ($mail->send()) {
+		// 			$_SESSION['status'] = "Message Sent!";
+		// 		}
+		// 	}
+		// } catch (Exception $e) {
+		// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+		// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+		// 	echo $e->getMessage(); //Boring error messages from anything else!
+		// }
 		$data['title'] = "Home";
 		$this->view('home', $data);
 	}
@@ -224,43 +224,43 @@ class Home
 
 		// Contact Form - Send Email
 
-		try {
-			if (isset($_POST['send'])) {
-				$name    = htmlentities($_POST["name"]);
-				$email   = htmlentities($_POST["email"]);
-				$subject = htmlentities($_POST["subject"]);
-				$message = htmlentities($_POST["message"]);
+		// try {
+		// 	if (isset($_POST['send'])) {
+		// 		$name    = htmlentities($_POST["name"]);
+		// 		$email   = htmlentities($_POST["email"]);
+		// 		$subject = htmlentities($_POST["subject"]);
+		// 		$message = htmlentities($_POST["message"]);
 
-				$mail = new PHPMailer(true);
-				$mail->isSMTP();
-				$mail->Host     = "smtp.gmail.com";
-				$mail->SMTPAuth = true;
+		// 		$mail = new PHPMailer(true);
+		// 		$mail->isSMTP();
+		// 		$mail->Host     = "smtp.gmail.com";
+		// 		$mail->SMTPAuth = true;
 
-				$school_email   ="papayaoffc@gmail.com";
-				$email_password = "ixhn koab sbxo bovq";
+		// 		$school_email   ="papayaoffc@gmail.com";
+		// 		$email_password = "ixhn koab sbxo bovq";
 
-				$mail->Username = $school_email;
-				$mail->Password = $email_password;
+		// 		$mail->Username = $school_email;
+		// 		$mail->Password = $email_password;
 
-				$mail->Port       = 465;
-				$mail->SMTPSecure = 'ssl';
-				$mail->isHTML(true);
-				$mail->setFrom("papayaoffc@gmail.com", "NEUST Papaya Off Campus");
-				$mail->addAddress($email, "Visitor");
+		// 		$mail->Port       = 465;
+		// 		$mail->SMTPSecure = 'ssl';
+		// 		$mail->isHTML(true);
+		// 		$mail->setFrom("papayaoffc@gmail.com", "NEUST Papaya Off Campus");
+		// 		$mail->addAddress($email, "Visitor");
 
-				$mail->Subject = $subject;
-				$mail->Body    = $message;
+		// 		$mail->Subject = $subject;
+		// 		$mail->Body    = $message;
 
-				$mail->MsgHTML($message);
-				if ($mail->send()) {
-					$_SESSION['status'] = "Message Sent!";
-				}
-			}
-		} catch (Exception $e) {
-			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-			echo $e->getMessage(); //Boring error messages from anything else!
-		}
+		// 		$mail->MsgHTML($message);
+		// 		if ($mail->send()) {
+		// 			$_SESSION['status'] = "Message Sent!";
+		// 		}
+		// 	}
+		// } catch (Exception $e) {
+		// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+		// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+		// 	echo $e->getMessage(); //Boring error messages from anything else!
+		// }
 
 
 

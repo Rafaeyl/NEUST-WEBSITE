@@ -4,12 +4,12 @@ namespace Controller;
 use \Model\Institution;
 use \Model\Settings;
 use Model\Database;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
-require ROOT . '/assets/PHPMailer/src/Exception.php';
-require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
-require ROOT . '/assets/PHPMailer/src/SMTP.php';
+// require ROOT . '/assets/PHPMailer/src/Exception.php';
+// require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
+// require ROOT . '/assets/PHPMailer/src/SMTP.php';
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
@@ -98,40 +98,40 @@ class Colleges
 			// Teachers end
 
 			// Contact form - send email - php mailer
-			try{
-				if (isset($_POST['send'])) {
-					$name = htmlentities($_POST["name"]);
-					$email = htmlentities($_POST["email"]);
-					$subject = htmlentities($_POST["subject"]);
-					$message = htmlentities($_POST["message"]);
+			// try{
+			// 	if (isset($_POST['send'])) {
+			// 		$name = htmlentities($_POST["name"]);
+			// 		$email = htmlentities($_POST["email"]);
+			// 		$subject = htmlentities($_POST["subject"]);
+			// 		$message = htmlentities($_POST["message"]);
 
-					$mail = new PHPMailer(true);
-					$mail->isSMTP();
-					$mail->Host = "smtp.gmail.com";
-					$mail->SMTPAuth = true;
+			// 		$mail = new PHPMailer(true);
+			// 		$mail->isSMTP();
+			// 		$mail->Host = "smtp.gmail.com";
+			// 		$mail->SMTPAuth = true;
 
-					$mail->Username = "papayaoffc@gmail.com";
-					$mail->Password = "ixhn koab sbxo bovq";
+			// 		$mail->Username = "papayaoffc@gmail.com";
+			// 		$mail->Password = "ixhn koab sbxo bovq";
 
-					$mail->Port = 465;
-					$mail->SMTPSecure = 'ssl';
-					$mail->isHTML(true);
-					$mail->setFrom($email, $name);
-					$mail->addAddress($collegeInfo['email'],$collegeInfo['name']);
+			// 		$mail->Port = 465;
+			// 		$mail->SMTPSecure = 'ssl';
+			// 		$mail->isHTML(true);
+			// 		$mail->setFrom($email, $name);
+			// 		$mail->addAddress($collegeInfo['email'],$collegeInfo['name']);
 
-					$mail->Subject = ("$subject ($email)");
-					$mail->Body = $message;
+			// 		$mail->Subject = ("$subject ($email)");
+			// 		$mail->Body = $message;
 
-					if($mail->send())
-					{ 
-						$_SESSION['status'] = "Message Sent!";
-					}
-				}
-        	}catch (Exception $e) {
-				$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-			} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-				echo $e->getMessage(); //Boring error messages from anything else!
-			}
+			// 		if($mail->send())
+			// 		{ 
+			// 			$_SESSION['status'] = "Message Sent!";
+			// 		}
+			// 	}
+        	// }catch (Exception $e) {
+			// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+			// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+			// 	echo $e->getMessage(); //Boring error messages from anything else!
+			// }
 	
         }
 

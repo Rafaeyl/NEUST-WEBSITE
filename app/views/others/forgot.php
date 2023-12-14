@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 session_start();
 $error = array();
 
@@ -271,4 +271,4 @@ require "mail.php";
 
 
 </body>
-</html>
+</html> -->
