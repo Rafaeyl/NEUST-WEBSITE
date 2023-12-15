@@ -68,7 +68,7 @@
                               <div class="form-check">
                               <label class="form-check-label">
                                   <input type="radio" class="form-check-input" name="isHeadline" id="isHeadline2"
-                                  value="No" <?=old_checked('isHeadline','No')?>> No </label>
+                                  value="No" <?=old_checked('isHeadline','No')?> checked> No </label>
                               </div>
                           </div>
                         </div>

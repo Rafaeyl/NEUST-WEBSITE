@@ -9,13 +9,13 @@ use \Model\Settings;
 use \Model\Officials;
 use Model\Database;
 
-// use PHPMailer\PHPMailer\Exception;
-// use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
-//Load Composer's autoloader
-// require ROOT . '/assets/PHPMailer/src/Exception.php';
-// require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
-// require ROOT . '/assets/PHPMailer/src/SMTP.php';
+// Load Composer's autoloader
+require ROOT . '/assets/PHPMailer/src/Exception.php';
+require ROOT . '/assets/PHPMailer/src/PHPMailer.php';
+require ROOT . '/assets/PHPMailer/src/SMTP.php';
 
 defined('ROOTPATH') or exit('Access Denied!');
 
@@ -130,40 +130,8 @@ class Home
 		$sql_name  = "SELECT gallery.title from gallery join gallery_images on gallery_images.gallery_id = gallery.id where gallery.id = (SELECT id as p FROM `gallery` ORDER BY id desc limit 1) limit 1";
 		$data['gallery_name'] = $this->query($sql_name);
 
-		// Contact Form - Send Email
-		// try {
-		// 	if (isset($_POST['send'])) {
-		// 		$name    = htmlentities($_POST["name"]);
-		// 		$email   = htmlentities($_POST["email"]);
-		// 		$subject = htmlentities($_POST["subject"]);
-		// 		$message = htmlentities($_POST["message"]);
-
-		// 		$mail = new PHPMailer(true);
-		// 		$mail->isSMTP();
-		// 		$mail->Host     = "smtp.gmail.com";
-		// 		$mail->SMTPAuth = true;
-
-		// 		$mail->Username = $contact_school['email'];
-		// 		$mail->Password = $contact_school['password'];
-
-		// 		$mail->Port       = 465;
-		// 		$mail->SMTPSecure = 'ssl';
-		// 		$mail->isHTML(true);
-		// 		$mail->setFrom($email, $name);
-		// 		$mail->addAddress($contact_school['email']);
-
-		// 		$mail->Subject = ("$email ($subject)");
-		// 		$mail->Body    = $message;
-
-		// 		if ($mail->send()) {
-		// 			$_SESSION['status'] = "Message Sent!";
-		// 		}
-		// 	}
-		// } catch (Exception $e) {
-		// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-		// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-		// 	echo $e->getMessage(); //Boring error messages from anything else!
-		// }
+		
+		
 		$data['title'] = "Home";
 		$this->view('home', $data);
 	}
@@ -224,43 +192,43 @@ class Home
 
 		// Contact Form - Send Email
 
-		// try {
-		// 	if (isset($_POST['send'])) {
-		// 		$name    = htmlentities($_POST["name"]);
-		// 		$email   = htmlentities($_POST["email"]);
-		// 		$subject = htmlentities($_POST["subject"]);
-		// 		$message = htmlentities($_POST["message"]);
+		try {
+			if (isset($_POST['send'])) {
+				$name    = htmlentities($_POST["name"]);
+				$email   = htmlentities($_POST["email"]);
+				$subject = htmlentities($_POST["subject"]);
+				$message = htmlentities($_POST["message"]);
 
-		// 		$mail = new PHPMailer(true);
-		// 		$mail->isSMTP();
-		// 		$mail->Host     = "smtp.gmail.com";
-		// 		$mail->SMTPAuth = true;
+				$mail = new PHPMailer(true);
+				$mail->isSMTP();
+				$mail->Host     = "smtp.gmail.com";
+				$mail->SMTPAuth = true;
 
-		// 		$school_email   ="papayaoffc@gmail.com";
-		// 		$email_password = "ixhn koab sbxo bovq";
+				$school_email   ="papayaoffc@gmail.com";
+				$email_password = "mndh qhqp clov cdwq";
 
-		// 		$mail->Username = $school_email;
-		// 		$mail->Password = $email_password;
+				$mail->Username = $school_email;
+				$mail->Password = $email_password;
 
-		// 		$mail->Port       = 465;
-		// 		$mail->SMTPSecure = 'ssl';
-		// 		$mail->isHTML(true);
-		// 		$mail->setFrom("papayaoffc@gmail.com", "NEUST Papaya Off Campus");
-		// 		$mail->addAddress($email, "Visitor");
+				$mail->Port       = 465;
+				$mail->SMTPSecure = 'ssl';
+				$mail->isHTML(true);
+				$mail->setFrom("papayaoffc@gmail.com", "NEUST Papaya Off Campus");
+				$mail->addAddress($email, "Visitor");
 
-		// 		$mail->Subject = $subject;
-		// 		$mail->Body    = $message;
+				$mail->Subject = $subject;
+				$mail->Body    = $message;
 
-		// 		$mail->MsgHTML($message);
-		// 		if ($mail->send()) {
-		// 			$_SESSION['status'] = "Message Sent!";
-		// 		}
-		// 	}
-		// } catch (Exception $e) {
-		// 	$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
-		// } catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
-		// 	echo $e->getMessage(); //Boring error messages from anything else!
-		// }
+				$mail->MsgHTML($message);
+				if ($mail->send()) {
+					$_SESSION['status'] = "Message Sent!";
+				}
+			}
+		} catch (Exception $e) {
+			$_SESSION['error'] = "Please check your Gmail and Gmail app password again!";
+		} catch (\Exception $e) { //The leading slash means the Global PHP Exception class will be caught
+			echo $e->getMessage(); //Boring error messages from anything else!
+		}
 
 
 
@@ -328,8 +296,10 @@ class Home
 		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' AND isDeptHead = 'No' ORDER BY name ASC";
 		$data['part_time'] = $this->query($part_time);
 
-		$part_time          = "SELECT * FROM $teachers->table WHERE isFullTime = 'parttime' AND isDeptHead = 'Yes' ORDER BY name ASC";
-		$data['dept_head'] = $this->query($part_time);
+		$dept_head          = "SELECT * FROM $teachers->table WHERE  isDeptHead = 'Yes' ORDER BY name ASC";
+		$data['dept_head'] = $this->query($dept_head);
+
+
 
 		// url
 		$url = $_GET['url'] ?? 'home';

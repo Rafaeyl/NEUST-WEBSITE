@@ -10,11 +10,59 @@
 	.dept-box {
 		border-radius: 10px;
 	}
-
 	.dept-box img {
-		width: 100%;
-		height: 350px;
+			width: 100%;
+			height: 450px;
+			object-fit: cover;
 	}
+	@media (min-width: 475px) {
+
+
+		.dept-box img {
+			width: 100%;
+			height: 450px;
+			object-fit: cover;
+		}
+	}
+
+	@media (min-width: 640px) {
+
+
+		.dept-box img {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
+	}
+
+
+	@media (min-width: 768px) {
+
+		.dept-box img {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
+	}
+
+	@media (min-width: 992px) {
+
+		.dept-box img {
+			width: 100%;
+			height: 350px;
+			object-fit: cover;
+		}
+	}
+
+	@media (min-width: 1200px) {
+
+		.dept-box img {
+			width: 100%;
+			height: 350px;
+			object-fit: cover;
+		}
+	}
+
 
 	.dept-box .social {
 		margin-top: -270px;
@@ -55,9 +103,9 @@
 		<div class="row no-gutters slider-text align-items-center justify-content-center">
 			<div class="col-md-9 ftco-animate text-center">
 				<h1 class="mb-2 bread">Faculty</h1>
-				<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+				<!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
 								class="fa-solid fa-arrow-right"></i></a></span> <span>Faculty <i
-							class="fa-solid fa-arrow-right"></i></span></p>
+							class="fa-solid fa-arrow-right"></i></span></p> -->
 			</div>
 		</div>
 	</div>
@@ -71,32 +119,34 @@
 				<h1 class="text-primary">Faculty and Staffs</h1>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-3 mx-auto mb-5">
+		<div class="row  mx-auto justify-content-center">
+			<div class="col-md-3 my-4">
 				<div class="dept-box bg-primeLight ">
-					<img src="<?= ROOT ?>/assets/images/Depart/maam-rivera.jpg">
+					<img src="<?= ROOT ?>/assets/images/officials/Depart/maam-rivera.jpg">
 					<div class="text text-dark fw-bold py-2">
-						<h6> App Developer</h6>
+						<h6> College Administrator</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 my-4">
+				<div class="dept-box bg-primeLight ">
+					<img src="<?= ROOT ?>/assets/images/officials/Depart/sir-albert.jpg">
+					<div class="text text-dark fw-bold py-2">
+						<h6> College Department Head </h6>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row mx-auto justify-content-center">
-			<div class="col-md-3 ">
-				<div class="dept-box bg-primeLight">
-					<img src="<?= ROOT ?>/assets/images/Depart/sir-albert.jpg">
-					<div class="text text-dark fw-bold py-2">
-					<h6> App Developer</h6>
-					</div>
-				</div>
-			</div>
 			<?php if (!empty($dept_head)): ?>
 				<?php foreach ($dept_head as $teacher): ?>
-					<div class="col-md-3 ">
+					<div class="col-md-3 my-4">
 						<div class="dept-box bg-primeLight">
 							<img src="<?= get_image($teacher->image) ?>">
 							<div class="text text-dark fw-bold py-2">
-							 <h6> 	<?= esc($teacher->position) ?></h6>
+								<h6>
+									<?= esc($teacher->position) ?>
+								</h6>
 							</div>
 						</div>
 					</div>

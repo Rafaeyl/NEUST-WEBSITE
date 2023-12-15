@@ -190,7 +190,7 @@
 	</div>
 
 	<div class="container">
-	<div class="row   my-5">
+	<div class="row my-5 justify-content-center">
 		<?php if (!empty($announcements)): ?>
 			<?php foreach ($announcements as $ann): ?>
 				<div class="col-md-6 col-lg-4 ftco-animate my-2">

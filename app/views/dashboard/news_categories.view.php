@@ -18,8 +18,8 @@
 
                   <div class="col-md-6">
                     <label for="name" class="form-label">Category name</label>
-                    <input value="<?= old_value('name') ?>" type="text" class="form-control" id="name" name="name"
-                      placeholder="Enter the name of the News Categories">
+                    <input value="<?= old_value('name') ?>" type="text" class="form-control" id="name" name="name" 
+                      placeholder="Enter the name of the News Categories" required autocomplete="off">
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -79,8 +79,8 @@
 
                   <div class="col-md-6">
                     <label for="name" class="form-label">Category name</label>
-                    <input value="<?= old_value('name',$row->name) ?>" type="text" class="form-control" id="name" name="name"
-                      placeholder="Enter the name of the News Categories">
+                    <input value="<?= old_value('name',$row->name) ?>" type="text" class="form-control" id="name" name="name" 
+                      placeholder="Enter the name of the News Categories" required autocomplete="off">
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">

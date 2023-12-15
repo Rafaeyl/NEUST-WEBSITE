@@ -2003,7 +2003,6 @@ class Dashboard
 		$data['news'] = new Institution();
 		
 		$data['news']->table = 'news';
-		$data['news']->order_type = 'desc';
 		$data['news']->allowedColumns = [
 			
 			'category_id',

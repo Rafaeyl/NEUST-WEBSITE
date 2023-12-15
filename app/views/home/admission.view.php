@@ -7,9 +7,9 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-2 bread">Admission</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
                                 class="fa-solid fa-arrow-right"></i></a></span> <span>Admission <i
-                            class="fa-solid fa-arrow-right"></i></span></p>
+                            class="fa-solid fa-arrow-right"></i></span></p> -->
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered my-5 text-center">
-                            <thead class="bg-dark text-white">
+                            <thead class="bg-darken text-white">
                                 <tr>
                                     <th>CLIENTS STEPS</th>
                                     <th>AGENCY ACTIONS</th>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered my-5 text-center">
-                            <thead class="bg-dark text-white">
+                            <thead class="bg-darken text-white">
                                 <tr>
                                     <th>CLIENTS STEPS</th>
                                     <th>AGENCY ACTIONS</th>
@@ -246,7 +246,7 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered my-5 text-center">
-                            <thead class="bg-dark text-white">
+                            <thead class="bg-darken text-white">
                                 <tr>
                                     <th>CLIENTS STEPS</th>
                                     <th>AGENCY ACTIONS</th>

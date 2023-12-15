@@ -124,11 +124,37 @@
                         <h6 class="section-title text-center text-primary text-uppercase"> Instructors</h6>
                         <h1 class="mb-5">Meet Our <span class="text-primary text-uppercase">Instructors</span></h1>
                     </div>
-
                     <div class="row justify-content-center">
+                        <?php if (!empty($single_head)): ?>
+                            <?php foreach ($single_head as $teacher): ?>
+                                <div class="col-md-6 col-lg-4 ftco-animate">
+                                    <div class="staff">
+                                        <div class="img-wrap d-flex align-items-stretch">
+                                            <div class="img align-self-stretch"
+                                                style="background-image: url(<?= get_image($teacher->image) ?>);"></div>
+                                        </div>
+                                        <div class="text p-3 text-center bg-primeLight">
+                                            <h6 class="fw-bolder fw-dark">
+                                                <?= esc($teacher->name) . "," . esc($teacher->suffixes) ?>
+                                            </h6>
+                                            <span class="position mb-2">
+                                                <?= esc($teacher->position) ?>
+                                            </span>
+                                            <!-- <div class="faded">
+                                    <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                                    <ul class="ftco-social text-center">
+                                    </ul>
+                                </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="row  justify-content-center">
                         <?php if (!empty($teachers)): ?>
                             <?php foreach ($teachers as $teacher): ?>
-                                <div class="col-md-6 col-lg-3 ftco-animate">
+                                <div class="col-md-6 col-lg-4 ftco-animate">
                                     <div class="staff">
                                         <div class="img-wrap d-flex align-items-stretch">
                                             <div class="img align-self-stretch"

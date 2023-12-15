@@ -9,7 +9,7 @@
         }else{
             $page = 1;
         }
-        $limit = 1;
+        $limit = 20;
         $offset = ($page-1)*$limit;
 
         // Previous Page
@@ -28,10 +28,10 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-2 bread">SCHOOL ALBUM</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">HOME <i
+                <h1 class="mb-2 bread">CAMPUS GALLERY</h1>
+                <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">HOME <i
                                 class="fa-solid fa-arrow-right"></i></a></span> <span>SCHOOL ALBUM<i
-                            class="fa-solid fa-arrow-right"></i></span> </p>
+                            class="fa-solid fa-arrow-right"></i></span> </p> -->
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
                                                             <?= ROOT . 'uploads/' . $row['file_name']; ?>" <?php } ?> class="img-fluid w-100"
                                                             alt="Album-Image">
                                                     </div>
-                                                    <div class="card-footer text-center bg-primeLight">
+                                                    <div class="card-footer text-center bg-primeLight" style="height: 120px">
                                                         <h5 class="heading">
                                                             <?= $row['title'] ?>
                                                         </h5>

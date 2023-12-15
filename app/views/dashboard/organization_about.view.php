@@ -258,7 +258,7 @@
                   $orgname = $this->query($query);
                 ?>
 
-                <h3 class="mb-5 text-center">Are you sure you want to delete <?= $row->name ?> ?</h3>
+                <h3 class="mb-5 text-center">Are you sure you want to delete <?= $orgname[0]->name ?> ?</h3>
                 <form method="post" class="text-center">
 
                   <div class="row">

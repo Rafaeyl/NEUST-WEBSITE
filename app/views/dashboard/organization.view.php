@@ -25,7 +25,7 @@
                   <div class="col-md-4">
                     <label for="name" class="form-label">Organization's Name</label>
                     <input value="<?= old_value('name') ?>" type="text" class="form-control" id="name" name="name"
-                      placeholder="Enter the name of the organization">
+                      placeholder="Enter the name of the organization" required>
                       <div><small class="text-danger"> <?= $org->getError('name') ?></small></div>
                   </div>
                   <div class="col-md-4">
@@ -99,7 +99,7 @@
                   <div class="col-md-6">
                     <label for="name" class="form-label">Organization's Name</label>
                     <input value="<?= old_value('name',$row->name) ?>" type="text" class="form-control" id="name" name="name"
-                      placeholder="Enter the name of the organization">
+                      placeholder="Enter the name of the organization" required>
                       <div><small class="text-danger"> <?= $org->getError('name') ?></small></div>
                   </div>
                   <div class="col-md-6">

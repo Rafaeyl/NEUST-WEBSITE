@@ -188,12 +188,12 @@
               <i class="mdi mdi-folder-multiple-image menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/settings">
               <span class="menu-title">Settings</span>
               <i class="mdi mdi-settings menu-icon"></i>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="<?= ROOT ?>dashboard/faq">
               <span class="menu-title">FAQs</span>

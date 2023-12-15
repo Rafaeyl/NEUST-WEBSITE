@@ -125,7 +125,7 @@
 
       <?php endif; ?>
     
-        <!-- <div id="important" class="important">
+         <div id="important" class="important">
    
    <div class="important_bg ">
        <div class="container">
@@ -155,7 +155,7 @@
        </div>
        </div>
    </div>
-</div> -->
+</div> 
 <section class="ftco-section bg-light">
 	<div class="container-fluid px-4">
         <div class="section-title row text-center">

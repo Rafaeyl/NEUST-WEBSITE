@@ -63,7 +63,7 @@
                     </select>
                   </div>
                   <div class="col-lg-6 text-center">
-                    <label for="isDeptHead" class="form-label">Depeartment Head</label>
+                    <label for="isDeptHead" class="form-label">Department Head</label>
                     <select id="isDeptHead" class="form-select" aria-label="Default select example" name="isDeptHead">
                     <option <?=old_select('isDeptHead',"No")?> value="No" class="text-center">No</option>
                       <option <?=old_select('isDeptHead',"Yes")?> value="Yes" class="text-center">Yes</option>
@@ -155,7 +155,7 @@
                     </select>
                   </div>
                   <div class="col-lg-6 text-center">
-                    <label for="isDeptHead" class="form-label">Depeartment Head</label>
+                    <label for="isDeptHead" class="form-label">Department Head</label>
                     <select id="isDeptHead" class="form-select" aria-label="Default select example" name="isDeptHead">
                     <option <?=old_select('isDeptHead',"No",$row->isDeptHead)?> value="No" class="text-center">No</option>
                       <option <?=old_select('isDeptHead',"Yes",$row->isDeptHead)?> value="Yes" class="text-center">Yes</option>
